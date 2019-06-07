@@ -17,7 +17,7 @@ const base = {
         include: [
           './src/index.ts',
           './src/missing.d.ts',
-          './src/components/utils/commonProps.ts',
+          './src/utils/commonProps.ts',
         ],
         exclude: ['./node_modules/**/*.*'],
       },
