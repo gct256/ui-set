@@ -159,7 +159,7 @@ export const ListView: React.FC<ListViewProps> = ({
 
   const className = classnames(
     classNames ? classNames.default : '',
-    'overflow-x-hidden overflow-y-auto p-0',
+    'w-full h-full overflow-x-hidden overflow-y-auto p-0',
     'focus:outline-none',
     {
       [colors.bg.normal]: !disabled,
@@ -183,7 +183,7 @@ export const ListView: React.FC<ListViewProps> = ({
 
   return (
     <div
-      className="relative focus:outline-none"
+      className="relative w-full h-full focus:outline-none"
       role="menu"
       tabIndex={0}
       onClick={handleClick}
