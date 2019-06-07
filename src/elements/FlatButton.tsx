@@ -31,7 +31,7 @@ export const FlatButton: React.FC<FlatButtonProps> = ({
       'active:opacity-75',
       {
         [colors.text.normal]: !disabled,
-        [colors.text.hover]: !disabled,
+        [`hover:${colors.text.hover}`]: !disabled,
         [colors.text.disabled]: disabled,
       },
       {

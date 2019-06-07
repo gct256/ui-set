@@ -21,7 +21,7 @@ export const colors = {
   },
   text: {
     normal: 'text-gray-700',
-    hover: 'hover:text-gray-900',
+    hover: 'text-gray-900',
     disabled: 'text-gray-400',
     invert: 'text-white',
     focus: 'text-black',

@@ -22,6 +22,8 @@ import { AlertDialog } from './dialogs/AlertDialog';
 import { Dialog } from './dialogs/Dialog';
 //
 import { ListView } from './components/ListView/ListView';
+//
+import { colors as themeColors } from './utils/colors';
 
 export {
   BorderedView,
@@ -48,4 +50,6 @@ export {
   Dialog,
   //
   ListView,
+  //
+  themeColors,
 };

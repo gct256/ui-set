@@ -58,7 +58,7 @@ export const Button: React.FC<ButtonProps> = ({
         },
         {
           [colors.text.normal]: !primary && !disabled,
-          [colors.text.hover]: !primary && !disabled,
+          [`hover:${colors.text.hover}`]: !primary && !disabled,
           [colors.text.invert]: primary && !disabled,
           [`hover:${colors.text.invertHover}`]: primary && !disabled,
           [colors.text.disabled]: !primary && disabled,
