@@ -8,7 +8,8 @@
     "postcss": "cleancss css/ui-set.css > css/ui-set.min.css",
     "build": "NODE_ENV=production rollup -c",
     "start-storybook": "start-storybook",
-    "build-storybook": "build-storybook -o example"
+    "build-storybook": "build-storybook -o example",
+    "prepare": "npm run build"
   },
   "main": "lib/ui-set",
   "typings": "types/index.d.ts",
