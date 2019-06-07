@@ -1,3 +1,4 @@
+import { BorderedView } from './elements/BorderedView';
 import { Button } from './elements/Button';
 import { CanvasView } from './elements/CanvasView';
 import { FlatButton } from './elements/FlatButton';
@@ -23,6 +24,7 @@ import { Dialog } from './dialogs/Dialog';
 import { ListView } from './components/ListView/ListView';
 
 export {
+  BorderedView,
   Button,
   CanvasView,
   FlatButton,
