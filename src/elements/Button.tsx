@@ -70,7 +70,6 @@ export const Button: React.FC<ButtonProps> = ({
         },
         {
           'cursor-default': disabled,
-          'min-w-24': !iconOnly,
           'w-8': iconOnly,
         },
       )}
