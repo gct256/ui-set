@@ -48,7 +48,7 @@ interface ListViewProps {
       withCursor?: string;
       /** className for list view's item without cursor. */
       withoutCursor?: string;
-      /** className for list view's item with disabled status. */
+      /** className for list view's item with disabled status and cursor. */
       disabled?: string;
     };
   };
@@ -86,6 +86,8 @@ export const ListView: React.FC<ListViewProps> = ({
     classNames && classNames.item ? classNames.item.withCursor : '';
   const itemWithoutCursorClass =
     classNames && classNames.item ? classNames.item.withoutCursor : '';
+  const itemDisabledClass =
+    classNames && classNames.item ? classNames.item.disabled : '';
 
   // build list items.
   const children = items.map((item, i) => (
@@ -95,7 +97,10 @@ export const ListView: React.FC<ListViewProps> = ({
       isCursorTarget={i === cursor}
       className={classnames(
         itemDefaultClass,
-        cursor === i ? itemWithCursorClass : itemWithoutCursorClass,
+        disabled && cursor === i ? itemDisabledClass : '',
+        !disabled && cursor === i
+          ? itemWithCursorClass
+          : itemWithoutCursorClass,
       )}
     >
       {item}

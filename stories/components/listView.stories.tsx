@@ -51,6 +51,7 @@ storiesOf('components / ListView', module)
             item: {
               default: 'px-2 py-1',
               withCursor: 'bg-yellow-300',
+              disabled: 'bg-gray-300',
             },
           }}
           items={items.map((x) => (
