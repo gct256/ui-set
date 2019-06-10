@@ -47,6 +47,10 @@ export class CanvasView extends React.Component<CanvasViewProps> {
     return false;
   }
 
+  public componentDidUpdate() {
+    this.renderToCanvas(this.props);
+  }
+
   private renderToCanvas(props: CanvasViewProps) {
     if (this.ref.current === null) return;
 
