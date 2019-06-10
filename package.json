@@ -6,6 +6,7 @@
   "scripts": {
     "css": "tailwind build src/css/style.css -c src/css/tailwind.config.js -o css/ui-set.css",
     "postcss": "cleancss css/ui-set.css > css/ui-set.min.css",
+    "prebuild": "npm run css",
     "build": "NODE_ENV=production rollup -c",
     "start-storybook": "start-storybook",
     "build-storybook": "build-storybook -o example",
