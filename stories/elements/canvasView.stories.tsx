@@ -30,13 +30,13 @@ storiesOf('elements / CanvasView', module)
     <>
       <CanvasView
         width={number('width', 250, {
-          min: 50,
+          min: 0,
           max: 500,
           step: 50,
           range: true,
         })}
         height={number('height', 250, {
-          min: 50,
+          min: 0,
           max: 500,
           step: 50,
           range: true,

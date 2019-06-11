@@ -92,6 +92,9 @@ export class CanvasView extends React.Component<CanvasViewProps> {
     if (front === null || back === null) return;
 
     const { width, height, serial, renderMode, onRedraw } = props;
+
+    if (width === 0 || height === 0) return;
+
     const [scale1, scale2] = getScales(renderMode);
 
     back.setTransform(1, 0, 0, 1, 0, 0);
