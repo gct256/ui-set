@@ -46,6 +46,7 @@ export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({
         ? buttons.map((x, i) => (
             <FormCell key={x}>
               <Button
+                className="min-w-24"
                 disabled={!!disabled[i]}
                 primary={primaryButton === i}
                 onClick={() => onClick && onClick(i)}
