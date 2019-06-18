@@ -18,31 +18,38 @@ export const FlatButton: React.FC<FlatButtonProps> = ({
   className,
   onClick,
   children,
-}: React.PropsWithChildren<FlatButtonProps>) => (
-  <button
-    type="button"
-    disabled={disabled}
-    className={classnames(
-      className,
-      'ui-set select-none',
-      'bg-transparent',
-      'focus:outline-none',
-      'focus:focus-animation-border',
-      'active:opacity-75',
-      {
-        [colors.text.normal]: !disabled,
-        [`hover:${colors.text.hover}`]: !disabled,
-        [colors.text.disabled]: disabled,
-      },
-      {
-        'cursor-default': disabled,
-      },
-    )}
-    onClick={() => onClick && onClick()}
-    onKeyDown={(ev) => handleButtonKeyDown(ev, onClick)}
-  >
-    {children}
-  </button>
-);
+}: React.PropsWithChildren<FlatButtonProps>) => {
+  const handleKeyDown = React.useCallback(
+    (ev) => handleButtonKeyDown(ev, onClick),
+    [onClick],
+  );
+
+  return (
+    <button
+      type="button"
+      disabled={disabled}
+      className={classnames(
+        className,
+        'ui-set select-none',
+        'bg-transparent',
+        'focus:outline-none',
+        'focus:focus-animation-border',
+        'active:opacity-75',
+        {
+          [colors.text.normal]: !disabled,
+          [`hover:${colors.text.hover}`]: !disabled,
+          [colors.text.disabled]: disabled,
+        },
+        {
+          'cursor-default': disabled,
+        },
+      )}
+      onClick={onClick}
+      onKeyDown={handleKeyDown}
+    >
+      {children}
+    </button>
+  );
+};
 
 FlatButton.displayName = 'FlatButton';

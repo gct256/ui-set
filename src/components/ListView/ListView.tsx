@@ -129,38 +129,44 @@ export const ListView: React.FC<ListViewProps> = ({
     }
   });
 
-  function handleClick(ev: React.MouseEvent<HTMLDivElement>) {
-    if (ref.current === null) return;
+  const handleClick = React.useCallback(
+    (ev: React.MouseEvent<HTMLDivElement>) => {
+      if (ref.current === null) return;
 
-    if (!(ev.target instanceof HTMLElement)) return;
+      if (!(ev.target instanceof HTMLElement)) return;
 
-    const index = getItemIndex(ref.current, ev.target);
+      const index = getItemIndex(ref.current, ev.target);
 
-    if (index >= 0) updateCursor(index);
-  }
+      if (index >= 0) updateCursor(index);
+    },
+    [],
+  );
 
-  function handleKeyDown(ev: React.KeyboardEvent<HTMLDivElement>) {
-    if (!onUpdateCursor) return;
+  const handleKeyDown = React.useCallback(
+    (ev: React.KeyboardEvent<HTMLDivElement>) => {
+      if (!onUpdateCursor) return;
 
-    switch (keyName(ev.nativeEvent)) {
-      case Key.ArrowUp:
-      case Key.ArrowLeft:
-        updateCursor(cursor < 0 ? 0 : cursor - 1);
-        break;
-      case Key.ArrowDown:
-      case Key.ArrowRight:
-        updateCursor(cursor < 0 ? 0 : cursor + 1);
-        break;
+      switch (keyName(ev.nativeEvent)) {
+        case Key.ArrowUp:
+        case Key.ArrowLeft:
+          updateCursor(cursor < 0 ? 0 : cursor - 1);
+          break;
+        case Key.ArrowDown:
+        case Key.ArrowRight:
+          updateCursor(cursor < 0 ? 0 : cursor + 1);
+          break;
 
-      default:
-        if (onKeyDown) onKeyDown(ev);
+        default:
+          if (onKeyDown) onKeyDown(ev);
 
-        return;
-    }
+          return;
+      }
 
-    ev.preventDefault();
-    ev.stopPropagation();
-  }
+      ev.preventDefault();
+      ev.stopPropagation();
+    },
+    [onUpdateCursor, cursor, onKeyDown],
+  );
 
   const className = classnames(
     classNames ? classNames.default : '',

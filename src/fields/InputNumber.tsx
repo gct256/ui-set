@@ -43,30 +43,37 @@ export const InputNumber: React.FC<InputNumberProps> = ({
   step,
 
   onChange,
-}: InputNumberProps) => (
-  <span className={getFieldWrapClassName(className, bordered, disabled, true)}>
-    <input
-      value={value}
-      type="number"
-      className={getFieldClassName(bordered, true, 'text-right')}
-      disabled={disabled}
-      autoComplete={autocomplete}
-      max={max}
-      maxLength={maxLength}
-      min={min}
-      minLength={minLength}
-      name={name}
-      placeholder={placeholder}
-      readOnly={readOnly}
-      required={required}
-      size={size}
-      step={step}
-      onChange={({ currentTarget }) =>
-        onChange && onChange(currentTarget.valueAsNumber)
-      }
-    />
-  </span>
-);
+}: InputNumberProps) => {
+  const handleOnChange = React.useCallback(
+    ({ currentTarget }) => onChange && onChange(currentTarget.valueAsNumber),
+    [onChange],
+  );
+
+  return (
+    <span
+      className={getFieldWrapClassName(className, bordered, disabled, true)}
+    >
+      <input
+        value={value}
+        type="number"
+        className={getFieldClassName(bordered, true, 'text-right')}
+        disabled={disabled}
+        autoComplete={autocomplete}
+        max={max}
+        maxLength={maxLength}
+        min={min}
+        minLength={minLength}
+        name={name}
+        placeholder={placeholder}
+        readOnly={readOnly}
+        required={required}
+        size={size}
+        step={step}
+        onChange={handleOnChange}
+      />
+    </span>
+  );
+};
 
 InputNumber.displayName = 'InputNumber';
 

@@ -37,35 +37,40 @@ export const InputRange: React.FC<InputRangeProps> = ({
   step,
 
   onChange,
-}: InputRangeProps) => (
-  <input
-    value={value}
-    type="range"
-    className={classnames(
-      'ui-set inline-block w-full align-top bg-transparent',
-      'h-8 px-1 py-1',
-      `border-2 border-transparent focus:${colors.border.focus}`,
-      `focus:outline-none`,
-      'focus:focus-animation',
-      className,
-    )}
-    disabled={disabled}
-    autoComplete={autocomplete}
-    max={max}
-    maxLength={maxLength}
-    min={min}
-    minLength={minLength}
-    name={name}
-    placeholder={placeholder}
-    readOnly={readOnly}
-    required={required}
-    size={size}
-    step={step}
-    onChange={({ currentTarget }) =>
-      onChange && onChange(currentTarget.valueAsNumber)
-    }
-  />
-);
+}: InputRangeProps) => {
+  const handleOnChange = React.useCallback(
+    ({ currentTarget }) => onChange && onChange(currentTarget.valueAsNumber),
+    [onChange],
+  );
+
+  return (
+    <input
+      value={value}
+      type="range"
+      className={classnames(
+        'ui-set inline-block w-full align-top bg-transparent',
+        'h-8 px-1 py-1',
+        `border-2 border-transparent focus:${colors.border.focus}`,
+        `focus:outline-none`,
+        'focus:focus-animation',
+        className,
+      )}
+      disabled={disabled}
+      autoComplete={autocomplete}
+      max={max}
+      maxLength={maxLength}
+      min={min}
+      minLength={minLength}
+      name={name}
+      placeholder={placeholder}
+      readOnly={readOnly}
+      required={required}
+      size={size}
+      step={step}
+      onChange={handleOnChange}
+    />
+  );
+};
 
 InputRange.displayName = 'InputRange';
 

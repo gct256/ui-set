@@ -28,34 +28,41 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   checked,
   onChange,
   children,
-}: React.PropsWithChildren<CheckboxProps>) => (
-  <label htmlFor={htmlId} className={getCheckboxClassName('', disabled)}>
-    <span
-      className={`border-2 mr-1 w-4 h-4 flex justify-center items-center ${
-        disabled ? colors.bg.disabled : colors.bg.normal
-      } ${disabled ? colors.border.disabled : colors.border.normal}`}
-    >
-      <Icon
-        icon={checked ? faCheck : undefined}
-        transform="shrink-5"
-        className={`${disabled ? colors.text.disabled : colors.text.normal}`}
+}: React.PropsWithChildren<CheckboxProps>) => {
+  const handleOnChange = React.useCallback(
+    ({ currentTarget }) => onChange && onChange(currentTarget.checked),
+    [onChange],
+  );
+  const handleOnKeyDown = React.useCallback(
+    (ev) => onChange && handleButtonKeyDown(ev, () => onChange(!checked)),
+    [onChange],
+  );
+
+  return (
+    <label htmlFor={htmlId} className={getCheckboxClassName('', disabled)}>
+      <span
+        className={`border-2 mr-1 w-4 h-4 flex justify-center items-center ${
+          disabled ? colors.bg.disabled : colors.bg.normal
+        } ${disabled ? colors.border.disabled : colors.border.normal}`}
+      >
+        <Icon
+          icon={checked ? faCheck : undefined}
+          transform="shrink-5"
+          className={`${disabled ? colors.text.disabled : colors.text.normal}`}
+        />
+      </span>
+      <input
+        id={htmlId}
+        className="appearance-none"
+        type="checkbox"
+        disabled={disabled}
+        checked={!!checked}
+        onChange={handleOnChange}
+        onKeyDown={handleOnKeyDown}
       />
-    </span>
-    <input
-      id={htmlId}
-      className="appearance-none"
-      type="checkbox"
-      disabled={disabled}
-      checked={!!checked}
-      onChange={({ currentTarget }) =>
-        onChange && onChange(currentTarget.checked)
-      }
-      onKeyDown={(ev) =>
-        onChange && handleButtonKeyDown(ev, () => onChange(!checked))
-      }
-    />
-    {children}
-  </label>
-);
+      {children}
+    </label>
+  );
+};
 
 Checkbox.displayName = 'Checkbox';

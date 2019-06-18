@@ -39,28 +39,35 @@ export const InputText: React.FC<InputTextProps> = ({
   size,
 
   onChange,
-}: InputTextProps) => (
-  <span className={getFieldWrapClassName(className, bordered, disabled, true)}>
-    <input
-      type="text"
-      value={value}
-      className={getFieldClassName(bordered, true)}
-      disabled={disabled}
-      autoComplete={autocomplete}
-      maxLength={maxLength}
-      minLength={minLength}
-      name={name}
-      pattern={pattern}
-      placeholder={placeholder}
-      readOnly={readOnly}
-      required={required}
-      size={size}
-      onChange={({ currentTarget }) =>
-        onChange && onChange(currentTarget.value)
-      }
-    />
-  </span>
-);
+}: InputTextProps) => {
+  const handleOnChange = React.useCallback(
+    ({ currentTarget }) => onChange && onChange(currentTarget.value),
+    [onChange],
+  );
+
+  return (
+    <span
+      className={getFieldWrapClassName(className, bordered, disabled, true)}
+    >
+      <input
+        type="text"
+        value={value}
+        className={getFieldClassName(bordered, true)}
+        disabled={disabled}
+        autoComplete={autocomplete}
+        maxLength={maxLength}
+        minLength={minLength}
+        name={name}
+        pattern={pattern}
+        placeholder={placeholder}
+        readOnly={readOnly}
+        required={required}
+        size={size}
+        onChange={handleOnChange}
+      />
+    </span>
+  );
+};
 
 InputText.displayName = 'InputText';
 

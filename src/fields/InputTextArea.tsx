@@ -35,29 +35,36 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
   required,
 
   onChange,
-}: InputTextAreaProps) => (
-  <span className={getFieldWrapClassName(className, bordered, disabled, false)}>
-    <textarea
-      value={value}
-      disabled={disabled}
-      className={getFieldClassName(
-        bordered,
-        false,
-        'h-full resize-none leading-normal',
-      )}
-      autoComplete={autocomplete}
-      maxLength={maxLength}
-      minLength={minLength}
-      name={name}
-      placeholder={placeholder}
-      readOnly={readOnly}
-      required={required}
-      onChange={({ currentTarget }) =>
-        onChange && onChange(currentTarget.value)
-      }
-    />
-  </span>
-);
+}: InputTextAreaProps) => {
+  const handleOnChange = React.useCallback(
+    ({ currentTarget }) => onChange && onChange(currentTarget.value),
+    [onChange],
+  );
+
+  return (
+    <span
+      className={getFieldWrapClassName(className, bordered, disabled, false)}
+    >
+      <textarea
+        value={value}
+        disabled={disabled}
+        className={getFieldClassName(
+          bordered,
+          false,
+          'h-full resize-none leading-normal',
+        )}
+        autoComplete={autocomplete}
+        maxLength={maxLength}
+        minLength={minLength}
+        name={name}
+        placeholder={placeholder}
+        readOnly={readOnly}
+        required={required}
+        onChange={handleOnChange}
+      />
+    </span>
+  );
+};
 
 InputTextArea.displayName = 'InputTextArea';
 

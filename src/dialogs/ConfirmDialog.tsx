@@ -53,22 +53,29 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   onClick,
   onSubClick,
   children,
-}: React.PropsWithChildren<ConfirmDialogProps>) => (
-  <Dialog
-    title={title}
-    width={width}
-    visible={!!visible}
-    buttons={isWindows() ? buttonPair1 : buttonPair2}
-    buttonsDisabled={[false, !!disabled]}
-    subButtons={subButtons}
-    subButtonsDisabled={subButtonsDisabled}
-    primaryButton={danger ? button0 : button1}
-    onClick={(i) => onClick && onClick(i === button1)}
-    onSubClick={onSubClick}
-  >
-    {children}
-  </Dialog>
-);
+}: React.PropsWithChildren<ConfirmDialogProps>) => {
+  const handleOnClick = React.useCallback(
+    (i) => onClick && onClick(i === button1),
+    [onClick],
+  );
+
+  return (
+    <Dialog
+      title={title}
+      width={width}
+      visible={!!visible}
+      buttons={isWindows() ? buttonPair1 : buttonPair2}
+      buttonsDisabled={[false, !!disabled]}
+      subButtons={subButtons}
+      subButtonsDisabled={subButtonsDisabled}
+      primaryButton={danger ? button0 : button1}
+      onClick={handleOnClick}
+      onSubClick={onSubClick}
+    >
+      {children}
+    </Dialog>
+  );
+};
 
 ConfirmDialog.displayName = 'ConfirmDialog';
 

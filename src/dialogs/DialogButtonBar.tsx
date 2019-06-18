@@ -43,18 +43,25 @@ export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({
       })}
     >
       {buttons
-        ? buttons.map((x, i) => (
-            <FormCell key={x}>
-              <Button
-                className="min-w-24"
-                disabled={!!disabled[i]}
-                primary={primaryButton === i}
-                onClick={() => onClick && onClick(i)}
-              >
-                {x}
-              </Button>
-            </FormCell>
-          ))
+        ? buttons.map((x, i) => {
+            const handleOnClick = React.useCallback(
+              () => onClick && onClick(i),
+              [onClick],
+            );
+
+            return (
+              <FormCell key={x}>
+                <Button
+                  className="min-w-24"
+                  disabled={!!disabled[i]}
+                  primary={primaryButton === i}
+                  onClick={handleOnClick}
+                >
+                  {x}
+                </Button>
+              </FormCell>
+            );
+          })
         : null}
     </FormRow>
   );

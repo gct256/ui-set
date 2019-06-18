@@ -14,9 +14,7 @@ interface ButtonProps extends UiProps {
   /** If true, set primary style to button. */
   primary?: boolean;
 
-  /**
-   * Event handler on button clicked.
-   */
+  /** Event handler on button clicked. */
   onClick?(): void;
 }
 
@@ -30,6 +28,10 @@ export const Button: React.FC<ButtonProps> = ({
   children,
 }: React.PropsWithChildren<ButtonProps>) => {
   const iconOnly = children === undefined;
+  const handleKeyDown = React.useCallback(
+    (ev) => handleButtonKeyDown(ev, onClick),
+    [onClick],
+  );
 
   return (
     <button
@@ -75,7 +77,7 @@ export const Button: React.FC<ButtonProps> = ({
       )}
       disabled={disabled}
       onClick={onClick}
-      onKeyDown={(ev) => handleButtonKeyDown(ev, onClick)}
+      onKeyDown={handleKeyDown}
     >
       <span
         className={classnames(

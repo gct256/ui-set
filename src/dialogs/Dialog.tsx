@@ -60,6 +60,43 @@ export const Dialog: React.FC<DialogProps> = ({
     width: typeof width === 'number' ? `${width}%` : 'auto',
   };
 
+  const initialFocus = React.useCallback(() => {
+    if (ref.current === null) return document.body;
+
+    const fields = ref.current.querySelectorAll(
+      [
+        '.dialog-content input:not(:disabled)',
+        '.dialog-content select:not(:disabled)',
+        '.dialog-content textarea:not(:disabled)',
+        '.dialog-content button:not(:disabled)',
+      ].join(','),
+    );
+
+    if (fields.length > 0) return fields[0] as HTMLElement;
+
+    const barButtons = Array.from(
+      ref.current.querySelectorAll('.dialog-button-bar:last-of-type button'),
+    );
+
+    if (barButtons.length === 0) return document.body;
+
+    if (
+      typeof primaryButton === 'number' &&
+      primaryButton >= 0 &&
+      primaryButton < barButtons.length
+    ) {
+      barButtons.unshift(barButtons[primaryButton]);
+    }
+
+    for (let i = 0; i < barButtons.length; i += 1) {
+      const button = barButtons[i] as HTMLButtonElement;
+
+      if (!button.disabled) return button;
+    }
+
+    return barButtons[0] as HTMLElement;
+  }, [primaryButton]);
+
   return (
     <>
       <div className="fixed inset-0 z-40 fade-in">
@@ -68,58 +105,17 @@ export const Dialog: React.FC<DialogProps> = ({
       <FocusTrap
         focusTrapOptions={{
           escapeDeactivates: false,
-          initialFocus() {
-            if (ref.current === null) return document.body;
-
-            const fields = ref.current.querySelectorAll(
-              [
-                '.dialog-content input:not(:disabled)',
-                '.dialog-content select:not(:disabled)',
-                '.dialog-content textarea:not(:disabled)',
-                '.dialog-content button:not(:disabled)',
-              ].join(','),
-            );
-
-            if (fields.length > 0) return fields[0] as HTMLElement;
-
-            const barButtons = Array.from(
-              ref.current.querySelectorAll(
-                '.dialog-button-bar:last-of-type button',
-              ),
-            );
-
-            if (barButtons.length === 0) return document.body;
-
-            if (
-              typeof primaryButton === 'number' &&
-              primaryButton >= 0 &&
-              primaryButton < barButtons.length
-            ) {
-              barButtons.unshift(barButtons[primaryButton]);
-            }
-
-            for (let i = 0; i < barButtons.length; i += 1) {
-              const button = barButtons[i] as HTMLButtonElement;
-
-              if (!button.disabled) return button;
-            }
-
-            return barButtons[0] as HTMLElement;
-          },
+          initialFocus,
         }}
       >
         <div className="fixed inset-0 flex justify-center items-center z-40 fade-slide-in">
           <div
             ref={ref}
             style={style}
-            className={`flex flex-col ${colors.bg.normal} ${
-              colors.text.normal
-            } min-w-1/4 max-w-3/4 max-h-3/4 shadow-lg`}
+            className={`flex flex-col ${colors.bg.normal} ${colors.text.normal} min-w-1/4 max-w-3/4 max-h-3/4 shadow-lg`}
           >
             <div
-              className={`select-none p-2 border-solid border-0 border-b ${
-                colors.border.normal
-              }`}
+              className={`select-none p-2 border-solid border-0 border-b ${colors.border.normal}`}
             >
               {title}
             </div>

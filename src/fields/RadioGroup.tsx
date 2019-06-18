@@ -33,39 +33,46 @@ const Radio: React.FC<RadioProps> = ({
   vertical,
   disabled,
   onChange,
-}: RadioProps) => (
-  <label
-    htmlFor={htmlId}
-    className={getCheckboxClassName('', disabled, {
-      'ml-2': !vertical && index > 0,
-      'mt-2': vertical && index > 0,
-    })}
-  >
-    <span
-      className={`border-2 mr-1 w-4 h-4 flex rounded-lg justify-center items-center ${
-        disabled ? colors.bg.disabled : colors.bg.normal
-      } ${disabled ? colors.border.disabled : colors.border.normal}`}
+}: RadioProps) => {
+  const handleOnChange = React.useCallback(
+    () => onChange && onChange(item.value),
+    [onChange],
+  );
+
+  return (
+    <label
+      htmlFor={htmlId}
+      className={getCheckboxClassName('', disabled, {
+        'ml-2': !vertical && index > 0,
+        'mt-2': vertical && index > 0,
+      })}
     >
-      {value === item.value ? (
-        <span
-          className={`w-2 h-2 rounded-lg block ${
-            disabled ? colors.bg.markDisabled : colors.bg.mark
-          }`}
-        />
-      ) : null}
-    </span>
-    <input
-      id={htmlId}
-      className="appearance-none"
-      type="radio"
-      name={name}
-      checked={value === item.value}
-      disabled={disabled}
-      onChange={() => onChange && onChange(item.value)}
-    />
-    {item.text}
-  </label>
-);
+      <span
+        className={`border-2 mr-1 w-4 h-4 flex rounded-lg justify-center items-center ${
+          disabled ? colors.bg.disabled : colors.bg.normal
+        } ${disabled ? colors.border.disabled : colors.border.normal}`}
+      >
+        {value === item.value ? (
+          <span
+            className={`w-2 h-2 rounded-lg block ${
+              disabled ? colors.bg.markDisabled : colors.bg.mark
+            }`}
+          />
+        ) : null}
+      </span>
+      <input
+        id={htmlId}
+        className="appearance-none"
+        type="radio"
+        name={name}
+        checked={value === item.value}
+        disabled={disabled}
+        onChange={handleOnChange}
+      />
+      {item.text}
+    </label>
+  );
+};
 
 export const RadioGroup: React.FC<RadioGroupProps> = (
   props: RadioGroupProps,
