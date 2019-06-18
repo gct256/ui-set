@@ -5,10 +5,10 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { wrapExample } from '../utils/wrapExample';
 import { FormRow } from '../../src/forms/FormRow';
 
-storiesOf('forms / FormRow', module)
+storiesOf('forms', module)
   .addDecorator(withKnobs)
   .addDecorator(wrapExample)
-  .add('normal', () => (
+  .add('FormRow', () => (
     <>
       <FormRow>Row 1</FormRow>
       <FormRow>Row 2</FormRow>

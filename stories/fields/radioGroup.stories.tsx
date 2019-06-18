@@ -1,39 +1,70 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { withState } from '@dump247/storybook-state';
+import useState from 'storybook-addon-state';
 
-import { wrapExample } from '../utils/wrapExample';
 import { RadioGroup } from '../../src/fields/RadioGroup';
 import { SelectItem } from '../../src/utils/SelectItem';
+import { Example } from '../utils/Example';
+import { ExampleItem } from '../utils/ExampleItem';
 
 const items: SelectItem[] = ['foo', 'bar', 'baz', 'ZZZ'];
 
-storiesOf('fields / RadioGroup', module)
+storiesOf('fields', module)
   .addDecorator(withKnobs)
-  .addDecorator(wrapExample)
-  .add(
-    'normal',
-    withState({ value: 'foo' })(({ store }) => (
-      <RadioGroup
-        name="foo"
-        disabled={boolean('disabled', false)}
-        items={items}
-        value={store.state.value}
-        onChange={(value) => store.set({ value })}
-      />
-    )),
-  )
-  .add(
-    'vertical',
-    withState({ value: 'foo' })(({ store }) => (
-      <RadioGroup
-        vertical
-        name="foo"
-        disabled={boolean('disabled', false)}
-        items={items}
-        value={store.state.value}
-        onChange={(value) => store.set({ value })}
-      />
-    )),
-  );
+  .add('RadioGroup', () => {
+    const [value, setValue] = useState('radioGroup', '');
+
+    return (
+      <div className="example-wrapper">
+        <Example className="example-white">
+          <ExampleItem>
+            <RadioGroup
+              name="radio1"
+              disabled={boolean('disabled', false)}
+              vertical={boolean('vertical', false)}
+              items={items}
+              value={value}
+              onChange={setValue}
+            />
+          </ExampleItem>
+        </Example>
+        <Example className="example-black">
+          <ExampleItem>
+            <RadioGroup
+              name="radio2"
+              disabled={boolean('disabled', false)}
+              vertical={boolean('vertical', false)}
+              items={items}
+              value={value}
+              onChange={setValue}
+            />
+          </ExampleItem>
+        </Example>
+        <Example className="example-checkerboard">
+          <ExampleItem>
+            <RadioGroup
+              name="radio3"
+              disabled={boolean('disabled', false)}
+              vertical={boolean('vertical', false)}
+              items={items}
+              value={value}
+              onChange={setValue}
+            />
+          </ExampleItem>
+        </Example>
+        <Example colored>
+          <ExampleItem>
+            <RadioGroup
+              name="radio4"
+              disabled={boolean('disabled', false)}
+              vertical={boolean('vertical', false)}
+              items={items}
+              value={value}
+              onChange={setValue}
+            />
+          </ExampleItem>
+        </Example>
+      </div>
+    );
+  });

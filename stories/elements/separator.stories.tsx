@@ -5,16 +5,15 @@ import { boolean, withKnobs } from '@storybook/addon-knobs';
 import { wrapExample } from '../utils/wrapExample';
 import { Separator } from '../../src/elements/Separator';
 
-storiesOf('elements / Separator', module)
+storiesOf('elements', module)
   .addDecorator(withKnobs)
   .addDecorator(wrapExample)
-  .add('horizontal', () => (
-    <div className="w-64">
-      <Separator disabled={boolean('disabled', false)} />
-    </div>
-  ))
-  .add('vertical', () => (
-    <div className="h-64">
-      <Separator vertical disabled={boolean('disabled', false)} />
-    </div>
-  ));
+  .add('Separator', () => {
+    const vertical = boolean('vertical', false);
+
+    return (
+      <div className={vertical ? 'h-32' : 'w-32'}>
+        <Separator disabled={boolean('disabled', false)} vertical={vertical} />
+      </div>
+    );
+  });

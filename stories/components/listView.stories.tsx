@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withState } from '@dump247/storybook-state';
 import { withKnobs, boolean, number } from '@storybook/addon-knobs';
+import useState from 'storybook-addon-state';
 
 import { wrapExample } from '../utils/wrapExample';
 import { ListView } from '../../src/components/ListView/ListView';
@@ -21,12 +21,13 @@ const items = [
   'QUUUX',
 ];
 
-storiesOf('components / ListView', module)
+storiesOf('components', module)
   .addDecorator(withKnobs)
   .addDecorator(wrapExample)
-  .add(
-    'normal',
-    withState({ cursor: -1 })(({ store }) => (
+  .add('ListView', () => {
+    const [cursor, setCursor] = useState('listViewCursor', -1);
+
+    return (
       <div
         style={{
           width: `${number('width', 150, {
@@ -46,7 +47,6 @@ storiesOf('components / ListView', module)
         <ListView
           bordered={boolean('bordered', false)}
           disabled={boolean('disabled', false)}
-          cursor={store.state.cursor}
           classNames={{
             item: {
               default: 'px-2 py-1',
@@ -57,8 +57,9 @@ storiesOf('components / ListView', module)
           items={items.map((x) => (
             <div key={x}>{x}</div>
           ))}
-          onUpdateCursor={(cursor) => store.set({ cursor })}
+          cursor={cursor}
+          onUpdateCursor={setCursor}
         />
       </div>
-    )),
-  );
+    );
+  });

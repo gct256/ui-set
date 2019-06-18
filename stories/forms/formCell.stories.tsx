@@ -6,10 +6,10 @@ import { wrapExample } from '../utils/wrapExample';
 import { FormCell } from '../../src/forms/FormCell';
 import { FormRow } from '../../src/forms/FormRow';
 
-storiesOf('forms / FormCell', module)
+storiesOf('forms', module)
   .addDecorator(withKnobs)
   .addDecorator(wrapExample)
-  .add('normal', () => (
+  .add('FormCell', () => (
     <FormRow>
       <FormCell>Cell 1</FormCell>
       <FormCell>Cell 2</FormCell>

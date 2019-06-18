@@ -24,44 +24,32 @@ const redraw = (
   context.fillText(`serial: ${serial}`, 50, 50);
 };
 
-storiesOf('elements / CanvasView', module)
+storiesOf('elements', module)
   .addDecorator(withKnobs)
-  .add('normal', () => (
-    <>
-      <CanvasView
-        width={number('width', 250, {
-          min: 0,
-          max: 500,
-          step: 50,
-          range: true,
-        })}
-        height={number('height', 250, {
-          min: 0,
-          max: 500,
-          step: 50,
-          range: true,
-        })}
-        serial={number('serial', 0)}
-        onRedraw={redraw}
-      />
-    </>
-  ))
-  .add('render mode', () => (
-    <>
-      <CanvasView
-        width={250}
-        height={250}
-        renderMode={select(
-          'render mode',
-          {
-            default: 'default',
-            clearly: 'clearly',
-            fine: 'fine',
-          },
-          'default',
-        )}
-        serial={0}
-        onRedraw={redraw}
-      />
-    </>
+  .add('CanvasView', () => (
+    <CanvasView
+      width={number('width', 250, {
+        min: 0,
+        max: 500,
+        step: 50,
+        range: true,
+      })}
+      height={number('height', 250, {
+        min: 0,
+        max: 500,
+        step: 50,
+        range: true,
+      })}
+      serial={number('serial', 0)}
+      renderMode={select(
+        'render mode',
+        {
+          default: 'default',
+          clearly: 'clearly',
+          fine: 'fine',
+        },
+        'default',
+      )}
+      onRedraw={redraw}
+    />
   ));

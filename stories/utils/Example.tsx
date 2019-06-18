@@ -21,7 +21,7 @@ export const Example: React.FC<ExampleProps> = ({
       className,
     )}
     style={{
-      background: colored ? color('custom bg color', '#888') : '',
+      background: colored ? color('custom bg', '#888') : '',
     }}
   >
     {children}
