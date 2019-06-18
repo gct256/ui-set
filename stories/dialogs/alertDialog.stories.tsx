@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, withKnobs, number } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { AlertDialog } from '../../src/dialogs/AlertDialog';
 import { ExampleLorem } from '../utils/ExampleLorem';
@@ -11,6 +12,7 @@ storiesOf('dialogs / AlertDialog', module)
     <AlertDialog
       visible={boolean('visible', true)}
       disabled={boolean('disabled', false)}
+      onClick={action('AlertDialog#onClick')}
     >
       <ExampleLorem />
     </AlertDialog>
@@ -24,6 +26,7 @@ storiesOf('dialogs / AlertDialog', module)
         step: 5,
         range: true,
       })}
+      onClick={action('AlertDialog#onClick')}
     >
       <ExampleLorem />
     </AlertDialog>

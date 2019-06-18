@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, withKnobs, number } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { ConfirmDialog } from '../../src/dialogs/ConfirmDialog';
 import { ExampleLorem } from '../utils/ExampleLorem';
@@ -12,6 +13,7 @@ storiesOf('dialogs / ConfirmDialog', module)
     <ConfirmDialog
       visible={boolean('visible', true)}
       disabled={boolean('disabled', false)}
+      onClick={action('ConfirmDialog#onClick')}
     >
       <ExampleLorem />
     </ConfirmDialog>
@@ -21,6 +23,7 @@ storiesOf('dialogs / ConfirmDialog', module)
       danger
       visible={boolean('visible', true)}
       disabled={boolean('disabled', false)}
+      onClick={action('ConfirmDialog#onClick')}
     >
       <ExampleLorem />
     </ConfirmDialog>
@@ -29,6 +32,7 @@ storiesOf('dialogs / ConfirmDialog', module)
     <ConfirmDialog
       visible={boolean('visible', true)}
       disabled={boolean('disabled', false)}
+      onClick={action('ConfirmDialog#onClick')}
     >
       <ExampleForm />
     </ConfirmDialog>
@@ -38,6 +42,8 @@ storiesOf('dialogs / ConfirmDialog', module)
       visible={boolean('visible', true)}
       disabled={boolean('disabled', false)}
       subButtons={['Foo', 'Bar', 'Baz']}
+      onClick={action('ConfirmDialog#onClick')}
+      onSubClick={action('ConfirmDialog#onSubClick')}
     >
       <ExampleLorem />
     </ConfirmDialog>
@@ -52,6 +58,7 @@ storiesOf('dialogs / ConfirmDialog', module)
         step: 5,
         range: true,
       })}
+      onClick={action('ConfirmDialog#onClick')}
     >
       <ExampleLorem />
     </ConfirmDialog>
