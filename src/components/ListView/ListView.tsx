@@ -137,9 +137,11 @@ export const ListView: React.FC<ListViewProps> = ({
 
       const index = getItemIndex(ref.current, ev.target);
 
+      console.debug('click', { index });
+
       if (index >= 0) updateCursor(index);
     },
-    [],
+    [onUpdateCursor, onKeyDown, cursor, items, ref],
   );
 
   const handleKeyDown = React.useCallback(
@@ -165,7 +167,7 @@ export const ListView: React.FC<ListViewProps> = ({
       ev.preventDefault();
       ev.stopPropagation();
     },
-    [onUpdateCursor, cursor, onKeyDown],
+    [onUpdateCursor, onKeyDown, cursor, items, ref],
   );
 
   const className = classnames(

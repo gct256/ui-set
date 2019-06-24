@@ -6,7 +6,7 @@ import useState from 'storybook-addon-state';
 import { wrapExample } from '../utils/wrapExample';
 import { ListView } from '../../src/components/ListView/ListView';
 
-const items = [
+const data = [
   'foo',
   'bar',
   'baz',
@@ -26,6 +26,9 @@ storiesOf('components', module)
   .addDecorator(wrapExample)
   .add('ListView', () => {
     const [cursor, setCursor] = useState('listViewCursor', -1);
+    const items = data.map((x) => (
+      <div key={x}>{x}</div>
+    ));
 
     return (
       <div
@@ -54,9 +57,7 @@ storiesOf('components', module)
               disabled: 'bg-gray-300',
             },
           }}
-          items={items.map((x) => (
-            <div key={x}>{x}</div>
-          ))}
+          items={items}
           cursor={cursor}
           onUpdateCursor={setCursor}
         />
