@@ -26,7 +26,10 @@ export const ListViewItem: React.FC<ListViewItemProps> = ({
 
   return (
     <div
-      className={classnames('focus-parent:z-negative relative', className)}
+      className={classnames(
+        'focus-parent:z-negative relative select-none',
+        className,
+      )}
       {...attrs}
     >
       {children}
