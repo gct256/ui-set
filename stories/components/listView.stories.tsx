@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, number } from '@storybook/addon-knobs';
-import useState from 'storybook-addon-state';
+import { action } from '@storybook/addon-actions';
 
 import { wrapExample } from '../utils/wrapExample';
 import { ListView } from '../../src/components/ListView/ListView';
@@ -25,10 +25,7 @@ storiesOf('components', module)
   .addDecorator(withKnobs)
   .addDecorator(wrapExample)
   .add('ListView', () => {
-    const [cursor, setCursor] = useState('listViewCursor', -1);
-    const items = data.map((x) => (
-      <div key={x}>{x}</div>
-    ));
+    const items = data.map((x) => <div key={x}>{x}</div>);
 
     return (
       <div
@@ -48,6 +45,7 @@ storiesOf('components', module)
         }}
       >
         <ListView
+          initialCursor={1}
           bordered={boolean('bordered', false)}
           disabled={boolean('disabled', false)}
           classNames={{
@@ -58,8 +56,8 @@ storiesOf('components', module)
             },
           }}
           items={items}
-          cursor={cursor}
-          onUpdateCursor={setCursor}
+          onUpdateCursor={action('ListView#onUpdateCursor')}
+          onKeyDown={action('ListView#onKeyDown')}
         />
       </div>
     );

@@ -30,8 +30,8 @@ interface ListViewProps {
   disabled?: boolean;
   /** Array of list items. */
   items: React.ReactElement[];
-  /** Cursor position. */
-  cursor: number;
+  /** Initial cursor position. */
+  initialCursor?: number;
   /** If true, component has 1px border. */
   bordered?: boolean;
   /** classNames. */
@@ -71,13 +71,16 @@ interface ListViewProps {
 /** Keyboard navigatable list view component. */
 export const ListView: React.FC<ListViewProps> = ({
   items,
-  cursor,
+  initialCursor,
   bordered,
   classNames,
   onKeyDown,
   onUpdateCursor,
   disabled,
 }: ListViewProps) => {
+  const [cursor, setCursor] = React.useState(
+    typeof initialCursor === 'number' ? initialCursor : -1,
+  );
   const ref = React.useRef<HTMLDivElement>(null);
 
   const itemDefaultClass =
@@ -108,13 +111,14 @@ export const ListView: React.FC<ListViewProps> = ({
   ));
 
   function updateCursor(newCursor: number) {
-    if (!onUpdateCursor) return;
+    // if (!onUpdateCursor) return;
 
     const adjusted = Math.max(0, Math.min(items.length - 1, newCursor));
 
     if (cursor === adjusted) return;
 
-    onUpdateCursor(adjusted);
+    setCursor(adjusted);
+    if (onUpdateCursor) onUpdateCursor(adjusted);
   }
 
   React.useEffect(() => {
@@ -141,13 +145,11 @@ export const ListView: React.FC<ListViewProps> = ({
 
       if (index >= 0) updateCursor(index);
     },
-    [onUpdateCursor, onKeyDown, cursor, items, ref],
+    [onKeyDown, cursor, items, ref],
   );
 
   const handleKeyDown = React.useCallback(
     (ev: React.KeyboardEvent<HTMLDivElement>) => {
-      if (!onUpdateCursor) return;
-
       switch (keyName(ev.nativeEvent)) {
         case Key.ArrowUp:
         case Key.ArrowLeft:
@@ -167,7 +169,7 @@ export const ListView: React.FC<ListViewProps> = ({
       ev.preventDefault();
       ev.stopPropagation();
     },
-    [onUpdateCursor, onKeyDown, cursor, items, ref],
+    [onKeyDown, cursor, items, ref],
   );
 
   const className = classnames(
