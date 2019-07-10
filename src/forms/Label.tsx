@@ -1,22 +1,18 @@
 import * as React from 'react';
 import classnames from 'classnames';
 
-import { BasicProps } from '../utils/commonProps';
-import {
-  UiSize,
-  getHeightClassName,
-  getTextSizeClassName,
-} from '../utils/UiSize';
+import { UiProps } from '../utils/commonProps';
+import { getHeightClassName, getTextSizeClassName } from '../utils/UiSize';
+import { colors } from '../utils/colors';
 
-interface LabelProps extends BasicProps {
+interface LabelProps extends UiProps {
   /** Alignment of text. */
   align?: 'left' | 'center' | 'right';
-  /** UI Element size. */
-  uiSize?: UiSize;
 }
 
 export const Label: React.FC<LabelProps> = ({
   align,
+  disabled,
   uiSize,
   className,
   children,
@@ -28,6 +24,8 @@ export const Label: React.FC<LabelProps> = ({
       getHeightClassName('h-8', uiSize),
       getTextSizeClassName('text-base', uiSize),
       {
+        [colors.standard.normal.text]: !disabled,
+        [colors.standard.disabled.text]: disabled,
         'justify-center': align === 'center',
         'justify-end': align === 'right',
         'justify-start': align !== 'center' && align !== 'right',

@@ -162,6 +162,9 @@ storiesOf('common', module).add('color', () => (
       <FormCell>
         <Label>Label</Label>
       </FormCell>
+      <FormCell>
+        <Label disabled>Label</Label>
+      </FormCell>
     </FormRow>
     <FormRow>
       <FormCell>
