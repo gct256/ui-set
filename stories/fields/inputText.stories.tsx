@@ -14,6 +14,7 @@ storiesOf('fields', module)
 
     return (
       <InputText
+        password={boolean('password', false)}
         bordered={boolean('bordered', true)}
         disabled={boolean('disabled', false)}
         placeholder={text('placeholder', 'Placeholder')}

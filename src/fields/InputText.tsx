@@ -9,6 +9,8 @@ import {
 interface InputTextProps extends FieldProps<string> {
   /** If true, field has 1px border. */
   bordered?: boolean;
+  /** If true, use type=password. */
+  password?: boolean;
 
   autocomplete?: string;
   maxLength?: number;
@@ -28,6 +30,7 @@ export const InputText: React.FC<InputTextProps> = ({
   disabled,
 
   bordered,
+  password,
   autocomplete,
   maxLength,
   minLength,
@@ -50,7 +53,7 @@ export const InputText: React.FC<InputTextProps> = ({
       className={getFieldWrapClassName(className, bordered, disabled, true)}
     >
       <input
-        type="text"
+        type={password ? 'password' : 'text'}
         value={value}
         className={getFieldClassName(bordered, true)}
         disabled={disabled}
@@ -76,4 +79,5 @@ InputText.defaultProps = {
   className: '',
   disabled: false,
   bordered: true,
+  password: false,
 };
