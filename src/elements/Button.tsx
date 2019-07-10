@@ -5,6 +5,11 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { UiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
 import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
+import {
+  UiSize,
+  getHeightClassName,
+  getSmallTextSizeClassName,
+} from '../utils/UiSize';
 
 import { Icon } from './Icon';
 
@@ -24,6 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
   primary,
   disabled,
   className,
+  uiSize,
   onClick,
   children,
 }: React.PropsWithChildren<ButtonProps>) => {
@@ -39,7 +45,8 @@ export const Button: React.FC<ButtonProps> = ({
       className={classnames(
         className,
         'ui-set select-none inline-block align-top',
-        'h-8 leading-none',
+        getHeightClassName('h-8', uiSize),
+        'leading-none',
         `border p-px focus:border-2 focus:p-0 focus:border-blue-500`,
         'focus:outline-none',
         {
@@ -81,7 +88,8 @@ export const Button: React.FC<ButtonProps> = ({
     >
       <span
         className={classnames(
-          'text-sm flex justify-center items-center w-full h-full border border-transparent',
+          getSmallTextSizeClassName('text-sm', uiSize),
+          'flex justify-center items-center w-full h-full border border-transparent',
           {
             'px-2': !iconOnly,
           },
@@ -95,3 +103,7 @@ export const Button: React.FC<ButtonProps> = ({
 };
 
 Button.displayName = 'Button';
+
+Button.defaultProps = {
+  uiSize: UiSize.none,
+};

@@ -28,6 +28,7 @@ export const InputNumber: React.FC<InputNumberProps> = ({
   value,
   className,
   disabled,
+  uiSize,
 
   bordered,
   autocomplete,
@@ -51,12 +52,24 @@ export const InputNumber: React.FC<InputNumberProps> = ({
 
   return (
     <span
-      className={getFieldWrapClassName(className, bordered, disabled, true)}
+      className={getFieldWrapClassName(
+        className,
+        uiSize,
+        bordered,
+        disabled,
+        true,
+      )}
     >
       <input
         value={value}
         type="number"
-        className={getFieldClassName(bordered, true, 'text-right')}
+        className={getFieldClassName(
+          bordered,
+          uiSize,
+          true,
+          false,
+          'text-right',
+        )}
         disabled={disabled}
         autoComplete={autocomplete}
         max={max}

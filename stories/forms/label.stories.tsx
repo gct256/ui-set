@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, radios, text } from '@storybook/addon-knobs';
+import { withKnobs, radios, text, select } from '@storybook/addon-knobs';
 
 import { wrapExample } from '../utils/wrapExample';
 import { Label } from '../../src/forms/Label';
+import { getUiSizeOptions } from '../utils/getOptions';
+import { UiSize } from '../../src/utils/UiSize';
 
 type Align = 'undefined' | 'left' | 'center' | 'right';
 
@@ -26,6 +28,7 @@ storiesOf('forms', module)
           <Label
             className="w-64"
             align={align === 'undefined' ? undefined : align}
+            uiSize={select<UiSize>('ui size', getUiSizeOptions(), UiSize.none)}
           >
             {text('label', 'Label')}
           </Label>

@@ -24,6 +24,7 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
   value,
   className,
   disabled,
+  uiSize,
 
   bordered,
   autocomplete,
@@ -43,13 +44,21 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
 
   return (
     <span
-      className={getFieldWrapClassName(className, bordered, disabled, false)}
+      className={getFieldWrapClassName(
+        className,
+        uiSize,
+        bordered,
+        disabled,
+        false,
+      )}
     >
       <textarea
         value={value}
         disabled={disabled}
         className={getFieldClassName(
           bordered,
+          uiSize,
+          false,
           false,
           'h-full resize-none leading-normal',
         )}

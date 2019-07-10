@@ -32,6 +32,8 @@ function renderItems(items?: SelectItem[]) {
 export const Select: React.FC<SelectProps> = ({
   value,
   bordered,
+  uiSize,
+
   items,
   withEmptyItem,
   className,
@@ -47,6 +49,7 @@ export const Select: React.FC<SelectProps> = ({
     <span
       className={getFieldWrapClassName(
         className,
+        uiSize,
         bordered,
         disabled,
         true,
@@ -58,8 +61,10 @@ export const Select: React.FC<SelectProps> = ({
         disabled={disabled}
         className={getFieldClassName(
           bordered,
+          uiSize,
           true,
-          'pr-8 rounded-none appearance-none leading-none',
+          true,
+          'pr-8 rounded-none appearance-none leading-none p-0',
         )}
         onChange={handleOnChange}
       >
