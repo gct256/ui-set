@@ -25,3 +25,5 @@ import './dialogs/alertDialog.stories';
 import './dialogs/confirmDialog.stories';
 
 import './components/listView.stories';
+
+import './common/color.stories';
