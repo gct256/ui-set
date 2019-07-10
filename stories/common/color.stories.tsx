@@ -114,30 +114,30 @@ storiesOf('common', module).add('color', () => (
     </FormRow>
     <FormRow>
       <FormCell>
-        <InputText size={10} />
+        <InputText value="InputText" size={10} />
       </FormCell>
       <FormCell>
-        <InputText size={10} disabled />
+        <InputText value="InputText" size={10} disabled />
       </FormCell>
       <FormCell>
-        <InputText size={10} bordered={false} />
+        <InputText value="InputText" size={10} bordered={false} />
       </FormCell>
       <FormCell>
-        <InputText size={10} bordered={false} disabled />
+        <InputText value="InputText" size={10} bordered={false} disabled />
       </FormCell>
     </FormRow>
     <FormRow>
       <FormCell>
-        <InputTextArea />
+        <InputTextArea value="InputTextArea" />
       </FormCell>
       <FormCell>
-        <InputTextArea disabled />
+        <InputTextArea value="InputTextArea" disabled />
       </FormCell>
       <FormCell>
-        <InputTextArea bordered={false} />
+        <InputTextArea value="InputTextArea" bordered={false} />
       </FormCell>
       <FormCell>
-        <InputTextArea bordered={false} disabled />
+        <InputTextArea value="InputTextArea" bordered={false} disabled />
       </FormCell>
     </FormRow>
     <FormRow>

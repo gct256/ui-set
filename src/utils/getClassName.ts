@@ -45,8 +45,8 @@ export function getFieldWrapClassName(
       [colors.standard.disabled.bg]: disabled,
     },
     {
-      [colors.standard.normal.text]: !disabled,
-      [colors.standard.disabled.text]: disabled,
+      [colors.inputArea.normal.text]: !disabled,
+      [colors.inputArea.disabled.text]: disabled,
     },
     {
       [getHeightClassName('h-8', uiSize)]: fixedHeight,

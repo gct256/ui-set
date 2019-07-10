@@ -13,6 +13,7 @@ export const colors = {
                 focus:    { bg: 'bg-gray-400 ',   border: '',                  text: ''},
                 disabled: { bg: 'bg-gray-400  ',  border: '',                  text: ''}, },
   focusRing: {  focus:    { bg: '',               border: 'border-blue-500',   text: '' }, },
-  inputArea: {  normal:   { bg: 'white',          border: '',                  text: 'black' },
-                focus:    { bg: 'bg-yellow-200',  border: '',                  text: 'black ' }, },
+  inputArea: {  normal:   { bg: 'white',          border: '',                  text: 'text-gray-700' },
+                focus:    { bg: 'bg-yellow-200',  border: '',                  text: 'text-black ' },
+                disabled: { bg: 'bg-gray-200',    border: '',                  text: 'text-gray-400' }, },
 };
