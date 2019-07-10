@@ -1,35 +1,3 @@
-export const oldColors = {
-  bg: {
-    normal: 'bg-white',
-    hover: '',
-    disabled: 'bg-gray-200',
-    invert: 'bg-gray-900',
-    invertHover: 'bg-gray-800',
-    invertDisabled: 'bg-gray-400',
-    focus: 'bg-yellow-200',
-    mark: 'bg-gray-700',
-    markDisabled: 'bg-gray-200',
-  },
-  border: {
-    normal: 'border-gray-700',
-    hover: 'border-gray-900',
-    disabled: 'border-gray-400',
-    invert: 'border-gray-900',
-    invertHover: 'border-gray-800',
-    invertDisabled: 'border-gray-300',
-    focus: 'border-blue-500',
-  },
-  text: {
-    normal: 'text-gray-700',
-    hover: 'text-gray-900',
-    disabled: 'text-gray-400',
-    invert: 'text-white',
-    focus: 'text-black',
-    invertHover: '',
-    invertDisabled: 'text-gray-200',
-  },
-};
-
 // prettier-ignore
 export const colors = {
   standard:  {  normal:   { bg: 'bg-white',       border: 'border-gray-700',   text: 'text-gray-700' },
