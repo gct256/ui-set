@@ -78,8 +78,8 @@ export const Select: React.FC<SelectProps> = ({
         className={classnames(
           'absolute my-auto pr-1 inset-y-0 right-0 mr-px focus-after:mr-0 pointer-events-none',
           {
-            [colors.text.normal]: !disabled,
-            [colors.text.disabled]: disabled,
+            [colors.standard.normal.text]: !disabled,
+            [colors.standard.disabled.text]: disabled,
           },
         )}
       />

@@ -14,10 +14,10 @@ export const BorderedView: React.FC<BorderedViewProps> = ({
 }: React.PropsWithChildren<BorderedViewProps>) => (
   <div
     className={classnames(className, 'border', {
-      [colors.bg.normal]: !disabled,
-      [colors.border.normal]: !disabled,
-      [colors.bg.disabled]: disabled,
-      [colors.border.disabled]: disabled,
+      [colors.standard.normal.bg]: !disabled,
+      [colors.standard.normal.border]: !disabled,
+      [colors.standard.disabled.bg]: disabled,
+      [colors.standard.disabled.border]: disabled,
     })}
   >
     {children}

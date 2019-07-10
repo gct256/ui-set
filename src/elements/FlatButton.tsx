@@ -36,9 +36,9 @@ export const FlatButton: React.FC<FlatButtonProps> = ({
         'focus:focus-animation-border',
         'active:opacity-75',
         {
-          [colors.text.normal]: !disabled,
-          [`hover:${colors.text.hover}`]: !disabled,
-          [colors.text.disabled]: disabled,
+          [colors.standard.normal.text]: !disabled,
+          [`hover:${colors.standard.hover.text}`]: !disabled,
+          [colors.standard.disabled.text]: disabled,
         },
         {
           'cursor-default': disabled,

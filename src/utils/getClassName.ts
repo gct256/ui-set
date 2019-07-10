@@ -30,17 +30,25 @@ export function getFieldWrapClassName(
   return classnames(
     baseClassName,
     'w-full inline-block align-top',
-    `focus-within:${colors.bg.focus}`,
+    `focus-within:${colors.inputArea.focus.bg}`,
     {
       'p-0': !bordered,
       'border p-px': bordered,
-      [`focus-within:border-2 focus-within:${colors.border.focus} focus-within:p-0`]: bordered,
-      [colors.border.normal]: bordered && !disabled,
-      [colors.border.disabled]: bordered && disabled,
-      [colors.bg.normal]: !disabled,
-      [colors.bg.disabled]: disabled,
-      [colors.text.normal]: !disabled,
-      [colors.text.disabled]: disabled,
+      [`focus-within:border-2 focus-within:${colors.standard.focus.border} focus-within:p-0`]: bordered,
+    },
+    {
+      [colors.standard.normal.border]: bordered && !disabled,
+      [colors.standard.disabled.border]: bordered && disabled,
+    },
+    {
+      [colors.standard.normal.bg]: !disabled,
+      [colors.standard.disabled.bg]: disabled,
+    },
+    {
+      [colors.standard.normal.text]: !disabled,
+      [colors.standard.disabled.text]: disabled,
+    },
+    {
       [getHeightClassName('h-8', uiSize)]: fixedHeight,
     },
     userClassName,
@@ -58,7 +66,7 @@ export function getFieldClassName(
     'ui block',
     'px-2 w-full bg-transparent',
     getTextSizeClassName('text-base', uiSize),
-    `focus:${colors.bg.focus} focus:${colors.text.focus} focus:outline-none`,
+    `focus:${colors.inputArea.focus.bg} focus:${colors.inputArea.focus.text} focus:outline-none`,
     {
       'py-1': noYPadding,
       'focus:focus-animation': bordered,
@@ -82,10 +90,10 @@ export function getCheckboxClassName(
     'h-8 py-1 pr-1 pl-1',
     'focus:outline-none',
     'focus-within:focus-animation',
-    `border-transparent focus-within:${colors.border.focus} border-2`,
+    `border-transparent focus-within:${colors.standard.focus.border} border-2`,
     {
       'hover:opacity-75 active:opacity-100': !disabled,
-      [colors.text.disabled]: disabled,
+      [colors.standard.disabled.text]: disabled,
     },
     ...classNames,
   );

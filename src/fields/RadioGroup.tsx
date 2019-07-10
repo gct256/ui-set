@@ -49,13 +49,17 @@ const Radio: React.FC<RadioProps> = ({
     >
       <span
         className={`border-2 mr-1 w-4 h-4 flex rounded-lg justify-center items-center ${
-          disabled ? colors.bg.disabled : colors.bg.normal
-        } ${disabled ? colors.border.disabled : colors.border.normal}`}
+          disabled ? colors.standard.disabled.bg : colors.standard.normal.bg
+        } ${
+          disabled
+            ? colors.standard.disabled.border
+            : colors.standard.normal.border
+        }`}
       >
         {value === item.value ? (
           <span
             className={`w-2 h-2 rounded-lg block ${
-              disabled ? colors.bg.markDisabled : colors.bg.mark
+              disabled ? colors.mark.disabled.bg : colors.mark.normal.bg
             }`}
           />
         ) : null}

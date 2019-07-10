@@ -27,8 +27,8 @@ export const Separator: React.FC<SeparatorProps> = ({
     <div className={vWrapperClassName}>
       <div
         className={classnames(vClassName, className, {
-          [colors.border.normal]: !disabled,
-          [colors.border.disabled]: disabled,
+          [colors.standard.normal.border]: !disabled,
+          [colors.standard.disabled.border]: disabled,
         })}
       />
     </div>
@@ -36,8 +36,8 @@ export const Separator: React.FC<SeparatorProps> = ({
     <div className={hWrapperClassName}>
       <div
         className={classnames(hClassName, className, {
-          [colors.border.normal]: !disabled,
-          [colors.border.disabled]: disabled,
+          [colors.standard.normal.border]: !disabled,
+          [colors.standard.disabled.border]: disabled,
         })}
       />
     </div>

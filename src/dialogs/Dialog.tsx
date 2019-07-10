@@ -112,10 +112,10 @@ export const Dialog: React.FC<DialogProps> = ({
           <div
             ref={ref}
             style={style}
-            className={`flex flex-col ${colors.bg.normal} ${colors.text.normal} min-w-1/4 max-w-3/4 max-h-3/4 shadow-lg`}
+            className={`flex flex-col ${colors.standard.normal.bg} ${colors.standard.normal.text} min-w-1/4 max-w-3/4 max-h-3/4 shadow-lg`}
           >
             <div
-              className={`select-none p-2 border-solid border-0 border-b ${colors.border.normal}`}
+              className={`select-none p-2 border-solid border-0 border-b ${colors.standard.normal.border}`}
             >
               {title}
             </div>

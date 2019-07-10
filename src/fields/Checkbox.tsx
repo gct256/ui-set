@@ -42,13 +42,21 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     <label htmlFor={htmlId} className={getCheckboxClassName('', disabled)}>
       <span
         className={`border-2 mr-1 w-4 h-4 flex justify-center items-center ${
-          disabled ? colors.bg.disabled : colors.bg.normal
-        } ${disabled ? colors.border.disabled : colors.border.normal}`}
+          disabled ? colors.standard.disabled.bg : colors.standard.normal.bg
+        } ${
+          disabled
+            ? colors.standard.disabled.border
+            : colors.standard.normal.border
+        }`}
       >
         <Icon
           icon={checked ? faCheck : undefined}
           transform="shrink-5"
-          className={`${disabled ? colors.text.disabled : colors.text.normal}`}
+          className={`${
+            disabled
+              ? colors.standard.disabled.text
+              : colors.standard.normal.text
+          }`}
         />
       </span>
       <input

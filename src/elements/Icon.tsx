@@ -43,8 +43,8 @@ export const Icon: React.FC<IconProps> = (props: IconProps) => {
     <FontAwesomeIcon
       {...{ ...propsCopy, icon }}
       className={classnames(className, 'ui-set select-none', {
-        [colors.text.normal]: disabled === false,
-        [colors.text.disabled]: disabled === true,
+        [colors.standard.normal.text]: disabled === false,
+        [colors.standard.disabled.text]: disabled === true,
       })}
     />
   );

@@ -177,13 +177,17 @@ export const ListView: React.FC<ListViewProps> = ({
     'w-full h-full overflow-x-hidden overflow-y-auto p-0',
     'focus:outline-none',
     {
-      [colors.bg.normal]: !disabled,
-      [colors.bg.disabled]: disabled,
-      [colors.text.normal]: !disabled,
-      [colors.text.disabled]: disabled,
+      [colors.standard.normal.bg]: !disabled,
+      [colors.standard.disabled.bg]: disabled,
+    },
+    {
+      [colors.standard.normal.text]: !disabled,
+      [colors.standard.disabled.text]: disabled,
+    },
+    {
       border: bordered,
-      [colors.border.normal]: bordered && !disabled,
-      [colors.border.disabled]: bordered && disabled,
+      [colors.standard.normal.border]: bordered && !disabled,
+      [colors.standard.disabled.border]: bordered && disabled,
     },
     classNames && disabled ? classNames.disabled : '',
   );
