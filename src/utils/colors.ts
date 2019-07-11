@@ -15,5 +15,6 @@ export const colors = {
   focusRing: {  focus:    { bg: '',               border: 'border-blue-500',   text: '' }, },
   inputArea: {  normal:   { bg: 'white',          border: '',                  text: 'text-gray-700' },
                 focus:    { bg: 'bg-yellow-200',  border: '',                  text: 'text-black ' },
+                hover:    { bg: '',               border: 'border-black',      text: 'text-black  ' },
                 disabled: { bg: 'bg-gray-200',    border: '',                  text: 'text-gray-400' }, },
 };

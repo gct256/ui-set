@@ -60,7 +60,7 @@ const Radio: React.FC<RadioProps> = ({
           'border-2 mr-1 w-4 h-4 flex rounded-lg justify-center items-center',
           {
             [colors.standard.normal.bg]: !disabled && !hover,
-            [colors.standard.disabled.bg]: disabled && !hover,
+            [colors.standard.disabled.bg]: disabled,
             [colors.standard.hover.border]: !disabled && hover,
             [colors.standard.normal.border]: !disabled,
             [colors.standard.disabled.border]: disabled,
@@ -72,7 +72,7 @@ const Radio: React.FC<RadioProps> = ({
             className={classnames('w-2 h-2 rounded-lg block', {
               [colors.mark.normal.bg]: !disabled && !hover,
               [colors.mark.hover.bg]: !disabled && hover,
-              [colors.mark.disabled.bg]: disabled && !hover,
+              [colors.mark.disabled.bg]: disabled,
             })}
           />
         ) : null}

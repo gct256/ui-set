@@ -45,6 +45,7 @@ export function getFieldWrapClassName({
     },
     {
       [colors.standard.normal.border]: bordered && !disabled,
+      [`hover:${colors.inputArea.hover.border}`]: bordered && !disabled,
       [colors.standard.disabled.border]: bordered && disabled,
     },
     {
@@ -53,6 +54,7 @@ export function getFieldWrapClassName({
     },
     {
       [colors.inputArea.normal.text]: !disabled,
+      [`hover:${colors.inputArea.hover.text}`]: !disabled,
       [colors.inputArea.disabled.text]: disabled,
     },
     {
@@ -68,6 +70,7 @@ export function getFieldClassName({
   uiSize,
   fixedHeight,
   noYPadding,
+  forInput,
   otherClassName,
 }: {
   userClassName?: ClassValue;
@@ -75,6 +78,7 @@ export function getFieldClassName({
   uiSize?: UiSize;
   fixedHeight?: boolean;
   noYPadding?: boolean;
+  forInput?: boolean;
   otherClassName?: ClassValue;
 }) {
   return classnames(
@@ -82,8 +86,9 @@ export function getFieldClassName({
     'ui block',
     'px-2 w-full bg-transparent',
     getTextSizeClassName('text-base', uiSize),
-    `focus:${colors.inputArea.focus.bg} focus:${colors.inputArea.focus.text} focus:outline-none`,
+    `focus:${colors.inputArea.focus.bg} focus:outline-none`,
     {
+      [`focus:${colors.inputArea.focus.text}`]: forInput,
       'py-1': noYPadding,
       'focus:focus-animation': bordered,
       'focus:focus-animation-border': !bordered,

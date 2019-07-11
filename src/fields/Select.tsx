@@ -76,10 +76,10 @@ export const Select: React.FC<SelectProps> = ({
         size="sm"
         fixedWidth
         className={classnames(
-          'absolute my-auto pr-1 inset-y-0 right-0 mr-px focus-after:mr-0 pointer-events-none',
+          'absolute my-auto pr-1 inset-y-0 right-0 focus-after:mr-0 pointer-events-none',
           {
-            [colors.standard.normal.text]: !disabled,
-            [colors.standard.disabled.text]: disabled,
+            'mr-px': bordered,
+            [colors.inputArea.disabled.text]: disabled,
           },
         )}
       />

@@ -182,11 +182,13 @@ export const ListView: React.FC<ListViewProps> = ({
     },
     {
       [colors.standard.normal.text]: !disabled,
+      [`hover:${colors.standard.hover.text}`]: !disabled,
       [colors.standard.disabled.text]: disabled,
     },
     {
       border: bordered,
       [colors.standard.normal.border]: bordered && !disabled,
+      [`hover:${colors.standard.hover.border}`]: bordered && !disabled,
       [colors.standard.disabled.border]: bordered && disabled,
     },
     classNames && disabled ? classNames.disabled : '',

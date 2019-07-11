@@ -60,6 +60,7 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
           uiSize,
           fixedHeight: false,
           noYPadding: false,
+          forInput: true,
           otherClassName: 'h-full resize-none leading-normal',
         })}
         autoComplete={autocomplete}

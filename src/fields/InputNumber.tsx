@@ -68,6 +68,7 @@ export const InputNumber: React.FC<InputNumberProps> = ({
           uiSize,
           fixedHeight: true,
           noYPadding: false,
+          forInput: true,
           otherClassName: 'text-right',
         })}
         disabled={disabled}

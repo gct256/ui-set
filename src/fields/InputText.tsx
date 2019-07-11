@@ -67,6 +67,7 @@ export const InputText: React.FC<InputTextProps> = ({
           uiSize,
           fixedHeight: true,
           noYPadding: false,
+          forInput: true,
         })}
         disabled={disabled}
         autoComplete={autocomplete}
