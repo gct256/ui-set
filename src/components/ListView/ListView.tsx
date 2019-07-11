@@ -8,9 +8,11 @@ import { colors } from '../../utils/colors';
 
 import { ListViewItem, itemIndexKey, isCursorTargetKey } from './ListViewItem';
 
+const NO_CURSOR = -1;
+
 // find item index by dataset
 function getItemIndex(root: HTMLElement, target: HTMLElement): number {
-  if (root === target) return -1;
+  if (root === target) return NO_CURSOR;
 
   const itemIndex = target.dataset[itemIndexKey.key];
 
@@ -22,8 +24,25 @@ function getItemIndex(root: HTMLElement, target: HTMLElement): number {
     return getItemIndex(root, target.parentNode);
   }
 
-  return -1;
+  return NO_CURSOR;
 }
+
+const adjustCursor = (
+  cursor: number | undefined,
+  itemCount: number,
+  allorwNoCursor: boolean,
+): number => {
+  if (
+    typeof cursor !== 'number' ||
+    !Number.isFinite(cursor) ||
+    cursor < 0 ||
+    itemCount <= cursor
+  ) {
+    return allorwNoCursor ? NO_CURSOR : 0;
+  }
+
+  return cursor;
+};
 
 interface ListViewProps {
   /** If true, component disabled. */
@@ -79,7 +98,7 @@ export const ListView: React.FC<ListViewProps> = ({
   disabled,
 }: ListViewProps) => {
   const [cursor, setCursor] = React.useState(
-    typeof initialCursor === 'number' ? initialCursor : -1,
+    adjustCursor(initialCursor, items.length, true),
   );
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -110,10 +129,8 @@ export const ListView: React.FC<ListViewProps> = ({
     </ListViewItem>
   ));
 
-  function updateCursor(newCursor: number) {
-    // if (!onUpdateCursor) return;
-
-    const adjusted = Math.max(0, Math.min(items.length - 1, newCursor));
+  function updateCursor(newCursor: number, allowNoCursor: boolean) {
+    const adjusted = adjustCursor(newCursor, items.length, allowNoCursor);
 
     if (cursor === adjusted) return;
 
@@ -131,6 +148,8 @@ export const ListView: React.FC<ListViewProps> = ({
     if (target instanceof HTMLElement) {
       setScrollPosition(current, target);
     }
+
+    if (cursor >= items.length) updateCursor(NO_CURSOR, true);
   });
 
   const handleClick = React.useCallback(
@@ -143,7 +162,7 @@ export const ListView: React.FC<ListViewProps> = ({
 
       console.debug('click', { index });
 
-      if (index >= 0) updateCursor(index);
+      updateCursor(index, true);
     },
     [onKeyDown, cursor, items, ref],
   );
@@ -153,11 +172,19 @@ export const ListView: React.FC<ListViewProps> = ({
       switch (keyName(ev.nativeEvent)) {
         case Key.ArrowUp:
         case Key.ArrowLeft:
-          updateCursor(cursor < 0 ? 0 : cursor - 1);
+          if (cursor === NO_CURSOR) {
+            updateCursor(items.length - 1, false);
+          } else if (cursor > 0) {
+            updateCursor(cursor - 1, false);
+          }
           break;
         case Key.ArrowDown:
         case Key.ArrowRight:
-          updateCursor(cursor < 0 ? 0 : cursor + 1);
+          if (cursor === NO_CURSOR) {
+            updateCursor(0, false);
+          } else if (cursor < items.length - 1) {
+            updateCursor(cursor + 1, false);
+          }
           break;
 
         default:
