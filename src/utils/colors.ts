@@ -9,7 +9,7 @@ export const colors = {
                 focus:    { bg: 'bg-gray-800 ',   border: 'border-gray-800 ',  text: '' },
                 disabled: { bg: 'bg-gray-400',    border: 'border-gray-400',   text: 'text-gray-200' }, },
   mark:      {  normal:   { bg: 'bg-gray-700',    border: '',                  text: ''},
-                hover:    { bg: 'bg-gray-400',    border: '',                  text: ''},
+                hover:    { bg: 'bg-black',       border: '',                  text: ''},
                 focus:    { bg: 'bg-gray-400 ',   border: '',                  text: ''},
                 disabled: { bg: 'bg-gray-400  ',  border: '',                  text: ''}, },
   focusRing: {  focus:    { bg: '',               border: 'border-blue-500',   text: '' }, },

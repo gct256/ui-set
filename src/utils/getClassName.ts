@@ -92,7 +92,10 @@ export function getCheckboxClassName(
     'focus-within:focus-animation',
     `border-transparent focus-within:${colors.standard.focus.border} border-2`,
     {
-      'hover:opacity-75 active:opacity-100': !disabled,
+      'active:opacity-75': !disabled,
+      [`hover:${colors.standard.hover.text}`]: !disabled,
+      [`focus-within:${colors.standard.focus.text}`]: !disabled,
+      [colors.standard.normal.text]: !disabled,
       [colors.standard.disabled.text]: disabled,
     },
     ...classNames,

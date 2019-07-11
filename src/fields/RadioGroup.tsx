@@ -34,6 +34,9 @@ const Radio: React.FC<RadioProps> = ({
   disabled,
   onChange,
 }: RadioProps) => {
+  const [hover, setHover] = React.useState(false);
+  const handleOnEnter = React.useCallback(() => setHover(true), []);
+  const handleOnLeave = React.useCallback(() => setHover(false), []);
   const handleOnChange = React.useCallback(
     () => onChange && onChange(item.value),
     [onChange],
@@ -46,21 +49,28 @@ const Radio: React.FC<RadioProps> = ({
         'ml-2': !vertical && index > 0,
         'mt-2': vertical && index > 0,
       })}
+      onMouseEnter={handleOnEnter}
+      onMouseLeave={handleOnLeave}
     >
       <span
-        className={`border-2 mr-1 w-4 h-4 flex rounded-lg justify-center items-center ${
-          disabled ? colors.standard.disabled.bg : colors.standard.normal.bg
-        } ${
-          disabled
-            ? colors.standard.disabled.border
-            : colors.standard.normal.border
-        }`}
+        className={classnames(
+          'border-2 mr-1 w-4 h-4 flex rounded-lg justify-center items-center',
+          {
+            [colors.standard.normal.bg]: !disabled && !hover,
+            [colors.standard.disabled.bg]: disabled && !hover,
+            [colors.standard.hover.border]: !disabled && hover,
+            [colors.standard.normal.border]: !disabled,
+            [colors.standard.disabled.border]: disabled,
+          },
+        )}
       >
         {value === item.value ? (
           <span
-            className={`w-2 h-2 rounded-lg block ${
-              disabled ? colors.mark.disabled.bg : colors.mark.normal.bg
-            }`}
+            className={classnames('w-2 h-2 rounded-lg block', {
+              [colors.mark.normal.bg]: !disabled && !hover,
+              [colors.mark.hover.bg]: !disabled && hover,
+              [colors.mark.disabled.bg]: disabled && !hover,
+            })}
           />
         ) : null}
       </span>

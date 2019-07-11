@@ -1,4 +1,5 @@
 import * as React from 'react';
+import classnames from 'classnames';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { Icon } from '../elements/Icon';
@@ -29,6 +30,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   children,
 }: React.PropsWithChildren<CheckboxProps>) => {
+  const [hover, setHover] = React.useState(false);
+  const handleOnEnter = React.useCallback(() => setHover(true), []);
+  const handleOnLeave = React.useCallback(() => setHover(false), []);
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.checked),
     [onChange],
@@ -39,24 +43,32 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   );
 
   return (
-    <label htmlFor={htmlId} className={getCheckboxClassName('', disabled)}>
+    <label
+      htmlFor={htmlId}
+      className={getCheckboxClassName('', disabled)}
+      onMouseEnter={handleOnEnter}
+      onMouseLeave={handleOnLeave}
+    >
       <span
-        className={`border-2 mr-1 w-4 h-4 flex justify-center items-center ${
-          disabled ? colors.standard.disabled.bg : colors.standard.normal.bg
-        } ${
-          disabled
-            ? colors.standard.disabled.border
-            : colors.standard.normal.border
-        }`}
+        className={classnames(
+          'border-2 mr-1 w-4 h-4 flex justify-center items-center',
+          {
+            [colors.standard.normal.bg]: !disabled && !hover,
+            [colors.standard.disabled.bg]: disabled && !hover,
+            [colors.standard.hover.border]: !disabled && hover,
+            [colors.standard.normal.border]: !disabled,
+            [colors.standard.disabled.border]: disabled,
+          },
+        )}
       >
         <Icon
           icon={checked ? faCheck : undefined}
           transform="shrink-5"
-          className={`${
-            disabled
-              ? colors.standard.disabled.text
-              : colors.standard.normal.text
-          }`}
+          className={classnames({
+            [colors.standard.normal.text]: !disabled && !hover,
+            [colors.standard.hover.text]: !disabled && hover,
+            [colors.standard.disabled.text]: disabled,
+          })}
         />
       </span>
       <input
