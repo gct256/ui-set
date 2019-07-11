@@ -125,7 +125,8 @@ Temporary Items
 __snapshots__
 
 lib
-css
+ui-set.css
+ui-set.min.css
 types
 .rpt2_cache
 example
