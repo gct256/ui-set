@@ -19,16 +19,23 @@ interface ClassDictionary {
 
 interface ClassArray extends Array<ClassValue> {}
 
-export function getFieldWrapClassName(
-  userClassName: ClassValue,
-  uiSize?: UiSize,
-  bordered?: boolean,
-  disabled?: boolean,
-  fixedHeight?: boolean,
-  baseClassName?: string,
-) {
+export function getFieldWrapClassName({
+  userClassName,
+  uiSize,
+  bordered,
+  disabled,
+  fixedHeight,
+  otherClassName,
+}: {
+  userClassName: ClassValue;
+  uiSize?: UiSize;
+  bordered?: boolean;
+  disabled?: boolean;
+  fixedHeight?: boolean;
+  otherClassName?: ClassValue;
+}) {
   return classnames(
-    baseClassName,
+    userClassName,
     'w-full inline-block align-top',
     `focus-within:${colors.inputArea.focus.bg}`,
     {
@@ -51,18 +58,27 @@ export function getFieldWrapClassName(
     {
       [getHeightClassName('h-8', uiSize)]: fixedHeight,
     },
-    userClassName,
+    otherClassName,
   );
 }
 
-export function getFieldClassName(
-  bordered?: boolean,
-  uiSize?: UiSize,
-  fixedHeight?: boolean,
-  noYPadding?: boolean,
-  ...classNames: ClassValue[]
-) {
+export function getFieldClassName({
+  userClassName,
+  bordered,
+  uiSize,
+  fixedHeight,
+  noYPadding,
+  otherClassName,
+}: {
+  userClassName?: ClassValue;
+  bordered?: boolean;
+  uiSize?: UiSize;
+  fixedHeight?: boolean;
+  noYPadding?: boolean;
+  otherClassName?: ClassValue;
+}) {
   return classnames(
+    userClassName,
     'ui block',
     'px-2 w-full bg-transparent',
     getTextSizeClassName('text-base', uiSize),
@@ -74,15 +90,19 @@ export function getFieldClassName(
       'block leading-normal': !fixedHeight,
       'h-full': fixedHeight,
     },
-    ...classNames,
+    otherClassName,
   );
 }
 
-export function getCheckboxClassName(
-  userClassName?: ClassValue,
-  disabled?: boolean,
-  ...classNames: ClassValue[]
-) {
+export function getCheckboxClassName({
+  userClassName,
+  disabled,
+  otherClassName,
+}: {
+  userClassName?: ClassValue;
+  disabled?: boolean;
+  otherClassName?: ClassValue;
+}) {
   return classnames(
     userClassName,
     'ui-set select-none',
@@ -98,6 +118,6 @@ export function getCheckboxClassName(
       [colors.standard.normal.text]: !disabled,
       [colors.standard.disabled.text]: disabled,
     },
-    ...classNames,
+    otherClassName,
   );
 }

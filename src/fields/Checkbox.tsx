@@ -45,7 +45,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   return (
     <label
       htmlFor={htmlId}
-      className={getCheckboxClassName('', disabled)}
+      className={getCheckboxClassName({ disabled })}
       onMouseEnter={handleOnEnter}
       onMouseLeave={handleOnLeave}
     >

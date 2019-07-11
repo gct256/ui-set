@@ -44,24 +44,24 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
 
   return (
     <span
-      className={getFieldWrapClassName(
-        className,
+      className={getFieldWrapClassName({
+        userClassName: className,
         uiSize,
         bordered,
         disabled,
-        false,
-      )}
+        fixedHeight: false,
+      })}
     >
       <textarea
         value={value}
         disabled={disabled}
-        className={getFieldClassName(
+        className={getFieldClassName({
           bordered,
           uiSize,
-          false,
-          false,
-          'h-full resize-none leading-normal',
-        )}
+          fixedHeight: false,
+          noYPadding: false,
+          otherClassName: 'h-full resize-none leading-normal',
+        })}
         autoComplete={autocomplete}
         maxLength={maxLength}
         minLength={minLength}

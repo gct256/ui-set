@@ -47,25 +47,25 @@ export const Select: React.FC<SelectProps> = ({
 
   return (
     <span
-      className={getFieldWrapClassName(
-        className,
+      className={getFieldWrapClassName({
+        userClassName: className,
         uiSize,
         bordered,
         disabled,
-        true,
-        'relative',
-      )}
+        fixedHeight: true,
+        otherClassName: 'relative',
+      })}
     >
       <select
         value={value}
         disabled={disabled}
-        className={getFieldClassName(
+        className={getFieldClassName({
           bordered,
           uiSize,
-          true,
-          true,
-          'pr-8 rounded-none appearance-none leading-none p-0',
-        )}
+          fixedHeight: true,
+          noYPadding: true,
+          otherClassName: 'pr-8 rounded-none appearance-none leading-none p-0',
+        })}
         onChange={handleOnChange}
       >
         {withEmptyItem ? <option value="" /> : null}

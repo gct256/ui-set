@@ -45,9 +45,12 @@ const Radio: React.FC<RadioProps> = ({
   return (
     <label
       htmlFor={htmlId}
-      className={getCheckboxClassName('', disabled, {
-        'ml-2': !vertical && index > 0,
-        'mt-2': vertical && index > 0,
+      className={getCheckboxClassName({
+        disabled,
+        otherClassName: {
+          'ml-2': !vertical && index > 0,
+          'mt-2': vertical && index > 0,
+        },
       })}
       onMouseEnter={handleOnEnter}
       onMouseLeave={handleOnLeave}

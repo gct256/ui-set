@@ -51,18 +51,23 @@ export const InputText: React.FC<InputTextProps> = ({
 
   return (
     <span
-      className={getFieldWrapClassName(
-        className,
+      className={getFieldWrapClassName({
+        userClassName: className,
         uiSize,
         bordered,
         disabled,
-        true,
-      )}
+        fixedHeight: true,
+      })}
     >
       <input
         type={password ? 'password' : 'text'}
         value={value}
-        className={getFieldClassName(bordered, uiSize, true, false)}
+        className={getFieldClassName({
+          bordered,
+          uiSize,
+          fixedHeight: true,
+          noYPadding: false,
+        })}
         disabled={disabled}
         autoComplete={autocomplete}
         maxLength={maxLength}
