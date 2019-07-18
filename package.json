@@ -1,6 +1,6 @@
 {
   "name": "@gct256/ui-set",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "The user interface components for React with tailwind.css.",
   "license": "MIT",
   "scripts": {
