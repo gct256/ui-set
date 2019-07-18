@@ -24,6 +24,9 @@ import { Dialog } from './dialogs/Dialog';
 import { ListView } from './components/ListView/ListView';
 //
 import { colors as themeColors } from './utils/colors';
+//
+import { UiSize } from './utils/UiSize';
+import { Item, SelectItem } from './utils/SelectItem';
 
 export {
   BorderedView,
@@ -52,4 +55,8 @@ export {
   ListView,
   //
   themeColors,
+  //
+  UiSize,
+  Item,
+  SelectItem,
 };
