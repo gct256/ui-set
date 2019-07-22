@@ -7,6 +7,7 @@ import './elements/flatButton.stories';
 import './elements/separator.stories';
 import './elements/borderedView.stories';
 import './elements/canvasView.stories';
+import './elements/cover.stories';
 
 import './fields/inputText.stories';
 import './fields/inputTextArea.stories';

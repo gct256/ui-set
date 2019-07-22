@@ -4,6 +4,7 @@ import { CanvasView } from './elements/CanvasView';
 import { FlatButton } from './elements/FlatButton';
 import { Icon } from './elements/Icon';
 import { Separator } from './elements/Separator';
+import { Cover } from './elements/Cover';
 //
 import { Checkbox } from './fields/Checkbox';
 import { InputNumber } from './fields/InputNumber';
@@ -35,6 +36,7 @@ export {
   FlatButton,
   Icon,
   Separator,
+  Cover,
   //
   Checkbox,
   InputNumber,
