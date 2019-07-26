@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { wrapExample } from '../utils/wrapExample';
@@ -18,7 +18,7 @@ storiesOf('fields', module)
         onChange={setChecked}
         disabled={boolean('disabled', false)}
       >
-        Checkbox
+        {text('label', '')}
       </Checkbox>
     );
   });

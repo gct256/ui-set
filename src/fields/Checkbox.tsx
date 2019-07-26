@@ -7,6 +7,7 @@ import { UiProps } from '../utils/commonProps';
 import { getCheckboxClassName } from '../utils/getClassName';
 import { colors } from '../utils/colors';
 import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
+import { isEmptyReactNode } from '../utils/isEmptyReactNode';
 
 interface CheckboxProps extends UiProps {
   /** HTML's id attribute. */
@@ -51,8 +52,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({
     >
       <span
         className={classnames(
-          'border-2 mr-1 w-4 h-4 flex justify-center items-center',
+          'border-2 w-4 h-4 flex justify-center items-center',
           {
+            'mr-1': !isEmptyReactNode(children),
             [colors.standard.normal.bg]: !disabled && !hover,
             [colors.standard.disabled.bg]: disabled,
             [colors.standard.hover.border]: !disabled && hover,
