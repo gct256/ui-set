@@ -127,6 +127,9 @@ input[type='range']::-webkit-slider-runnable-track {
   border-radius: 0;
   border: 0;
 }
+input[type='range']:hover::-webkit-slider-runnable-track {
+  background: theme('colors.black');
+}
 input[type='range']:disabled::-webkit-slider-runnable-track {
   cursor: default;
   background: theme('colors.gray.400');
@@ -140,6 +143,9 @@ input[type='range']::-webkit-slider-thumb {
   cursor: pointer;
   appearance: none;
   margin-top: calc(-0.5rem + 2px);
+}
+input[type='range']:hover::-webkit-slider-thumb {
+  border-color: theme('colors.black');
 }
 input[type='range']:disabled::-webkit-slider-thumb {
   border-color: theme('colors.gray.400');
