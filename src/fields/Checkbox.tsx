@@ -55,7 +55,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
           'border-2 w-4 h-4 flex justify-center items-center',
           {
             'mr-1': !isEmptyReactNode(children),
-            [colors.standard.normal.bg]: !disabled && !hover,
+            [colors.standard.normal.bg]: !disabled,
             [colors.standard.disabled.bg]: disabled,
             [colors.standard.hover.border]: !disabled && hover,
             [colors.standard.normal.border]: !disabled,
