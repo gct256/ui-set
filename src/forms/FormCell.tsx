@@ -14,7 +14,7 @@ export const FormCell: React.FC<FormCellProps> = ({
   children,
 }: React.PropsWithChildren<FormCellProps>) =>
   visible ? (
-    <div className={classnames(className, 'mx-1')}>{children}</div>
+    <div className={classnames(className, 'px-1')}>{children}</div>
   ) : null;
 
 FormCell.displayName = 'FormCell';

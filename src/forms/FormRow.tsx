@@ -15,7 +15,7 @@ export const FormRow: React.FC<FormRowProps> = ({
 }: React.PropsWithChildren<FormRowProps>) =>
   visible ? (
     <div
-      className={classnames(className, 'my-1 flex justify-start items-start')}
+      className={classnames(className, 'p-1 flex justify-start items-start')}
     >
       {children}
     </div>
