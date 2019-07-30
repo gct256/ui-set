@@ -13,6 +13,7 @@ import { InputRange } from '../../src/fields/InputRange';
 import { Checkbox } from '../../src/fields/Checkbox';
 import { RadioGroup } from '../../src/fields/RadioGroup';
 import { Separator } from '../../src/elements/Separator';
+import { InputTextArea } from '../../src';
 
 const selectItems = ['Alpha', 'Beta', 'Gamma'];
 const radioItems1 = ['Delta', 'Epsilon', 'Zeta'];
@@ -23,6 +24,7 @@ storiesOf('forms', module)
   .add('Form example', () => {
     const [text1, setText1] = useState('text1', '');
     const [text2, setText2] = useState('text2', '');
+    const [text3, setText3] = useState('text3', '');
     const [num1, setNum1] = useState('num1', 0);
     const [num2, setNum2] = useState('num2', 0);
     const [sel1, setSel1] = useState('sel1', '');
@@ -41,6 +43,22 @@ storiesOf('forms', module)
           </FormCell>
           <FormCell className="w-32">
             <InputText value={text2} onChange={setText2} />
+          </FormCell>
+        </FormRow>
+        <FormRow>
+          <FormCell className="w-24">
+            <Label>text</Label>
+          </FormCell>
+          <FormCell className="flex-grow">
+            <InputText value={text1} onChange={setText1} />
+          </FormCell>
+        </FormRow>
+        <FormRow>
+          <FormCell className="w-24">
+            <Label>text area</Label>
+          </FormCell>
+          <FormCell className="flex-grow">
+            <InputTextArea value={text3} onChange={setText3} row={4} />
           </FormCell>
         </FormRow>
         <FormRow>
@@ -76,7 +94,7 @@ storiesOf('forms', module)
           <FormCell className="w-24">
             <Label>check</Label>
           </FormCell>
-          <FormCell className="w-24">
+          <FormCell>
             <Checkbox checked={check1} onChange={setCheck1}>
               checkbox
             </Checkbox>
