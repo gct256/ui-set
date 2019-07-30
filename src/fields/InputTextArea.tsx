@@ -10,6 +10,9 @@ interface InputTextAreaProps extends FieldProps<string> {
   /** If true, field has 1px border. */
   bordered?: boolean;
 
+  /** Row count for element height. */
+  row?: number;
+
   autocomplete?: string;
   maxLength?: number;
   minLength?: number;
@@ -27,6 +30,8 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
   uiSize,
 
   bordered,
+  row,
+
   autocomplete,
   maxLength,
   minLength,
@@ -42,6 +47,12 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
     [onChange],
   );
 
+  const style: React.CSSProperties = {};
+
+  if (typeof row === 'number' && Number.isFinite(row) && row > 0) {
+    style.height = `${row * 1.5}em`; // leading-normal === line-height: 1.5
+  }
+
   return (
     <span
       className={getFieldWrapClassName({
@@ -55,6 +66,7 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
       <textarea
         value={value}
         disabled={disabled}
+        style={style}
         className={getFieldClassName({
           bordered,
           uiSize,
