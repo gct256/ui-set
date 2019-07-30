@@ -14,6 +14,9 @@ interface AlertDialogProps {
 
   /** Event callback on OK button clicked. */
   onClick?(): void;
+
+  /** Event handler on escape key down. */
+  onEscapeKey?(): void;
 }
 
 /** Alert dialog component. */
@@ -23,6 +26,7 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
   visible,
   disabled,
   onClick,
+  onEscapeKey,
   children,
 }: React.PropsWithChildren<AlertDialogProps>) => (
   <Dialog
@@ -31,6 +35,7 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
     visible={!!visible}
     buttonsDisabled={[!!disabled]}
     onClick={onClick}
+    onEscapeKey={onEscapeKey}
   >
     {children}
   </Dialog>
@@ -42,4 +47,5 @@ AlertDialog.defaultProps = {
   title: 'Alert',
   visible: false,
   onClick() {},
+  onEscapeKey() {},
 };

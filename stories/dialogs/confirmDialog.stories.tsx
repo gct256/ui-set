@@ -2,10 +2,12 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import useState from 'storybook-addon-state';
 
 import { ConfirmDialog } from '../../src/dialogs/ConfirmDialog';
 import { ExampleLorem } from '../utils/ExampleLorem';
 import { ExampleForm } from '../utils/ExampleForm';
+import { Button } from '../../src';
 
 storiesOf('dialogs / ConfirmDialog', module)
   .addDecorator(withKnobs)
@@ -14,6 +16,7 @@ storiesOf('dialogs / ConfirmDialog', module)
       visible={boolean('visible', true)}
       disabled={boolean('disabled', false)}
       onClick={action('ConfirmDialog#onClick')}
+      onEscapeKey={action('AlertDialog#onEscapeKey')}
     >
       <ExampleLorem />
     </ConfirmDialog>
@@ -24,17 +27,9 @@ storiesOf('dialogs / ConfirmDialog', module)
       visible={boolean('visible', true)}
       disabled={boolean('disabled', false)}
       onClick={action('ConfirmDialog#onClick')}
+      onEscapeKey={action('AlertDialog#onEscapeKey')}
     >
       <ExampleLorem />
-    </ConfirmDialog>
-  ))
-  .add('with form', () => (
-    <ConfirmDialog
-      visible={boolean('visible', true)}
-      disabled={boolean('disabled', false)}
-      onClick={action('ConfirmDialog#onClick')}
-    >
-      <ExampleForm />
     </ConfirmDialog>
   ))
   .add('with sub buttons', () => (
@@ -44,6 +39,7 @@ storiesOf('dialogs / ConfirmDialog', module)
       subButtons={['Foo', 'Bar', 'Baz']}
       onClick={action('ConfirmDialog#onClick')}
       onSubClick={action('ConfirmDialog#onSubClick')}
+      onEscapeKey={action('AlertDialog#onEscapeKey')}
     >
       <ExampleLorem />
     </ConfirmDialog>
@@ -59,7 +55,24 @@ storiesOf('dialogs / ConfirmDialog', module)
         range: true,
       })}
       onClick={action('ConfirmDialog#onClick')}
+      onEscapeKey={action('AlertDialog#onEscapeKey')}
     >
       <ExampleLorem />
     </ConfirmDialog>
-  ));
+  ))
+  .add('example', () => {
+    const [visible, setVisible] = useState('visible', false);
+
+    return (
+      <>
+        <Button onClick={() => setVisible(true)}>Show dialog</Button>
+        <ConfirmDialog
+          visible={visible}
+          onClick={() => setVisible(false)}
+          onEscapeKey={() => setVisible(false)}
+        >
+          <ExampleForm />
+        </ConfirmDialog>
+      </>
+    );
+  });

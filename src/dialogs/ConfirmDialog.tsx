@@ -39,6 +39,9 @@ interface ConfirmDialogProps {
    * @param index sub button index.
    */
   onSubClick?(index: number): void;
+
+  /** Event handler on escape key down. */
+  onEscapeKey?(): void;
 }
 
 /** Confirm dialog component. */
@@ -52,6 +55,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   subButtonsDisabled,
   onClick,
   onSubClick,
+  onEscapeKey,
   children,
 }: React.PropsWithChildren<ConfirmDialogProps>) => {
   const handleOnClick = React.useCallback(
@@ -71,6 +75,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
       primaryButton={danger ? button0 : button1}
       onClick={handleOnClick}
       onSubClick={onSubClick}
+      onEscapeKey={onEscapeKey}
     >
       {children}
     </Dialog>
@@ -84,4 +89,5 @@ ConfirmDialog.defaultProps = {
   visible: false,
   danger: false,
   onClick() {},
+  onEscapeKey() {},
 };

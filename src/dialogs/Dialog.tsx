@@ -2,6 +2,7 @@ import * as React from 'react';
 import FocusTrap from 'focus-trap-react';
 
 import { colors } from '../utils/colors';
+import { isEscapeKey } from '../utils/isEscapeKey';
 
 import { DialogButtonBar } from './DialogButtonBar';
 
@@ -36,6 +37,9 @@ interface DialogProps {
    * @param index sub button index.
    */
   onSubClick?(index: number): void;
+
+  /** Event handler on escape key down. */
+  onEscapeKey?(): void;
 }
 
 /** Common dialog component. */
@@ -51,14 +55,27 @@ export const Dialog: React.FC<DialogProps> = ({
   children,
   onClick,
   onSubClick,
+  onEscapeKey,
 }: React.PropsWithChildren<DialogProps>) => {
-  if (!visible) return null;
-
-  const ref = React.useRef<HTMLDivElement>(null);
-
   const style: React.CSSProperties = {
     width: typeof width === 'number' ? `${width}%` : 'auto',
   };
+
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const listener = (ev: KeyboardEvent) => {
+      if (isEscapeKey(ev) && onEscapeKey) onEscapeKey();
+    };
+
+    if (visible) {
+      window.addEventListener('keydown', listener);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', listener);
+    };
+  }, [visible]);
 
   const initialFocus = React.useCallback(() => {
     if (ref.current === null) return document.body;
@@ -96,6 +113,8 @@ export const Dialog: React.FC<DialogProps> = ({
 
     return barButtons[0] as HTMLElement;
   }, [primaryButton]);
+
+  if (!visible) return null;
 
   return (
     <>
@@ -152,4 +171,5 @@ Dialog.defaultProps = {
   primaryButton: 0,
   onClick() {},
   onSubClick() {},
+  onEscapeKey() {},
 };

@@ -2,9 +2,11 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, withKnobs, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import useState from 'storybook-addon-state';
 
 import { AlertDialog } from '../../src/dialogs/AlertDialog';
 import { ExampleLorem } from '../utils/ExampleLorem';
+import { Button } from '../../src';
 
 storiesOf('dialogs / AlertDialog', module)
   .addDecorator(withKnobs)
@@ -13,6 +15,7 @@ storiesOf('dialogs / AlertDialog', module)
       visible={boolean('visible', true)}
       disabled={boolean('disabled', false)}
       onClick={action('AlertDialog#onClick')}
+      onEscapeKey={action('AlertDialog#onEscapeKey')}
     >
       <ExampleLorem />
     </AlertDialog>
@@ -27,7 +30,24 @@ storiesOf('dialogs / AlertDialog', module)
         range: true,
       })}
       onClick={action('AlertDialog#onClick')}
+      onEscapeKey={action('AlertDialog#onEscapeKey')}
     >
       <ExampleLorem />
     </AlertDialog>
-  ));
+  ))
+  .add('example', () => {
+    const [visible, setVisible] = useState('visible', false);
+
+    return (
+      <>
+        <Button onClick={() => setVisible(true)}>Show alert</Button>
+        <AlertDialog
+          visible={visible}
+          onClick={() => setVisible(false)}
+          onEscapeKey={() => setVisible(false)}
+        >
+          <ExampleLorem />
+        </AlertDialog>
+      </>
+    );
+  });
