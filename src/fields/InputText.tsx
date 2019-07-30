@@ -5,6 +5,7 @@ import {
   getFieldWrapClassName,
   getFieldClassName,
 } from '../utils/getClassName';
+import { handleInputKeyPress } from '../utils/handleInputKeyPress';
 
 interface InputTextProps extends FieldProps<string> {
   /** If true, field has 1px border. */
@@ -21,6 +22,9 @@ interface InputTextProps extends FieldProps<string> {
   readOnly?: boolean;
   required?: boolean;
   size?: number;
+
+  /** Event handler on Enter key pressed. */
+  onEnterKey?(value: string): void;
 }
 
 /** Input file for text. */
@@ -43,10 +47,21 @@ export const InputText: React.FC<InputTextProps> = ({
   size,
 
   onChange,
+  onEnterKey,
 }: InputTextProps) => {
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.value),
     [onChange],
+  );
+
+  const handleOnKeyDown = React.useCallback(
+    (ev: React.KeyboardEvent<HTMLInputElement>) =>
+      handleInputKeyPress<string>(
+        ev,
+        (element: HTMLInputElement) => element.value,
+        onEnterKey,
+      ),
+    [onEnterKey],
   );
 
   return (
@@ -80,6 +95,7 @@ export const InputText: React.FC<InputTextProps> = ({
         required={required}
         size={size}
         onChange={handleOnChange}
+        onKeyPress={handleOnKeyDown}
       />
     </span>
   );

@@ -1,17 +1,10 @@
-import { keyName } from 'w3c-keyname';
-import { Key } from 'ts-key-enum';
+import { isEnterKey } from './isEnterKey';
 
 export function handleButtonKeyDown(
   ev: React.KeyboardEvent<HTMLElement>,
   onClick?: () => void,
 ) {
-  switch (keyName(ev.nativeEvent)) {
-    case Key.Enter:
-      break;
-
-    default:
-      return;
-  }
+  if (!isEnterKey(ev)) return;
 
   if (onClick) onClick();
 

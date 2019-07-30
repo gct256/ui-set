@@ -2,6 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
+import { action } from '@storybook/addon-actions';
 
 import { wrapExample } from '../utils/wrapExample';
 import { InputNumber } from '../../src/fields/InputNumber';
@@ -18,6 +19,7 @@ storiesOf('fields', module)
       <InputNumber
         value={value}
         onChange={setValue}
+        onEnterKey={action('InputNumber#onEnterKey')}
         bordered={boolean('bordered', true)}
         disabled={boolean('disabled', false)}
         placeholder={text('placeholder', 'Placeholder')}

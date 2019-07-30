@@ -5,6 +5,7 @@ import {
   getFieldWrapClassName,
   getFieldClassName,
 } from '../utils/getClassName';
+import { handleInputKeyPress } from '../utils/handleInputKeyPress';
 
 interface InputNumberProps extends FieldProps<number> {
   /** If true, field has 1px border. */
@@ -21,6 +22,9 @@ interface InputNumberProps extends FieldProps<number> {
   required?: boolean;
   size?: number;
   step?: number;
+
+  /** Event handler on Enter key pressed. */
+  onEnterKey?(): void;
 }
 
 /** Input field for number. */
@@ -44,10 +48,21 @@ export const InputNumber: React.FC<InputNumberProps> = ({
   step,
 
   onChange,
+  onEnterKey,
 }: InputNumberProps) => {
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.valueAsNumber),
     [onChange],
+  );
+
+  const handleOnKeyDown = React.useCallback(
+    (ev: React.KeyboardEvent<HTMLInputElement>) =>
+      handleInputKeyPress<number>(
+        ev,
+        (element: HTMLInputElement) => element.valueAsNumber,
+        onEnterKey,
+      ),
+    [onEnterKey],
   );
 
   return (
@@ -84,6 +99,7 @@ export const InputNumber: React.FC<InputNumberProps> = ({
         size={size}
         step={step}
         onChange={handleOnChange}
+        onKeyPress={handleOnKeyDown}
       />
     </span>
   );
