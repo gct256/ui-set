@@ -152,20 +152,38 @@ input[type='range']:disabled::-webkit-slider-thumb {
   background: theme('colors.gray.200');
   cursor: default;
 }
+input[type='range']::-moz-focus-outer {
+  border: 0;
+}
 input[type='range']::-moz-range-track {
-  height: 2px;
+  height: 4px;
   cursor: pointer;
   background: theme('colors.gray.700');
   border-radius: 0;
   border: 0;
 }
+input[type='range']:hover::-moz-range-track {
+  background: theme('colors.black');
+}
+input[type='range']:disabled::-moz-range-track {
+  cursor: default;
+  background: theme('colors.gray.400');
+}
 input[type='range']::-moz-range-thumb {
   border: 2px solid theme('colors.gray.700');
-  height: 14px;
-  width: 14px;
-  border-radius: 7px;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 2rem;
   background: theme('colors.white');
   cursor: pointer;
+}
+input[type='range']:hover::-moz-range-thumb {
+  border-color: theme('colors.black');
+}
+input[type='range']:disabled::-moz-range-thumb {
+  border-color: theme('colors.gray.400');
+  background: theme('colors.gray.200');
+  cursor: default;
 }
 input[type='range']::-ms-track {
   height: 2px;
