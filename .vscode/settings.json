@@ -42,13 +42,13 @@
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
   "eslint.validate": [
-    { "language": "javascript", "autoFix": false },
-    { "language": "javascriptreact", "autoFix": false },
-    { "language": "typescript", "autoFix": false },
+    { "language": "javascript", "autoFix": true },
+    { "language": "javascriptreact", "autoFix": true },
+    { "language": "typescript", "autoFix": true },
     { "language": "typescriptreact", "autoFix": true }
   ],
   //
-  "prettier.eslintIntegration": true,
+  "prettier.eslintIntegration": false,
   "prettier.tslintIntegration": false,
   "prettier.disableLanguages": ["vue", "html"],
   //
