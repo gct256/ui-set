@@ -64,7 +64,7 @@ export const Dialog: React.FC<DialogProps> = ({
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const listener = (ev: KeyboardEvent) => {
+    const listener = (ev: KeyboardEvent): void => {
       if (isEscapeKey(ev) && onEscapeKey) onEscapeKey();
     };
 
@@ -169,7 +169,13 @@ Dialog.defaultProps = {
   buttons: ['OK'],
   buttonsDisabled: [false],
   primaryButton: 0,
-  onClick() {},
-  onSubClick() {},
-  onEscapeKey() {},
+  onClick() {
+    //
+  },
+  onSubClick() {
+    //
+  },
+  onEscapeKey() {
+    //
+  },
 };

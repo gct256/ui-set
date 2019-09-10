@@ -16,7 +16,7 @@ export type SelectItem = string | Item;
  *
  * @param items 選択リストなどの項目リスト
  */
-export function mapSelectItems(items?: SelectItem[]): Item[] {
+export const mapSelectItems = (items?: SelectItem[]): Item[] => {
   if (items === undefined) return [];
 
   return items.map((item) =>
@@ -27,4 +27,4 @@ export function mapSelectItems(items?: SelectItem[]): Item[] {
           text: item.text === undefined ? item.value : item.text,
         },
   );
-}
+};

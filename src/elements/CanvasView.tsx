@@ -4,7 +4,7 @@ import { BasicProps } from '../utils/commonProps';
 
 type RenderMode = 'default' | 'clearly' | 'fine';
 
-function getPixelRatio(): number {
+const getPixelRatio = (): number => {
   const ratio = window.devicePixelRatio;
 
   if (typeof ratio !== 'number' || !Number.isFinite(ratio) || ratio < 1) {
@@ -12,21 +12,22 @@ function getPixelRatio(): number {
   }
 
   return Math.ceil(ratio);
-}
+};
 
-function getScales(renderMode?: RenderMode): [number, number] {
+const getScales = (renderMode?: RenderMode): [number, number] => {
   const ratio = getPixelRatio();
 
   switch (renderMode) {
     case 'fine':
       return [ratio, ratio];
+
     case 'clearly':
       return [ratio, 1];
 
     default:
       return [1, 1];
   }
-}
+};
 
 interface CanvasViewProps extends BasicProps {
   /** Width of canvas element. */
@@ -56,7 +57,7 @@ export class CanvasView extends React.Component<CanvasViewProps> {
 
   private ref2: React.RefObject<HTMLCanvasElement> = React.createRef();
 
-  public componentDidMount() {
+  public componentDidMount(): void {
     this.renderToCanvas(this.props);
   }
 
@@ -79,11 +80,11 @@ export class CanvasView extends React.Component<CanvasViewProps> {
     return false;
   }
 
-  public componentDidUpdate() {
+  public componentDidUpdate(): void {
     this.renderToCanvas(this.props);
   }
 
-  private renderToCanvas(props: CanvasViewProps) {
+  private renderToCanvas(props: CanvasViewProps): void {
     if (this.ref1.current === null || this.ref2.current === null) return;
 
     const front = this.ref1.current.getContext('2d');
@@ -116,7 +117,7 @@ export class CanvasView extends React.Component<CanvasViewProps> {
     );
   }
 
-  public render() {
+  public render(): React.ReactNode {
     const { className, width, height, renderMode } = this.props;
     const [scale1, scale2] = getScales(renderMode);
     const style = {

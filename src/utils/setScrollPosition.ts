@@ -1,4 +1,7 @@
-export function setScrollPosition(parent: HTMLElement, target: HTMLElement) {
+export const setScrollPosition = (
+  parent: HTMLElement,
+  target: HTMLElement,
+): void => {
   const rect0 = parent.getBoundingClientRect();
   const rect1 = target.getBoundingClientRect();
   const { scrollTop } = parent;
@@ -17,4 +20,4 @@ export function setScrollPosition(parent: HTMLElement, target: HTMLElement) {
     // eslint-disable-next-line no-param-reassign
     parent.scrollTop = scrollTop + y3 - y1 + 1;
   }
-}
+};

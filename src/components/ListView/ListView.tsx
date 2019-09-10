@@ -11,7 +11,7 @@ import { ListViewItem, itemIndexKey, isCursorTargetKey } from './ListViewItem';
 const NO_CURSOR = -1;
 
 // find item index by dataset
-function getItemIndex(root: HTMLElement, target: HTMLElement): number {
+const getItemIndex = (root: HTMLElement, target: HTMLElement): number => {
   if (root === target) return NO_CURSOR;
 
   const itemIndex = target.dataset[itemIndexKey.key];
@@ -25,7 +25,7 @@ function getItemIndex(root: HTMLElement, target: HTMLElement): number {
   }
 
   return NO_CURSOR;
-}
+};
 
 const adjustCursor = (
   cursor: number | undefined,
@@ -129,14 +129,15 @@ export const ListView: React.FC<ListViewProps> = ({
     </ListViewItem>
   ));
 
-  function updateCursor(newCursor: number, allowNoCursor: boolean) {
+  const updateCursor = (newCursor: number, allowNoCursor: boolean): void => {
     const adjusted = adjustCursor(newCursor, items.length, allowNoCursor);
 
     if (cursor === adjusted) return;
 
     setCursor(adjusted);
+
     if (onUpdateCursor) onUpdateCursor(adjusted);
-  }
+  };
 
   React.useEffect(() => {
     const { current } = ref;
@@ -170,7 +171,8 @@ export const ListView: React.FC<ListViewProps> = ({
   const handleKeyDown = React.useCallback(
     (ev: React.KeyboardEvent<HTMLDivElement>) => {
       switch (keyName(ev.nativeEvent)) {
-        case Key.ArrowUp:
+        case Key.ArrowUp: // fall through
+
         case Key.ArrowLeft:
           if (cursor === NO_CURSOR) {
             updateCursor(items.length - 1, false);
@@ -178,7 +180,9 @@ export const ListView: React.FC<ListViewProps> = ({
             updateCursor(cursor - 1, false);
           }
           break;
-        case Key.ArrowDown:
+
+        case Key.ArrowDown: // fall through
+
         case Key.ArrowRight:
           if (cursor === NO_CURSOR) {
             updateCursor(0, false);

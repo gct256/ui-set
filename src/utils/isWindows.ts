@@ -1,3 +1,2 @@
-export function isWindows(): boolean {
-  return /^win(64|32)$/i.test(window.navigator.platform);
-}
+export const isWindows = (): boolean =>
+  /^win(64|32)$/i.test(window.navigator.platform);

@@ -73,5 +73,7 @@ DialogButtonBar.defaultProps = {
   buttons: [],
   buttonsDisabled: [],
   primaryButton: -1,
-  onClick() {},
+  onClick() {
+    //
+  },
 };

@@ -6,19 +6,20 @@ extends:
   - airbnb
   - plugin:promise/recommended
   - plugin:@typescript-eslint/recommended
-  - prettier
-  - prettier/react
+  - plugin:prettier/recommended
   - prettier/@typescript-eslint
+  - prettier/react
 
 plugins:
-  - promise
-  - '@typescript-eslint'
+  - react-hooks
 
 parser: '@typescript-eslint/parser'
 
+env:
+  browser: true
+
 parserOptions:
   sourceType: module
-  project: ./tsconfig.json
   ecmaFeatures:
     jsx: false
 
@@ -31,51 +32,28 @@ settings:
         - .js
         - .jsx
 
-env:
-  browser: true
-
 rules:
-  ###
-  ### 以下は自分ルール
-  ###
-
-  # no-unused-vars を TypeScript用に
-  no-unused-vars:
-    - off
-  '@typescript-eslint/no-unused-vars':
-    - error
-    - argsIgnorePattern: ^_ # _foo は許容
-
-  # メソッドのthisはなくてもよい
-  class-methods-use-this:
-    - off
-
-  # アロー関数のカッコは必ず必要
-  arrow-parens:
-    - error
-    - always
-
   # consoleは限定
   no-console:
     - error
     - allow: [debug, warn, error]
 
-  # export default は使わない
+  # case の break 省略はエラー / fall through コメントで抑制
+  no-fallthrough:
+    - error
+
+  # default export は使わない
   import/prefer-default-export:
     - off
   import/no-default-export:
     - error
 
-  # case の break 省略にはコメントが必要
-  no-fallthrough:
+  # importの順
+  import/order:
     - error
-    - commentPattern: thru
+    - newlines-between: always
 
-  # 関数戻り値の型はなくてもよい（ReturnTypeを使うため）
-  '@typescript-eslint/explicit-function-return-type':
-    - off
-
-  # 継承なしの空インターフェースはエラーとする
+  # interface 継承時は空でもよい
   '@typescript-eslint/no-empty-interface':
     - error
     - allowSingleExtends: true
@@ -85,50 +63,43 @@ rules:
     - error
     - extensions: ['.jsx', '.tsx']
 
-  # importの順
-  import/order:
-    - error
-    - newlines-between: always
-
-  # 良さげな場所に空行を入れる
+  # 適当に空行が入るようにする
   padding-line-between-statements:
     - error
-    - blankLine: always
-      prev: '*'
-      next: return
-    - blankLine: always
-      prev: '*'
-      next: expression
-    - blankLine: any
-      prev: expression
-      next: expression
-    - blankLine: always
-      prev: '*'
-      next: function
-    - blankLine: never
-      prev: '*'
-      next: case
-    - blankLine: always
-      prev: '*'
-      next: default
-    - blankLine: always
-      prev: '*'
-      next: class
-    - blankLine: always
-      prev: '*'
-      next: export
-    - blankLine: always
-      prev: '*'
-      next: block-like
-    - blankLine: always
-      prev: '*'
-      next: const
-    - blankLine: always
-      prev: const
-      next: '*'
-    - blankLine: any
-      prev: const
-      next: const
-  ###
-  ### 以下はプロジェクト固有のルール
-  ###
+    - { blankLine: always, prev: '*', next: return }
+    - { blankLine: any, prev: export, next: export }
+    - { blankLine: always, prev: '*', next: if }
+    - { blankLine: always, prev: '*', next: const }
+    - { blankLine: always, prev: const, next: '*' }
+    - { blankLine: any, prev: const, next: const }
+    - { blankLine: always, prev: case, next: '*' }
+
+  # 適当に空行が入るようにする
+  lines-between-class-members:
+    - error
+    - always
+    - exceptAfterSingleLine: true
+
+  # 戻り値の型は常に必要
+  '@typescript-eslint/explicit-function-return-type':
+    - error
+    - allowExpressions: true # 引数のコールバックなどは省略可
+
+  # 関数はconstで定義する
+  func-style:
+    - error
+    - expression
+
+  # 先頭が_の変数は使ってなくても良い
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - argsIgnorePattern: '^_'
+
+  # 引数のプロパティを操作してもよい変数名を指定
+  no-param-reassign:
+    - error
+    - props: true
+      ignorePropertyModificationsFor: []
+
+  react/jsx-props-no-spreading:
+    - off

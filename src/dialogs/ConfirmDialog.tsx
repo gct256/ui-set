@@ -88,6 +88,10 @@ ConfirmDialog.defaultProps = {
   title: 'Confirm',
   visible: false,
   danger: false,
-  onClick() {},
-  onEscapeKey() {},
+  onClick() {
+    //
+  },
+  onEscapeKey() {
+    //
+  },
 };

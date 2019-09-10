@@ -48,8 +48,6 @@
     { "language": "typescriptreact", "autoFix": true }
   ],
   //
-  "prettier.eslintIntegration": false,
-  "prettier.tslintIntegration": false,
   "prettier.disableLanguages": ["vue", "html"],
   //
   "highlight.regexFlags": "mgi",

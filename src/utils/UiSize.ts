@@ -20,12 +20,16 @@ export const getTextSizeClassName = (
   switch (uiSize) {
     case UiSize.xs:
       return 'text-xs';
+
     case UiSize.sm:
       return 'text-sm';
+
     case UiSize.base:
       return 'text-base';
+
     case UiSize.lg:
       return 'text-lg';
+
     case UiSize.xl:
       return 'text-xl';
 
@@ -41,12 +45,16 @@ export const getSmallTextSizeClassName = (
   switch (uiSize) {
     case UiSize.xs:
       return 'text-xxs';
+
     case UiSize.sm:
       return 'text-xs';
+
     case UiSize.base:
       return 'text-sm';
+
     case UiSize.lg:
       return 'text-base';
+
     case UiSize.xl:
       return 'text-lg';
 
@@ -62,12 +70,16 @@ export const getHeightClassName = (
   switch (uiSize) {
     case UiSize.xs:
       return 'h-4';
+
     case UiSize.sm:
       return 'h-6';
+
     case UiSize.base:
       return 'h-8';
+
     case UiSize.lg:
       return 'h-10';
+
     case UiSize.xl:
       return 'h-12';
 

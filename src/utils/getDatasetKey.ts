@@ -3,9 +3,7 @@ export interface DatasetKey {
   attrName: string;
 }
 
-export function getDatasetKey(key: string): DatasetKey {
-  return {
-    key,
-    attrName: `data-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`,
-  };
-}
+export const getDatasetKey = (key: string): DatasetKey => ({
+  key,
+  attrName: `data-${key.replace(/([A-Z])/g, '-$1').toLowerCase()}`,
+});

@@ -19,7 +19,7 @@ interface ClassDictionary {
 
 interface ClassArray extends Array<ClassValue> {}
 
-export function getFieldWrapClassName({
+export const getFieldWrapClassName = ({
   userClassName,
   uiSize,
   bordered,
@@ -33,8 +33,8 @@ export function getFieldWrapClassName({
   disabled?: boolean;
   fixedHeight?: boolean;
   otherClassName?: ClassValue;
-}) {
-  return classnames(
+}): string =>
+  classnames(
     userClassName,
     'w-full inline-block align-top',
     `focus-within:${colors.inputArea.focus.bg}`,
@@ -62,9 +62,8 @@ export function getFieldWrapClassName({
     },
     otherClassName,
   );
-}
 
-export function getFieldClassName({
+export const getFieldClassName = ({
   userClassName,
   bordered,
   uiSize,
@@ -80,8 +79,8 @@ export function getFieldClassName({
   noYPadding?: boolean;
   forInput?: boolean;
   otherClassName?: ClassValue;
-}) {
-  return classnames(
+}): string =>
+  classnames(
     userClassName,
     'ui block',
     'px-2 w-full bg-transparent',
@@ -97,9 +96,8 @@ export function getFieldClassName({
     },
     otherClassName,
   );
-}
 
-export function getCheckboxClassName({
+export const getCheckboxClassName = ({
   userClassName,
   disabled,
   otherClassName,
@@ -107,8 +105,8 @@ export function getCheckboxClassName({
   userClassName?: ClassValue;
   disabled?: boolean;
   otherClassName?: ClassValue;
-}) {
-  return classnames(
+}): string =>
+  classnames(
     userClassName,
     'ui-set select-none',
     'inline-flex justify-start items-center',
@@ -125,4 +123,3 @@ export function getCheckboxClassName({
     },
     otherClassName,
   );
-}

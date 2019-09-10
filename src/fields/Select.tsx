@@ -11,6 +11,8 @@ import {
 } from '../utils/getClassName';
 import { colors } from '../utils/colors';
 
+const EMPTY = '';
+
 interface SelectProps extends FieldProps<string> {
   /** If true, field has 1px border. */
   bordered?: boolean;
@@ -20,13 +22,12 @@ interface SelectProps extends FieldProps<string> {
   withEmptyItem?: boolean;
 }
 
-function renderItems(items?: SelectItem[]) {
-  return mapSelectItems(items).map(({ value, text }) => (
+const renderItems = (items?: SelectItem[]): React.ReactNode =>
+  mapSelectItems(items).map(({ value, text }) => (
     <option key={value} value={value}>
       {text}
     </option>
   ));
-}
 
 /** Select list field. */
 export const Select: React.FC<SelectProps> = ({
@@ -68,7 +69,7 @@ export const Select: React.FC<SelectProps> = ({
         })}
         onChange={handleOnChange}
       >
-        {withEmptyItem ? <option value="" /> : null}
+        {withEmptyItem ? <option value="">{EMPTY}</option> : null}
         {renderItems(items)}
       </select>
       <Icon

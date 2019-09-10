@@ -46,6 +46,10 @@ AlertDialog.displayName = 'AlertDialog';
 AlertDialog.defaultProps = {
   title: 'Alert',
   visible: false,
-  onClick() {},
-  onEscapeKey() {},
+  onClick() {
+    //
+  },
+  onEscapeKey() {
+    //
+  },
 };
