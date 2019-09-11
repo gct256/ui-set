@@ -12,10 +12,10 @@ const baseClassName = `flex-grow`;
 const hClassName = `w-full border-b ${baseClassName}`;
 const vClassName = `h-full border-r ${baseClassName}`;
 
-interface SeparatorProps extends UiProps {
+type SeparatorProps = UiProps & {
   /** If true, render vertical separator. */
   vertical?: boolean;
-}
+};
 
 /** Separator element. */
 export const Separator: React.FC<SeparatorProps> = ({

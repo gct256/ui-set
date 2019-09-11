@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { UiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
 
-interface BorderedViewProps extends UiProps {}
+type BorderedViewProps = UiProps;
 
 /** Bordered view element. */
 export const BorderedView: React.FC<BorderedViewProps> = ({

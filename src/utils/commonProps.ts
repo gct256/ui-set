@@ -1,21 +1,21 @@
 import { UiSize } from './UiSize';
 
 /** Props for HTML element. */
-export interface BasicProps {
+export type BasicProps = {
   /** ClassName. */
   className?: string;
-}
+};
 
 /** Props for UI element. */
-export interface UiProps extends BasicProps {
+export type UiProps = BasicProps & {
   /** If true, use disabled style and disable use input. */
   disabled?: boolean;
   /** UI Element size. */
   uiSize?: UiSize;
-}
+};
 
 /** Props for UI element with values. */
-export interface FieldProps<T> extends UiProps {
+export type FieldProps<T> = UiProps & {
   /** Value. */
   value?: T;
 
@@ -25,4 +25,4 @@ export interface FieldProps<T> extends UiProps {
    * @param value value.
    */
   onChange?(value: T): void;
-}
+};

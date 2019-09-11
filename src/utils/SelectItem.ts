@@ -1,10 +1,10 @@
 /**
  * 選択リストなどの厳密な項目
  */
-export interface Item {
+export type Item = {
   value: string;
   text?: string;
-}
+};
 
 /**
  * 選択リストなどの項目

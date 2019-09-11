@@ -44,7 +44,7 @@ const adjustCursor = (
   return cursor;
 };
 
-interface ListViewProps {
+type ListViewProps = {
   /** If true, component disabled. */
   disabled?: boolean;
   /** Array of list items. */
@@ -85,7 +85,7 @@ interface ListViewProps {
    * @param cursor New cursor position.
    */
   onUpdateCursor?: (cursor: number) => void;
-}
+};
 
 /** Keyboard navigatable list view component. */
 export const ListView: React.FC<ListViewProps> = ({

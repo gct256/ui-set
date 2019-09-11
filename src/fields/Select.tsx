@@ -13,14 +13,14 @@ import { colors } from '../utils/colors';
 
 const EMPTY = '';
 
-interface SelectProps extends FieldProps<string> {
+type SelectProps = FieldProps<string> & {
   /** If true, field has 1px border. */
   bordered?: boolean;
   /** Array of choices. */
   items?: SelectItem[];
   /** If true, add an empty item to the first choice. */
   withEmptyItem?: boolean;
-}
+};
 
 const renderItems = (items?: SelectItem[]): React.ReactNode =>
   mapSelectItems(items).map(({ value, text }) => (

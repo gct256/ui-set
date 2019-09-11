@@ -8,10 +8,10 @@ export const itemIndexKey = getDatasetKey('listViewItemIndex');
 
 export const isCursorTargetKey = getDatasetKey('listViewIsCursorTarget');
 
-interface ListViewItemProps extends BasicProps {
+type ListViewItemProps = BasicProps & {
   index: number;
   isCursorTarget: boolean;
-}
+};
 
 export const ListViewItem: React.FC<ListViewItemProps> = ({
   index,

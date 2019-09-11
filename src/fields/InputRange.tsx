@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { FieldProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
 
-interface InputRangeProps extends FieldProps<number> {
+type InputRangeProps = FieldProps<number> & {
   autocomplete?: string;
   max?: number;
   maxLength?: number;
@@ -16,7 +16,7 @@ interface InputRangeProps extends FieldProps<number> {
   required?: boolean;
   size?: number;
   step?: number;
-}
+};
 
 /** Input field for number with range slider. */
 export const InputRange: React.FC<InputRangeProps> = ({

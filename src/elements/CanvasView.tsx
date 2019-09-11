@@ -29,7 +29,7 @@ const getScales = (renderMode?: RenderMode): [number, number] => {
   }
 };
 
-interface CanvasViewProps extends BasicProps {
+type CanvasViewProps = BasicProps & {
   /** Width of canvas element. */
   width: number;
   /** Height of canvas element. */
@@ -49,7 +49,7 @@ interface CanvasViewProps extends BasicProps {
     scale: number,
     serial: number | string,
   ) => void;
-}
+};
 
 /** Controlable HTML Canvas element. */
 export class CanvasView extends React.Component<CanvasViewProps> {

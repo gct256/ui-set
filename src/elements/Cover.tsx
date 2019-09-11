@@ -3,10 +3,10 @@ import classnames from 'classnames';
 
 import { BasicProps } from '../utils/commonProps';
 
-interface CoverProps extends BasicProps {
+type CoverProps = BasicProps & {
   contentClassName?: string;
   visible?: boolean;
-}
+};
 
 export const Cover: React.FC<CoverProps> = ({
   className,

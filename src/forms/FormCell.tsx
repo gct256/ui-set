@@ -3,9 +3,9 @@ import classnames from 'classnames';
 
 import { BasicProps } from '../utils/commonProps';
 
-interface FormCellProps extends BasicProps {
+type FormCellProps = BasicProps & {
   visible?: boolean;
-}
+};
 
 /** Form's cell element. */
 export const FormCell: React.FC<FormCellProps> = ({

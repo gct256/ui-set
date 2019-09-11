@@ -5,7 +5,7 @@ import { Button } from '../elements/Button';
 import { FormCell } from '../forms/FormCell';
 import { FormRow } from '../forms/FormRow';
 
-interface DialogButtonBarProps {
+type DialogButtonBarProps = {
   /** Flag of main button or sub button. */
   main?: boolean;
   /** Arary of button labels. */
@@ -21,7 +21,7 @@ interface DialogButtonBarProps {
    * @param index button index.
    */
   onClick?(index: number): void;
-}
+};
 
 /** Button list for dialog component. */
 export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({

@@ -13,7 +13,7 @@ import {
 
 import { Icon } from './Icon';
 
-interface ButtonProps extends UiProps {
+type ButtonProps = UiProps & {
   /** Icon on button. */
   icon?: IconProp;
   /** If true, set primary style to button. */
@@ -21,7 +21,7 @@ interface ButtonProps extends UiProps {
 
   /** Event handler on button clicked. */
   onClick?(): void;
-}
+};
 
 /** Simply button element. */
 export const Button: React.FC<ButtonProps> = ({

@@ -6,7 +6,7 @@ import { isEscapeKey } from '../utils/isEscapeKey';
 
 import { DialogButtonBar } from './DialogButtonBar';
 
-interface DialogProps {
+type DialogProps = {
   /** Dialog width. (%) */
   width?: number;
   /** If true, dialog appeared. */
@@ -40,7 +40,7 @@ interface DialogProps {
 
   /** Event handler on escape key down. */
   onEscapeKey?(): void;
-}
+};
 
 /** Common dialog component. */
 export const Dialog: React.FC<DialogProps> = ({

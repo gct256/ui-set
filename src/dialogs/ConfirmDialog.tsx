@@ -10,7 +10,7 @@ const buttonPair2 = [...buttonPair1].reverse();
 const button0 = isWindows() ? 1 : 0;
 const button1 = isWindows() ? 0 : 1;
 
-interface ConfirmDialogProps {
+type ConfirmDialogProps = {
   /** Dialog title. */
   title?: string;
   /** Dialog width. (%) */
@@ -42,7 +42,7 @@ interface ConfirmDialogProps {
 
   /** Event handler on escape key down. */
   onEscapeKey?(): void;
-}
+};
 
 /** Confirm dialog component. */
 export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({

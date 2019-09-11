@@ -1,7 +1,7 @@
-export interface DatasetKey {
+export type DatasetKey = {
   key: string;
   attrName: string;
-}
+};
 
 export const getDatasetKey = (key: string): DatasetKey => ({
   key,

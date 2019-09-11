@@ -3,21 +3,20 @@ import classnames from 'classnames';
 import { colors } from './colors';
 import { UiSize, getHeightClassName, getTextSizeClassName } from './UiSize';
 
-type ClassValue =
+type ClassDictionary = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [id: string]: any;
+};
+
+type BaseClassValue =
   | string
   | number
   | ClassDictionary
-  | ClassArray
   | undefined
   | null
   | boolean;
 
-interface ClassDictionary {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [id: string]: any;
-}
-
-interface ClassArray extends Array<ClassValue> {}
+type ClassValue = BaseClassValue | BaseClassValue[];
 
 export const getFieldWrapClassName = ({
   userClassName,

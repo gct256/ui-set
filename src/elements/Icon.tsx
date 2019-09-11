@@ -14,12 +14,12 @@ const emptyIcon: IconDefinition = {
   icon: [16, 16, [], '', ''],
 };
 
-interface IconProps extends Partial<FontAwesomeIconProps> {
+type IconProps = Partial<FontAwesomeIconProps> & {
   /** If true, set disabled style. */
   disabled?: boolean;
   /** If true, use empty icon. Expected to use together with fixedWidth. */
   empty?: boolean;
-}
+};
 
 /** Wrapper element of FontAwesome icon. */
 export const Icon: React.FC<IconProps> = (props: IconProps) => {

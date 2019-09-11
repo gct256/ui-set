@@ -9,7 +9,7 @@ import { colors } from '../utils/colors';
 import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
 import { isEmptyReactNode } from '../utils/isEmptyReactNode';
 
-interface CheckboxProps extends UiProps {
+type CheckboxProps = UiProps & {
   /** HTML's id attribute. */
   htmlId?: string;
   /** If true, checked. */
@@ -21,7 +21,7 @@ interface CheckboxProps extends UiProps {
    * @param checked checked state.
    */
   onChange?(checked: boolean): void;
-}
+};
 
 /** Checkbox field. */
 export const Checkbox: React.FC<CheckboxProps> = ({

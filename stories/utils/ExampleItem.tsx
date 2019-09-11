@@ -1,9 +1,9 @@
 import * as React from 'react';
 import classnames from 'classnames';
 
-interface ExampleItemProps {
+type ExampleItemProps = {
   className?: string;
-}
+};
 
 export const ExampleItem: React.FC<ExampleItemProps> = ({
   className,

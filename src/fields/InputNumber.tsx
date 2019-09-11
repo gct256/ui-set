@@ -7,7 +7,7 @@ import {
 } from '../utils/getClassName';
 import { handleInputKeyPress } from '../utils/handleInputKeyPress';
 
-interface InputNumberProps extends FieldProps<number> {
+type InputNumberProps = FieldProps<number> & {
   /** If true, field has 1px border. */
   bordered?: boolean;
 
@@ -25,7 +25,7 @@ interface InputNumberProps extends FieldProps<number> {
 
   /** Event handler on Enter key pressed. */
   onEnterKey?(): void;
-}
+};
 
 /** Input field for number. */
 export const InputNumber: React.FC<InputNumberProps> = ({

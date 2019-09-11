@@ -5,10 +5,10 @@ import { UiProps } from '../utils/commonProps';
 import { getHeightClassName, getTextSizeClassName } from '../utils/UiSize';
 import { colors } from '../utils/colors';
 
-interface LabelProps extends UiProps {
+type LabelProps = UiProps & {
   /** Alignment of text. */
   align?: 'left' | 'center' | 'right';
-}
+};
 
 export const Label: React.FC<LabelProps> = ({
   align,

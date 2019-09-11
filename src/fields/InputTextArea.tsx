@@ -6,7 +6,7 @@ import {
   getFieldClassName,
 } from '../utils/getClassName';
 
-interface InputTextAreaProps extends FieldProps<string> {
+type InputTextAreaProps = FieldProps<string> & {
   /** If true, field has 1px border. */
   bordered?: boolean;
 
@@ -20,7 +20,7 @@ interface InputTextAreaProps extends FieldProps<string> {
   placeholder?: string;
   readOnly?: boolean;
   required?: boolean;
-}
+};
 
 /** Input field for long text. */
 export const InputTextArea: React.FC<InputTextAreaProps> = ({

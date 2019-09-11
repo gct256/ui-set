@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Dialog } from './Dialog';
 
-interface AlertDialogProps {
+type AlertDialogProps = {
   /** Dialog title. */
   title?: string;
   /** Dialog width. (%) */
@@ -17,7 +17,7 @@ interface AlertDialogProps {
 
   /** Event handler on escape key down. */
   onEscapeKey?(): void;
-}
+};
 
 /** Alert dialog component. */
 export const AlertDialog: React.FC<AlertDialogProps> = ({

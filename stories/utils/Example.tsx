@@ -2,11 +2,11 @@ import * as React from 'react';
 import classnames from 'classnames';
 import { color } from '@storybook/addon-knobs';
 
-interface ExampleProps {
+type ExampleProps = {
   className?: string;
   vertical?: boolean;
   colored?: boolean;
-}
+};
 
 export const Example: React.FC<ExampleProps> = ({
   className,

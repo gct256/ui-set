@@ -6,7 +6,7 @@ import { SelectItem, Item, mapSelectItems } from '../utils/SelectItem';
 import { getCheckboxClassName } from '../utils/getClassName';
 import { colors } from '../utils/colors';
 
-interface RadioGroupProps extends FieldProps<string> {
+type RadioGroupProps = FieldProps<string> & {
   /** Prefix of HTML's id attrbiute. */
   htmlIdPrefix?: string;
   /** Name of radio group. */
@@ -15,13 +15,13 @@ interface RadioGroupProps extends FieldProps<string> {
   items?: SelectItem[];
   /** If true, layout verticaly. */
   vertical?: boolean;
-}
+};
 
-interface RadioProps extends RadioGroupProps {
+type RadioProps = RadioGroupProps & {
   htmlId?: string;
   index: number;
   item: Item;
-}
+};
 
 /** Radio group field. */
 const Radio: React.FC<RadioProps> = ({

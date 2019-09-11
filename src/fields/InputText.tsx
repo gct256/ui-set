@@ -7,7 +7,7 @@ import {
 } from '../utils/getClassName';
 import { handleInputKeyPress } from '../utils/handleInputKeyPress';
 
-interface InputTextProps extends FieldProps<string> {
+type InputTextProps = FieldProps<string> & {
   /** If true, field has 1px border. */
   bordered?: boolean;
   /** If true, use type=password. */
@@ -25,7 +25,7 @@ interface InputTextProps extends FieldProps<string> {
 
   /** Event handler on Enter key pressed. */
   onEnterKey?(value: string): void;
-}
+};
 
 /** Input file for text. */
 export const InputText: React.FC<InputTextProps> = ({

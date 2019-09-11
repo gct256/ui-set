@@ -3,9 +3,9 @@ import classnames from 'classnames';
 
 import { BasicProps } from '../utils/commonProps';
 
-interface FormRowProps extends BasicProps {
+type FormRowProps = BasicProps & {
   visible?: boolean;
-}
+};
 
 /** Form's row element. */
 export const FormRow: React.FC<FormRowProps> = ({

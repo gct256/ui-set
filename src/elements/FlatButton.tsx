@@ -5,12 +5,12 @@ import { UiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
 import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
 
-interface FlatButtonProps extends UiProps {
+type FlatButtonProps = UiProps & {
   /**
    * Event handler on button clicked.
    */
   onClick?: () => void;
-}
+};
 
 /** Button element without ornament. */
 export const FlatButton: React.FC<FlatButtonProps> = ({
