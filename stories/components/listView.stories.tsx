@@ -5,8 +5,7 @@ import { action } from '@storybook/addon-actions';
 import useState from 'storybook-addon-state';
 
 import { wrapExample } from '../utils/wrapExample';
-import { ListView } from '../../src/components/ListView/ListView';
-import { Separator, Button, FormRow, FormCell } from '../../src';
+import { ListView, Separator, Button, FormRow, FormCell } from '../../src';
 
 const data = [
   'foo',
@@ -28,10 +27,10 @@ storiesOf('components', module)
   .addDecorator(wrapExample)
   .add('ListView', () => {
     const [items, setItems] = useState('items', data);
-    const handleDeleteRow = () => {
+    const handleDeleteRow = (): void => {
       setItems(items.slice(0, -1));
     };
-    const handleAddRow = () => {
+    const handleAddRow = (): void => {
       setItems([...items, `${Date.now()}`]);
     };
     const listItems = items.map((x) => <div key={x}>{x}</div>);

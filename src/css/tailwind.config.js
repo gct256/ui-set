@@ -44,6 +44,9 @@ module.exports = {
       zIndex: {
         99999: 99999,
       },
+      inset: {
+        full: '100%',
+      },
     },
   },
   variants: {
