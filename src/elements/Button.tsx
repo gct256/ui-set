@@ -6,9 +6,9 @@ import { UiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
 import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
 import {
-  UiSize,
   getHeightClassName,
   getSmallTextSizeClassName,
+  UiSizeValues,
 } from '../utils/UiSize';
 
 import { Icon } from './Icon';
@@ -108,5 +108,5 @@ export const Button: React.FC<ButtonProps> = ({
 Button.displayName = 'Button';
 
 Button.defaultProps = {
-  uiSize: UiSize.none,
+  uiSize: UiSizeValues.none,
 };

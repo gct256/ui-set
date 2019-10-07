@@ -1,10 +1,10 @@
-import { UiSize } from '../../src/utils/UiSize';
+import { UiSizeValues } from '../../src/utils/UiSize';
 
 export const getUiSizeOptions = () => ({
-  [UiSize.none]: UiSize.none,
-  [UiSize.xs]: UiSize.xs,
-  [UiSize.sm]: UiSize.sm,
-  [UiSize.base]: UiSize.base,
-  [UiSize.lg]: UiSize.lg,
-  [UiSize.xl]: UiSize.xl,
+  [UiSizeValues.none]: UiSizeValues.none,
+  [UiSizeValues.xs]: UiSizeValues.xs,
+  [UiSizeValues.sm]: UiSizeValues.sm,
+  [UiSizeValues.base]: UiSizeValues.base,
+  [UiSizeValues.lg]: UiSizeValues.lg,
+  [UiSizeValues.xl]: UiSizeValues.xl,
 });

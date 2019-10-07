@@ -1,4 +1,5 @@
-export enum UiSize {
+export type UiSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | 'none';
+export enum UiSizeValues {
   /** Extra small size. */
   xs = 'xs',
   /** Small size. */
@@ -18,19 +19,19 @@ export const getTextSizeClassName = (
   uiSize?: UiSize,
 ): string => {
   switch (uiSize) {
-    case UiSize.xs:
+    case UiSizeValues.xs:
       return 'text-xs';
 
-    case UiSize.sm:
+    case UiSizeValues.sm:
       return 'text-sm';
 
-    case UiSize.base:
+    case UiSizeValues.base:
       return 'text-base';
 
-    case UiSize.lg:
+    case UiSizeValues.lg:
       return 'text-lg';
 
-    case UiSize.xl:
+    case UiSizeValues.xl:
       return 'text-xl';
 
     default:
@@ -43,19 +44,19 @@ export const getSmallTextSizeClassName = (
   uiSize?: UiSize,
 ): string => {
   switch (uiSize) {
-    case UiSize.xs:
+    case UiSizeValues.xs:
       return 'text-xxs';
 
-    case UiSize.sm:
+    case UiSizeValues.sm:
       return 'text-xs';
 
-    case UiSize.base:
+    case UiSizeValues.base:
       return 'text-sm';
 
-    case UiSize.lg:
+    case UiSizeValues.lg:
       return 'text-base';
 
-    case UiSize.xl:
+    case UiSizeValues.xl:
       return 'text-lg';
 
     default:
@@ -68,19 +69,19 @@ export const getHeightClassName = (
   uiSize?: UiSize,
 ): string => {
   switch (uiSize) {
-    case UiSize.xs:
+    case UiSizeValues.xs:
       return 'h-4';
 
-    case UiSize.sm:
+    case UiSizeValues.sm:
       return 'h-6';
 
-    case UiSize.base:
+    case UiSizeValues.base:
       return 'h-8';
 
-    case UiSize.lg:
+    case UiSizeValues.lg:
       return 'h-10';
 
-    case UiSize.xl:
+    case UiSizeValues.xl:
       return 'h-12';
 
     default:
