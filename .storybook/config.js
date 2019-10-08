@@ -1,7 +1,6 @@
 import { configure } from '@storybook/react';
 
-function loadStories() {
-  require('../stories/index');
-}
+import '../css/ui-set.css';
+import '../stories/utils/example.css';
 
-configure(loadStories, module);
+configure(require.context('../stories', true, /\.stories\.tsx?$/), module);

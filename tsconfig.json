@@ -49,5 +49,5 @@
     "downlevelIteration": true,
     "noStrictGenericChecks": true
   },
-  "exclude": ["types", "node_modules", "__tests__"]
+  "exclude": ["types", "node_modules", "__tests__", "stories.old"]
 }

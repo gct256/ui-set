@@ -1,0 +1,21 @@
+.bg-checkerboard {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEWzs7PMzMwMsTJZAAAAFUlEQVQI12P4/5+BgYGKBFUN+/8fAO29P8FEXAQgAAAAAElFTkSuQmCC)
+    repeat left top;
+  background-size: 16px 16px;
+  animation: checkerboard infinite 2s linear;
+}
+
+@keyframes checkerboard {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 16px 16px;
+  }
+}
+
+.example-checkerboard .example-item {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEWzs7PMzMwMsTJZAAAAFUlEQVQI12P4/5+BgYGKBFUN+/8fAO29P8FEXAQgAAAAAElFTkSuQmCC)
+    repeat left top;
+  background-size: 16px 16px;
+}

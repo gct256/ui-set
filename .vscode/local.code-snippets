@@ -53,5 +53,20 @@
       "  }",
       "}"
     ]
+  },
+  "storybook": {
+    "scope": "typescriptreact",
+    "prefix": "storybook",
+    "body": [
+      "import * as React from 'react';",
+      "import { withKnobs } from '@storybook/addon-knobs';",
+      "",
+      "export default {",
+      "  title: '',",
+      "  decorators: [withKnobs],",
+      "};",
+      "",
+      "export const standard = () => <div />;"
+    ]
   }
 }

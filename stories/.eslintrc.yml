@@ -1,0 +1,8 @@
+rules:
+  import/no-extraneous-dependencies:
+    - error
+    - devDependencies: true
+  import/no-default-export:
+    - off
+  '@typescript-eslint/explicit-function-return-type':
+    - off
