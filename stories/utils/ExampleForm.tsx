@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import {
-  FormRow,
-  FormCell,
+  Row,
+  Column,
   Label,
   InputText,
   Select,
@@ -15,46 +15,46 @@ const items = ['foo', 'bar', 'baz'];
 
 export const ExampleForm: React.FC = () => (
   <>
-    <FormRow>
-      <FormCell className="w-24">
+    <Row className="mb-2">
+      <Column width={2 / 12}>
         <Label>field 1</Label>
-      </FormCell>
-      <FormCell className="w-64">
+      </Column>
+      <Column>
         <InputText className="w-full" />
-      </FormCell>
-    </FormRow>
-    <FormRow>
-      <FormCell className="w-24">
+      </Column>
+    </Row>
+    <Row className="mb-2">
+      <Column width={2 / 12}>
         <Label>field 2</Label>
-      </FormCell>
-      <FormCell className="w-64">
+      </Column>
+      <Column>
         <Select items={items} className="w-full" />
-      </FormCell>
-    </FormRow>
-    <FormRow>
-      <FormCell className="w-24">
+      </Column>
+    </Row>
+    <Row className="mb-2">
+      <Column width={2 / 12}>
         <Label>field 3</Label>
-      </FormCell>
-      <FormCell className="w-64">
+      </Column>
+      <Column>
         <Checkbox>check</Checkbox>
-      </FormCell>
-    </FormRow>
-    <FormRow>
-      <FormCell className="w-24">
+      </Column>
+    </Row>
+    <Row className="mb-2">
+      <Column width={2 / 12}>
         <Label>field 4</Label>
-      </FormCell>
-      <FormCell className="w-64">
+      </Column>
+      <Column>
         <RadioGroup name="example-radio" items={items} />
-      </FormCell>
-    </FormRow>
-    <FormRow>
-      <FormCell className="w-24 h-16">
+      </Column>
+    </Row>
+    <Row className="mb-2 h-32">
+      <Column width={2 / 12}>
         <Label>field 5</Label>
-      </FormCell>
-      <FormCell className="w-64 h-16">
+      </Column>
+      <Column>
         <InputTextArea className="w-full h-full" />
-      </FormCell>
-    </FormRow>
+      </Column>
+    </Row>
   </>
 );
 

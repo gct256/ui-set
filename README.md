@@ -13,6 +13,11 @@
 - CanvasView
 - Cover
 
+## Layouts
+
+- Row
+- Column
+
 ## Fields
 
 - InputText
@@ -22,12 +27,7 @@
 - Checkbox
 - Select
 - RadioGroup
-
-## Forms
-
 - Label
-- FormRow
-- FormCell
 
 ## Dialogs
 

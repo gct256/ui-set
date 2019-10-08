@@ -10,6 +10,7 @@ type LabelProps = UiProps & {
   align?: 'left' | 'center' | 'right';
 };
 
+/** Label element. */
 export const Label: React.FC<LabelProps> = ({
   align,
   disabled,

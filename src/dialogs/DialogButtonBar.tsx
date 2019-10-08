@@ -2,8 +2,8 @@ import * as React from 'react';
 import classnames from 'classnames';
 
 import { Button } from '../elements/Button';
-import { FormCell } from '../forms/FormCell';
-import { FormRow } from '../forms/FormRow';
+import { Row } from '../layouts/Row';
+import { Column } from '../layouts/Column';
 
 type DialogButtonBarProps = {
   /** Flag of main button or sub button. */
@@ -36,7 +36,7 @@ export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({
   const disabled = Array.isArray(buttonsDisabled) ? buttonsDisabled : [];
 
   return (
-    <FormRow
+    <Row
       className={classnames('dialog-button-bar p-2 flex-row', {
         'justify-end flex-grow': main,
         'justify-start': !main,
@@ -50,7 +50,7 @@ export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({
             );
 
             return (
-              <FormCell key={x}>
+              <Column key={x}>
                 <Button
                   className="min-w-24"
                   disabled={!!disabled[i]}
@@ -59,11 +59,11 @@ export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({
                 >
                   {x}
                 </Button>
-              </FormCell>
+              </Column>
             );
           })
         : null}
-    </FormRow>
+    </Row>
   );
 };
 

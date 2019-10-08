@@ -3,7 +3,7 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import useState from 'storybook-addon-state';
 
-import { ListView, Separator, FormRow, FormCell, Button } from '../../src';
+import { ListView, Separator, Row, Column, Button } from '../../src';
 import { Stage } from '../utils/Stage';
 
 export default {
@@ -58,14 +58,14 @@ export const standard = () => {
         />
       </div>
       <Separator />
-      <FormRow>
-        <FormCell>
+      <Row>
+        <Column packed>
           <Button onClick={handleAddRow}>row +</Button>
-        </FormCell>
-        <FormCell>
+        </Column>
+        <Column packed>
           <Button onClick={handleDeleteRow}>row -</Button>
-        </FormCell>
-      </FormRow>
+        </Column>
+      </Row>
     </Stage>
   );
 };
