@@ -94,7 +94,8 @@ const Radio: React.FC<RadioProps> = ({
 export const RadioGroup: React.FC<RadioGroupProps> = (
   props: RadioGroupProps,
 ) => {
-  const { htmlIdPrefix, items, vertical, className } = props;
+  const { htmlIdPrefix, name, items, vertical, className } = props;
+  const prefix = htmlIdPrefix === undefined ? name : htmlIdPrefix;
 
   return (
     <div
@@ -105,7 +106,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = (
     >
       {mapSelectItems(items).map((item, i) => (
         <Radio
-          htmlId={`${htmlIdPrefix}:${item.value}`}
+          htmlId={`${prefix}:${item.value}`}
           {...props}
           key={item.value}
           item={item}
