@@ -50,7 +50,7 @@ export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({
             );
 
             return (
-              <Column key={x}>
+              <Column packed key={x}>
                 <Button
                   className="min-w-24"
                   disabled={!!disabled[i]}

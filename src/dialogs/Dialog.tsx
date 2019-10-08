@@ -7,7 +7,7 @@ import { isEscapeKey } from '../utils/isEscapeKey';
 import { DialogButtonBar } from './DialogButtonBar';
 
 type DialogProps = {
-  /** Dialog width. (%) */
+  /** Dialog width. (0...1) */
   width?: number;
   /** If true, dialog appeared. */
   visible: boolean;
@@ -58,7 +58,7 @@ export const Dialog: React.FC<DialogProps> = ({
   onEscapeKey,
 }: React.PropsWithChildren<DialogProps>) => {
   const style: React.CSSProperties = {
-    width: typeof width === 'number' ? `${width}%` : 'auto',
+    width: typeof width === 'number' ? `${100 * width}%` : 'auto',
   };
 
   const ref = React.useRef<HTMLDivElement>(null);
