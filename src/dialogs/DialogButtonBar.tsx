@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classnames from 'classnames';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { Button } from '../elements/Button';
 import { Row } from '../layouts/Row';
@@ -12,6 +13,8 @@ type DialogButtonBarProps = {
   buttons?: string[];
   /** Disabled state of buttons. */
   buttonsDisabled?: boolean[];
+  /** Array of button icons. */
+  buttonIcons?: (IconProp | undefined)[];
   /** Index of primary button. */
   primaryButton?: number;
 
@@ -28,6 +31,7 @@ export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({
   main,
   buttons,
   buttonsDisabled,
+  buttonIcons = [],
   primaryButton,
   onClick,
 }: DialogButtonBarProps) => {
@@ -52,6 +56,7 @@ export const DialogButtonBar: React.FC<DialogButtonBarProps> = ({
             return (
               <Column packed key={x}>
                 <Button
+                  icon={buttonIcons[i]}
                   className="min-w-24"
                   disabled={!!disabled[i]}
                   primary={primaryButton === i}

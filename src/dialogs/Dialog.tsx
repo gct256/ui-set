@@ -1,8 +1,10 @@
 import * as React from 'react';
 import FocusTrap from 'focus-trap-react';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { colors } from '../utils/colors';
 import { isEscapeKey } from '../utils/isEscapeKey';
+import { Icon } from '../elements/Icon';
 
 import { DialogButtonBar } from './DialogButtonBar';
 
@@ -13,14 +15,20 @@ type DialogProps = {
   visible: boolean;
   /** Dialog title. */
   title?: string;
+  /** Dialog title's icon. */
+  titleIcon?: IconProp;
   /** Array of button labels. */
   buttons?: string[];
   /** Disabled state of buttons. */
   buttonsDisabled?: boolean[];
+  /** Array of button icons. */
+  buttonIcons?: (IconProp | undefined)[];
   /** Array of sub button labels. */
   subButtons?: string[];
   /** Disabled state of sub buttons. */
   subButtonsDisabled?: boolean[];
+  /** Array of sub  button icons. */
+  subButtonIcons?: (IconProp | undefined)[];
   /** Index of primary button. */
   primaryButton?: number;
 
@@ -47,10 +55,13 @@ export const Dialog: React.FC<DialogProps> = ({
   width,
   visible,
   title,
+  titleIcon,
   buttons,
   buttonsDisabled,
+  buttonIcons,
   subButtons,
   subButtonsDisabled,
+  subButtonIcons,
   primaryButton,
   children,
   onClick,
@@ -136,6 +147,7 @@ export const Dialog: React.FC<DialogProps> = ({
             <div
               className={`select-none p-2 border-solid border-0 border-b ${colors.standard.normal.border}`}
             >
+              <Icon icon={titleIcon} className="mr-2" />
               {title}
             </div>
             <div className="dialog-content flex-grow overflow-auto p-4">
@@ -145,12 +157,14 @@ export const Dialog: React.FC<DialogProps> = ({
               <DialogButtonBar
                 buttons={subButtons}
                 buttonsDisabled={subButtonsDisabled}
+                buttonIcons={subButtonIcons}
                 onClick={onSubClick}
               />
               <DialogButtonBar
                 main
                 buttons={buttons}
                 buttonsDisabled={buttonsDisabled}
+                buttonIcons={buttonIcons}
                 primaryButton={primaryButton}
                 onClick={onClick}
               />

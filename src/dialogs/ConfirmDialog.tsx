@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { isWindows } from '../utils/isWindows';
 
@@ -13,6 +14,8 @@ const button1 = isWindows() ? 0 : 1;
 type ConfirmDialogProps = {
   /** Dialog title. */
   title?: string;
+  /** Dialog title's icon. */
+  titleIcon?: IconProp;
   /** Dialog width. (%) */
   width?: number;
   /** If true, dialog appeared. */
@@ -47,6 +50,7 @@ type ConfirmDialogProps = {
 /** Confirm dialog component. */
 export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   title,
+  titleIcon,
   width,
   visible,
   disabled,
@@ -66,6 +70,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   return (
     <Dialog
       title={title}
+      titleIcon={titleIcon}
       width={width}
       visible={!!visible}
       buttons={isWindows() ? buttonPair1 : buttonPair2}

@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { Dialog } from './Dialog';
 
 type AlertDialogProps = {
   /** Dialog title. */
   title?: string;
+  /** Dialog title's icon. */
+  titleIcon?: IconProp;
   /** Dialog width. (%) */
   width?: number;
   /** If true, dialog appeared. */
@@ -22,6 +25,7 @@ type AlertDialogProps = {
 /** Alert dialog component. */
 export const AlertDialog: React.FC<AlertDialogProps> = ({
   title,
+  titleIcon,
   width,
   visible,
   disabled,
@@ -31,6 +35,7 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
 }: React.PropsWithChildren<AlertDialogProps>) => (
   <Dialog
     title={title}
+    titleIcon={titleIcon}
     width={width}
     visible={!!visible}
     buttonsDisabled={[!!disabled]}

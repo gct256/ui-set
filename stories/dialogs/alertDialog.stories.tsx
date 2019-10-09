@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { useCallback } from '@storybook/addons';
 import useState from 'storybook-addon-state';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import { AlertDialog, Button } from '../../src';
 import { Stage } from '../utils/Stage';
@@ -24,7 +25,11 @@ export const standard = () => {
   return (
     <Stage>
       <Button onClick={handleOpen}>Show alert</Button>
-      <AlertDialog visible={visible} onClick={handleClose}>
+      <AlertDialog
+        titleIcon={faExclamationTriangle}
+        visible={visible}
+        onClick={handleClose}
+      >
         <Lorem />
       </AlertDialog>
     </Stage>

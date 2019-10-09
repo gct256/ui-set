@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { useCallback } from '@storybook/addons';
 import useState from 'storybook-addon-state';
+import { faSkull, faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 import { ConfirmDialog, Button, Label } from '../../src';
 import { Stage } from '../utils/Stage';
@@ -30,7 +31,11 @@ export const standard = () => {
     <Stage>
       <Button onClick={handleOpen}>Show confirm</Button>
       <Label>{result}</Label>
-      <ConfirmDialog visible={visible} onClick={handleClose}>
+      <ConfirmDialog
+        titleIcon={faQuestion}
+        visible={visible}
+        onClick={handleClose}
+      >
         <Lorem />
       </ConfirmDialog>
     </Stage>
@@ -55,7 +60,13 @@ export const danger = () => {
     <Stage>
       <Button onClick={handleOpen}>Show confirm</Button>
       <Label>{result}</Label>
-      <ConfirmDialog visible={visible} onClick={handleClose} danger>
+      <ConfirmDialog
+        title="Danger !!!"
+        titleIcon={faSkull}
+        visible={visible}
+        onClick={handleClose}
+        danger
+      >
         <Lorem />
       </ConfirmDialog>
     </Stage>

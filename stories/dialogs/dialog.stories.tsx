@@ -1,6 +1,11 @@
 import * as React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, number } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+import {
+  faInfoCircle,
+  faCheck,
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { Dialog } from '../../src';
 import { Stage } from '../utils/Stage';
@@ -19,10 +24,74 @@ export const standard = () => {
   );
 };
 
+export const titleIcon = () => {
+  return (
+    <Stage>
+      <Dialog
+        visible={boolean('visible', true)}
+        title="Dialog"
+        titleIcon={faInfoCircle}
+      />
+    </Stage>
+  );
+};
+
+export const buttons = () => {
+  return (
+    <Stage>
+      <Dialog
+        visible={boolean('visible', true)}
+        width={3 / 5}
+        title="Dialog"
+        buttons={['foo', 'bar', 'baz']}
+        buttonIcons={[faCheck, undefined, faTimes]}
+      />
+    </Stage>
+  );
+};
+
+export const primaryButton = () => {
+  return (
+    <Stage>
+      <Dialog
+        visible={boolean('visible', true)}
+        width={3 / 5}
+        title="Dialog"
+        buttons={['foo', 'bar', 'baz']}
+        primaryButton={1}
+      />
+    </Stage>
+  );
+};
+
+export const subButtons = () => {
+  return (
+    <Stage>
+      <Dialog
+        visible={boolean('visible', true)}
+        width={3 / 5}
+        title="Dialog"
+        buttonIcons={[faCheck]}
+        subButtons={['foo', 'bar', 'baz']}
+        subButtonIcons={[faInfoCircle, undefined, faTimes]}
+      />
+    </Stage>
+  );
+};
+
 export const setWidth = () => {
   return (
     <Stage>
-      <Dialog width={3 / 5} visible={boolean('visible', true)} title="Dialog" />
+      <Dialog
+        width={number('width', 0.5, {
+          min: 0.1,
+          max: 0.8,
+          step: 0.05,
+          range: true,
+        })}
+        visible={boolean('visible', true)}
+        title="Dialog"
+      />
     </Stage>
   );
 };
