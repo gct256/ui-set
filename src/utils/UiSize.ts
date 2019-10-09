@@ -14,77 +14,92 @@ export enum UiSizeValues {
   none = 'none',
 }
 
-export const getTextSizeClassName = (
-  defaultClassName: string,
-  uiSize?: UiSize,
-): string => {
-  switch (uiSize) {
-    case UiSizeValues.xs:
-      return 'text-xs';
-
-    case UiSizeValues.sm:
-      return 'text-sm';
-
-    case UiSizeValues.base:
-      return 'text-base';
-
-    case UiSizeValues.lg:
-      return 'text-lg';
-
-    case UiSizeValues.xl:
-      return 'text-xl';
-
-    default:
-      return defaultClassName;
-  }
+type ClassNameForSize = {
+  text: string;
+  smallText: string;
+  field: {
+    padding: string;
+  };
+  button: {
+    padding: string;
+    width: string;
+    height: string;
+    iconMargin: string;
+  };
 };
 
-export const getSmallTextSizeClassName = (
-  defaultClassName: string,
-  uiSize?: UiSize,
-): string => {
-  switch (uiSize) {
-    case UiSizeValues.xs:
-      return 'text-xxs';
-
-    case UiSizeValues.sm:
-      return 'text-xs';
-
-    case UiSizeValues.base:
-      return 'text-sm';
-
-    case UiSizeValues.lg:
-      return 'text-base';
-
-    case UiSizeValues.xl:
-      return 'text-lg';
-
-    default:
-      return defaultClassName;
-  }
+const classes: { [key: string]: ClassNameForSize } = {
+  xs: {
+    text: 'text-xs',
+    smallText: 'text-xxs',
+    field: {
+      padding: 'px-px',
+    },
+    button: {
+      padding: 'px-0',
+      width: 'w-4',
+      height: 'h-4',
+      iconMargin: 'mr-1',
+    },
+  },
+  sm: {
+    text: 'text-sm',
+    smallText: 'text-xs',
+    field: {
+      padding: 'px-1',
+    },
+    button: {
+      padding: 'px-1',
+      width: 'w-6',
+      height: 'h-6',
+      iconMargin: 'mr-1',
+    },
+  },
+  base: {
+    text: 'text-base',
+    smallText: 'text-sm',
+    field: {
+      padding: 'px-2',
+    },
+    button: {
+      padding: 'px-2',
+      width: 'w-8',
+      height: 'h-8',
+      iconMargin: 'mr-2',
+    },
+  },
+  lg: {
+    text: 'text-2xl',
+    smallText: 'text-lg',
+    field: {
+      padding: 'px-3',
+    },
+    button: {
+      padding: 'px-3',
+      width: 'w-10',
+      height: 'h-10',
+      iconMargin: 'mr-3',
+    },
+  },
+  xl: {
+    text: 'text-3xl',
+    smallText: 'text-2xl',
+    field: {
+      padding: 'px-4',
+    },
+    button: {
+      padding: 'px-4',
+      width: 'w-12',
+      height: 'h-12',
+      iconMargin: 'mr-4',
+    },
+  },
 };
 
-export const getHeightClassName = (
-  defaultClassName: string,
-  uiSize?: UiSize,
-): string => {
-  switch (uiSize) {
-    case UiSizeValues.xs:
-      return 'h-4';
+export const getClassNameForSize = (uiSize?: UiSize): ClassNameForSize => {
+  if (uiSize === undefined) return classes.base;
 
-    case UiSizeValues.sm:
-      return 'h-6';
+  const tmp = classes[uiSize];
 
-    case UiSizeValues.base:
-      return 'h-8';
-
-    case UiSizeValues.lg:
-      return 'h-10';
-
-    case UiSizeValues.xl:
-      return 'h-12';
-
-    default:
-      return defaultClassName;
-  }
+  return tmp === undefined ? classes.base : tmp;
 };

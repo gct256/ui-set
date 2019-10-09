@@ -2,7 +2,7 @@ import * as React from 'react';
 import classnames from 'classnames';
 
 import { UiProps } from '../utils/commonProps';
-import { getHeightClassName, getTextSizeClassName } from '../utils/UiSize';
+import { getClassNameForSize } from '../utils/UiSize';
 import { colors } from '../utils/colors';
 
 type LabelProps = UiProps & {
@@ -17,24 +17,28 @@ export const Label: React.FC<LabelProps> = ({
   uiSize,
   className,
   children,
-}: React.PropsWithChildren<LabelProps>) => (
-  <span
-    className={classnames(
-      className,
-      'w-full px-2 inline-flex items-center',
-      getHeightClassName('h-8', uiSize),
-      getTextSizeClassName('text-base', uiSize),
-      {
-        [colors.standard.normal.text]: !disabled,
-        [colors.standard.disabled.text]: disabled,
-        'justify-center': align === 'center',
-        'justify-end': align === 'right',
-        'justify-start': align !== 'center' && align !== 'right',
-      },
-    )}
-  >
-    {children}
-  </span>
-);
+}: React.PropsWithChildren<LabelProps>) => {
+  const classNameForSize = getClassNameForSize(uiSize);
+
+  return (
+    <span
+      className={classnames(
+        className,
+        'w-full px-2 inline-flex items-center',
+        classNameForSize.button.height,
+        classNameForSize.text,
+        {
+          [colors.standard.normal.text]: !disabled,
+          [colors.standard.disabled.text]: disabled,
+          'justify-center': align === 'center',
+          'justify-end': align === 'right',
+          'justify-start': align !== 'center' && align !== 'right',
+        },
+      )}
+    >
+      {children}
+    </span>
+  );
+};
 
 Label.displayName = 'Label';

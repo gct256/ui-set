@@ -91,6 +91,16 @@ export const variations = () => {
             />
           </TableCell>
         </TableRow>
+        <TableRow>
+          <TableHeaderCell>UI size</TableHeaderCell>
+          <TableCell>
+            <Icon icon={faEdit} uiSize="xs" />
+            <Icon icon={faEdit} uiSize="sm" />
+            <Icon icon={faEdit} />
+            <Icon icon={faEdit} uiSize="lg" />
+            <Icon icon={faEdit} uiSize="xl" />
+          </TableCell>
+        </TableRow>
       </Table>
     </Stage>
   );

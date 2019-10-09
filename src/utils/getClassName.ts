@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 
 import { colors } from './colors';
-import { UiSize, getHeightClassName, getTextSizeClassName } from './UiSize';
+import { UiSize, getClassNameForSize } from './UiSize';
 
 type ClassDictionary = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -57,7 +57,7 @@ export const getFieldWrapClassName = ({
       [colors.inputArea.disabled.text]: disabled,
     },
     {
-      [getHeightClassName('h-8', uiSize)]: fixedHeight,
+      [getClassNameForSize(uiSize).button.height]: fixedHeight,
     },
     otherClassName,
   );
@@ -78,16 +78,19 @@ export const getFieldClassName = ({
   noYPadding?: boolean;
   forInput?: boolean;
   otherClassName?: ClassValue;
-}): string =>
-  classnames(
+}): string => {
+  const classNameForSize = getClassNameForSize(uiSize);
+
+  return classnames(
     userClassName,
     'ui block',
-    'px-2 w-full bg-transparent',
-    getTextSizeClassName('text-base', uiSize),
+    'w-full bg-transparent',
+    classNameForSize.text,
+    classNameForSize.field.padding,
     `focus:${colors.inputArea.focus.bg} focus:outline-none`,
     {
       [`focus:${colors.inputArea.focus.text}`]: forInput,
-      'py-1': noYPadding,
+      'py-0': noYPadding,
       'focus:focus-animation': bordered,
       'focus:focus-animation-border': !bordered,
       'block leading-normal': !fixedHeight,
@@ -95,6 +98,7 @@ export const getFieldClassName = ({
     },
     otherClassName,
   );
+};
 
 export const getCheckboxClassName = ({
   userClassName,

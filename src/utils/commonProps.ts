@@ -10,6 +10,7 @@ export type BasicProps = {
 export type UiProps = BasicProps & {
   /** If true, use disabled style and disable use input. */
   disabled?: boolean;
+
   /** UI Element size. */
   uiSize?: UiSize;
 };

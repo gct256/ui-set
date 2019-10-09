@@ -5,11 +5,7 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { UiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
 import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
-import {
-  getHeightClassName,
-  getSmallTextSizeClassName,
-  UiSizeValues,
-} from '../utils/UiSize';
+import { UiSizeValues, getClassNameForSize } from '../utils/UiSize';
 
 import { Icon } from './Icon';
 
@@ -39,13 +35,16 @@ export const Button: React.FC<ButtonProps> = ({
     [onClick],
   );
 
+  const classNameForSize = getClassNameForSize(uiSize);
+
   return (
     <button
       type="button"
       className={classnames(
         className,
         'ui-set select-none inline-block align-top',
-        getHeightClassName('h-8', uiSize),
+        classNameForSize.button.height,
+        iconOnly ? classNameForSize.button.width : '',
         'leading-none',
         `border p-px focus:border-2 focus:p-0 focus:border-blue-500`,
         'focus:outline-none',
@@ -82,7 +81,6 @@ export const Button: React.FC<ButtonProps> = ({
         },
         {
           'cursor-default': disabled,
-          'w-8': iconOnly,
         },
       )}
       disabled={disabled}
@@ -91,14 +89,16 @@ export const Button: React.FC<ButtonProps> = ({
     >
       <span
         className={classnames(
-          getSmallTextSizeClassName('text-sm', uiSize),
+          classNameForSize.smallText,
           'flex justify-center items-center w-full h-full border border-transparent',
-          {
-            'px-2': !iconOnly,
-          },
+          !iconOnly ? classNameForSize.button.padding : '',
         )}
       >
-        <Icon icon={icon} className={iconOnly ? '' : 'mr-2'} />
+        <Icon
+          icon={icon}
+          uiSize={uiSize}
+          className={iconOnly ? '' : classNameForSize.button.iconMargin}
+        />
         {children}
       </span>
     </button>

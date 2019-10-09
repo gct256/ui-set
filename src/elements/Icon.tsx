@@ -7,6 +7,9 @@ import {
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 import { colors } from '../utils/colors';
+import { getClassNameForSize } from '../utils/UiSize';
+
+import { UiSize } from '..';
 
 const emptyIcon: IconDefinition = {
   prefix: 'fas',
@@ -19,11 +22,13 @@ type IconProps = Partial<FontAwesomeIconProps> & {
   disabled?: boolean;
   /** If true, use empty icon. Expected to use together with fixedWidth. */
   empty?: boolean;
+  /** UI Element size. */
+  uiSize?: UiSize;
 };
 
 /** Wrapper element of FontAwesome icon. */
 export const Icon: React.FC<IconProps> = (props: IconProps) => {
-  const { disabled, empty, icon, className } = props;
+  const { disabled, empty, icon, uiSize, className } = props;
   const propsCopy = { ...props };
 
   delete propsCopy.empty;
@@ -33,7 +38,11 @@ export const Icon: React.FC<IconProps> = (props: IconProps) => {
       <FontAwesomeIcon
         {...{ ...propsCopy }}
         icon={emptyIcon}
-        className={classnames(className, 'ui-set select-none')}
+        className={classnames(
+          className,
+          'ui-set select-none',
+          uiSize !== undefined ? getClassNameForSize(uiSize).text : '',
+        )}
       />
     );
 
@@ -42,10 +51,16 @@ export const Icon: React.FC<IconProps> = (props: IconProps) => {
   return (
     <FontAwesomeIcon
       {...{ ...propsCopy, icon }}
-      className={classnames(className, 'ui-set select-none', {
-        [colors.standard.normal.text]: disabled === false,
-        [colors.standard.disabled.text]: disabled === true,
-      })}
+      className={classnames(
+        className,
+        'ui-set select-none',
+        uiSize !== undefined ? getClassNameForSize(uiSize).text : '',
+
+        {
+          [colors.standard.normal.text]: disabled === false,
+          [colors.standard.disabled.text]: disabled === true,
+        },
+      )}
     />
   );
 };
