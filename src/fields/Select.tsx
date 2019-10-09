@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 import { Icon } from '../elements/Icon';
-import { FieldProps } from '../utils/commonProps';
+import { FieldProps, SizedUiProps } from '../utils/commonProps';
 import { SelectItem, mapSelectItems } from '../utils/SelectItem';
 import {
   getFieldWrapClassName,
@@ -13,14 +13,15 @@ import { colors } from '../utils/colors';
 
 const EMPTY = '';
 
-type SelectProps = FieldProps<string> & {
-  /** If true, field has 1px border. */
-  bordered?: boolean;
-  /** Array of choices. */
-  items?: SelectItem[];
-  /** If true, add an empty item to the first choice. */
-  withEmptyItem?: boolean;
-};
+type SelectProps = SizedUiProps &
+  FieldProps<string> & {
+    /** If true, field has 1px border. */
+    bordered?: boolean;
+    /** Array of choices. */
+    items?: SelectItem[];
+    /** If true, add an empty item to the first choice. */
+    withEmptyItem?: boolean;
+  };
 
 const renderItems = (items?: SelectItem[]): React.ReactNode =>
   mapSelectItems(items).map(({ value, text }) => (

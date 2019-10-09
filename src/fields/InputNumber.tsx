@@ -1,31 +1,32 @@
 import * as React from 'react';
 
-import { FieldProps } from '../utils/commonProps';
+import { FieldProps, SizedUiProps } from '../utils/commonProps';
 import {
   getFieldWrapClassName,
   getFieldClassName,
 } from '../utils/getClassName';
 import { handleInputKeyPress } from '../utils/handleInputKeyPress';
 
-type InputNumberProps = FieldProps<number> & {
-  /** If true, field has 1px border. */
-  bordered?: boolean;
+type InputNumberProps = SizedUiProps &
+  FieldProps<number> & {
+    /** If true, field has 1px border. */
+    bordered?: boolean;
 
-  autocomplete?: string;
-  max?: number;
-  maxLength?: number;
-  min?: number;
-  minLength?: number;
-  name?: string;
-  placeholder?: string;
-  readOnly?: boolean;
-  required?: boolean;
-  size?: number;
-  step?: number;
+    autocomplete?: string;
+    max?: number;
+    maxLength?: number;
+    min?: number;
+    minLength?: number;
+    name?: string;
+    placeholder?: string;
+    readOnly?: boolean;
+    required?: boolean;
+    size?: number;
+    step?: number;
 
-  /** Event handler on Enter key pressed. */
-  onEnterKey?(): void;
-};
+    /** Event handler on Enter key pressed. */
+    onEnterKey?(): void;
+  };
 
 /** Input field for number. */
 export const InputNumber: React.FC<InputNumberProps> = ({

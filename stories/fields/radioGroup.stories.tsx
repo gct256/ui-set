@@ -24,7 +24,6 @@ export const standard = () => {
         value={value}
         onChange={setValue}
         items={items}
-        uiSize="xs"
         disabled={disabled}
       />
       <p>value: {value}</p>
@@ -44,7 +43,6 @@ export const vertical = () => {
         value={value}
         onChange={setValue}
         items={items}
-        uiSize="xs"
         disabled={disabled}
       />
       <p>value: {value}</p>

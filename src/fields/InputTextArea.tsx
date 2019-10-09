@@ -1,26 +1,27 @@
 import * as React from 'react';
 
-import { FieldProps } from '../utils/commonProps';
+import { FieldProps, SizedUiProps } from '../utils/commonProps';
 import {
   getFieldWrapClassName,
   getFieldClassName,
 } from '../utils/getClassName';
 
-type InputTextAreaProps = FieldProps<string> & {
-  /** If true, field has 1px border. */
-  bordered?: boolean;
+type InputTextAreaProps = SizedUiProps &
+  FieldProps<string> & {
+    /** If true, field has 1px border. */
+    bordered?: boolean;
 
-  /** Row count for element height. */
-  row?: number;
+    /** Row count for element height. */
+    row?: number;
 
-  autocomplete?: string;
-  maxLength?: number;
-  minLength?: number;
-  name?: string;
-  placeholder?: string;
-  readOnly?: boolean;
-  required?: boolean;
-};
+    autocomplete?: string;
+    maxLength?: number;
+    minLength?: number;
+    name?: string;
+    placeholder?: string;
+    readOnly?: boolean;
+    required?: boolean;
+  };
 
 /** Input field for long text. */
 export const InputTextArea: React.FC<InputTextAreaProps> = ({

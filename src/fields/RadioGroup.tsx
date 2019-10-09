@@ -1,21 +1,22 @@
 import * as React from 'react';
 import classnames from 'classnames';
 
-import { FieldProps } from '../utils/commonProps';
+import { FieldProps, UiProps } from '../utils/commonProps';
 import { SelectItem, Item, mapSelectItems } from '../utils/SelectItem';
 import { getCheckboxClassName } from '../utils/getClassName';
 import { colors } from '../utils/colors';
 
-type RadioGroupProps = FieldProps<string> & {
-  /** Prefix of HTML's id attrbiute. */
-  htmlIdPrefix?: string;
-  /** Name of radio group. */
-  name: string;
-  /** Array of choices. */
-  items?: SelectItem[];
-  /** If true, layout verticaly. */
-  vertical?: boolean;
-};
+type RadioGroupProps = UiProps &
+  FieldProps<string> & {
+    /** Prefix of HTML's id attrbiute. */
+    htmlIdPrefix?: string;
+    /** Name of radio group. */
+    name: string;
+    /** Array of choices. */
+    items?: SelectItem[];
+    /** If true, layout verticaly. */
+    vertical?: boolean;
+  };
 
 type RadioProps = RadioGroupProps & {
   htmlId?: string;

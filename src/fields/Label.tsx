@@ -1,11 +1,11 @@
 import * as React from 'react';
 import classnames from 'classnames';
 
-import { UiProps } from '../utils/commonProps';
+import { SizedUiProps } from '../utils/commonProps';
 import { getClassNameForSize } from '../utils/UiSize';
 import { colors } from '../utils/colors';
 
-type LabelProps = UiProps & {
+type LabelProps = SizedUiProps & {
   /** Alignment of text. */
   align?: 'left' | 'center' | 'right';
 };

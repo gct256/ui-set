@@ -10,13 +10,16 @@ export type BasicProps = {
 export type UiProps = BasicProps & {
   /** If true, use disabled style and disable use input. */
   disabled?: boolean;
+};
 
+/** Props for UI element with UI size. */
+export type SizedUiProps = UiProps & {
   /** UI Element size. */
   uiSize?: UiSize;
 };
 
 /** Props for UI element with values. */
-export type FieldProps<T> = UiProps & {
+export type FieldProps<T> = {
   /** Value. */
   value?: T;
 

@@ -2,14 +2,14 @@ import * as React from 'react';
 import classnames from 'classnames';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
-import { UiProps } from '../utils/commonProps';
+import { SizedUiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
 import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
 import { UiSizeValues, getClassNameForSize } from '../utils/UiSize';
 
 import { Icon } from './Icon';
 
-type ButtonProps = UiProps & {
+type ButtonProps = SizedUiProps & {
   /** Icon on button. */
   icon?: IconProp;
   /** If true, set primary style to button. */

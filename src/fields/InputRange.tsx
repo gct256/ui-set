@@ -1,22 +1,23 @@
 import * as React from 'react';
 import classnames from 'classnames';
 
-import { FieldProps } from '../utils/commonProps';
+import { FieldProps, UiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
 
-type InputRangeProps = FieldProps<number> & {
-  autocomplete?: string;
-  max?: number;
-  maxLength?: number;
-  min?: number;
-  minLength?: number;
-  name?: string;
-  placeholder?: string;
-  readOnly?: boolean;
-  required?: boolean;
-  size?: number;
-  step?: number;
-};
+type InputRangeProps = UiProps &
+  FieldProps<number> & {
+    autocomplete?: string;
+    max?: number;
+    maxLength?: number;
+    min?: number;
+    minLength?: number;
+    name?: string;
+    placeholder?: string;
+    readOnly?: boolean;
+    required?: boolean;
+    size?: number;
+    step?: number;
+  };
 
 /** Input field for number with range slider. */
 export const InputRange: React.FC<InputRangeProps> = ({

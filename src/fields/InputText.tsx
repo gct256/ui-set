@@ -1,31 +1,32 @@
 import * as React from 'react';
 
-import { FieldProps } from '../utils/commonProps';
+import { FieldProps, SizedUiProps } from '../utils/commonProps';
 import {
   getFieldWrapClassName,
   getFieldClassName,
 } from '../utils/getClassName';
 import { handleInputKeyPress } from '../utils/handleInputKeyPress';
 
-type InputTextProps = FieldProps<string> & {
-  /** If true, field has 1px border. */
-  bordered?: boolean;
-  /** If true, use type=password. */
-  password?: boolean;
+type InputTextProps = SizedUiProps &
+  FieldProps<string> & {
+    /** If true, field has 1px border. */
+    bordered?: boolean;
+    /** If true, use type=password. */
+    password?: boolean;
 
-  autocomplete?: string;
-  maxLength?: number;
-  minLength?: number;
-  name?: string;
-  pattern?: string;
-  placeholder?: string;
-  readOnly?: boolean;
-  required?: boolean;
-  size?: number;
+    autocomplete?: string;
+    maxLength?: number;
+    minLength?: number;
+    name?: string;
+    pattern?: string;
+    placeholder?: string;
+    readOnly?: boolean;
+    required?: boolean;
+    size?: number;
 
-  /** Event handler on Enter key pressed. */
-  onEnterKey?(value: string): void;
-};
+    /** Event handler on Enter key pressed. */
+    onEnterKey?(value: string): void;
+  };
 
 /** Input file for text. */
 export const InputText: React.FC<InputTextProps> = ({
