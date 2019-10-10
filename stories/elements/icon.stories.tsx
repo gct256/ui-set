@@ -1,107 +1,158 @@
 import * as React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import {
   faUserCheck,
   faEdit,
   faSmileWink,
+  faSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { Icon } from '../../src';
+import { Icon, Label } from '../../src';
 import { Stage } from '../utils/Stage';
-import { Table } from '../utils/Table';
-import { TableHeaderCell } from '../utils/TableHeaderCell';
-import { TableCell } from '../utils/TableCell';
-import { TableRow } from '../utils/TableRow';
 
 export default {
   title: 'Elements / Icon',
   decorators: [withKnobs],
 };
 
-export const variations = () => {
-  const frame = boolean('show frame', false);
-  const style: React.CSSProperties = {
-    boxShadow: frame ? '0 0 0 2px #888' : '',
-  };
+export const standard = () => (
+  <Stage>
+    <div className="flex">
+      <Icon className="m-2" icon={faUserCheck} />
+      <Icon className="m-2" icon={faUserCheck} />
+      <Icon className="m-2" icon={faUserCheck} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" icon={faEdit} />
+      <Icon className="m-2" icon={faEdit} />
+      <Icon className="m-2" icon={faEdit} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" icon={faSmileWink} />
+      <Icon className="m-2" icon={faSmileWink} />
+      <Icon className="m-2" icon={faSmileWink} />
+    </div>
+  </Stage>
+);
 
-  return (
-    <Stage>
-      <Table>
-        <TableRow>
-          <TableHeaderCell>default</TableHeaderCell>
-          <TableCell>
-            <Icon style={style} className="m-2" icon={faUserCheck} />
-            <Icon style={style} className="m-2" icon={faEdit} />
-            <Icon style={style} className="m-2" icon={faSmileWink} />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>fixed width</TableHeaderCell>
-          <TableCell>
-            <Icon style={style} className="m-2" icon={faUserCheck} fixedWidth />
-            <Icon style={style} className="m-2" icon={faEdit} fixedWidth />
-            <Icon style={style} className="m-2" icon={faSmileWink} fixedWidth />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>omit (icon=undefined)</TableHeaderCell>
-          <TableCell>
-            <Icon style={style} className="m-2" icon={undefined} />
-            <Icon style={style} className="m-2" icon={undefined} />
-            <Icon style={style} className="m-2" icon={undefined} />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>empty</TableHeaderCell>
-          <TableCell>
-            <Icon style={style} className="m-2" icon={faUserCheck} />
-            <Icon style={style} className="m-2" icon={faEdit} empty />
-            <Icon style={style} className="m-2" icon={faSmileWink} />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>fixed width, empty</TableHeaderCell>
-          <TableCell>
-            <Icon style={style} className="m-2" icon={faUserCheck} fixedWidth />
-            <Icon
-              style={style}
-              className="m-2"
-              icon={faEdit}
-              fixedWidth
-              empty
-            />
-            <Icon style={style} className="m-2" icon={faSmileWink} fixedWidth />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>theme color</TableHeaderCell>
-          <TableCell>
-            <Icon
-              style={style}
-              className="m-2"
-              icon={faUserCheck}
-              disabled={false}
-            />
-            <Icon style={style} className="m-2" icon={faEdit} disabled />
-            <Icon
-              style={style}
-              className="m-2"
-              icon={faSmileWink}
-              disabled={false}
-            />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>UI size</TableHeaderCell>
-          <TableCell>
-            <Icon icon={faEdit} uiSize="xs" />
-            <Icon icon={faEdit} uiSize="sm" />
-            <Icon icon={faEdit} />
-            <Icon icon={faEdit} uiSize="lg" />
-            <Icon icon={faEdit} uiSize="xl" />
-          </TableCell>
-        </TableRow>
-      </Table>
-    </Stage>
-  );
-};
+export const fixedWidth = () => (
+  <Stage>
+    <div className="flex">
+      <Icon className="m-2" fixedWidth icon={faUserCheck} />
+      <Icon className="m-2" fixedWidth icon={faUserCheck} />
+      <Icon className="m-2" fixedWidth icon={faUserCheck} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" fixedWidth icon={faEdit} />
+      <Icon className="m-2" fixedWidth icon={faEdit} />
+      <Icon className="m-2" fixedWidth icon={faEdit} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" fixedWidth icon={faSmileWink} />
+      <Icon className="m-2" fixedWidth icon={faSmileWink} />
+      <Icon className="m-2" fixedWidth icon={faSmileWink} />
+    </div>
+  </Stage>
+);
+
+export const colorByState = () => (
+  <Stage>
+    <div className="flex">
+      <Icon className="m-2" disabled={false} icon={faUserCheck} />
+      <Icon className="m-2" disabled={false} icon={faEdit} />
+      <Icon className="m-2" disabled={false} icon={faSmileWink} />
+      <Label>disabled=false</Label>
+    </div>
+    <div className="flex">
+      <Icon className="m-2" disabled icon={faUserCheck} />
+      <Icon className="m-2" disabled icon={faEdit} />
+      <Icon className="m-2" disabled icon={faSmileWink} />
+      <Label>disabled=true</Label>
+    </div>
+  </Stage>
+);
+
+export const noRenderWithUndefined = () => (
+  <Stage>
+    <div className="flex">
+      <Icon className="m-2" icon={faUserCheck} />
+      <Icon className="m-2" />
+      <Icon className="m-2" icon={faUserCheck} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" icon={faEdit} />
+      <Icon className="m-2" />
+      <Icon className="m-2" icon={faEdit} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" icon={faSmileWink} />
+      <Icon className="m-2" />
+      <Icon className="m-2" icon={faSmileWink} />
+    </div>
+  </Stage>
+);
+
+export const replaceToEmptyWithUndefined = () => (
+  <Stage>
+    <div className="flex">
+      <Icon className="m-2" fixedWidth empty icon={faUserCheck} />
+      <Icon className="m-2" fixedWidth empty />
+      <Icon className="m-2" fixedWidth empty icon={faUserCheck} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" fixedWidth empty icon={faEdit} />
+      <Icon className="m-2" fixedWidth empty />
+      <Icon className="m-2" fixedWidth empty icon={faEdit} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" fixedWidth empty icon={faSmileWink} />
+      <Icon className="m-2" fixedWidth empty />
+      <Icon className="m-2" fixedWidth empty icon={faSmileWink} />
+    </div>
+  </Stage>
+);
+
+export const sizes = () => (
+  <Stage>
+    <div className="flex">
+      <Icon className="m-2" uiSize="xs" icon={faUserCheck} />
+      <Icon className="m-2" uiSize="sm" icon={faUserCheck} />
+      <Icon className="m-2" icon={faUserCheck} />
+      <Icon className="m-2" uiSize="lg" icon={faUserCheck} />
+      <Icon className="m-2" uiSize="xl" icon={faUserCheck} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" uiSize="xs" icon={faEdit} />
+      <Icon className="m-2" uiSize="sm" icon={faEdit} />
+      <Icon className="m-2" icon={faEdit} />
+      <Icon className="m-2" uiSize="lg" icon={faEdit} />
+      <Icon className="m-2" uiSize="xl" icon={faEdit} />
+    </div>
+    <div className="flex">
+      <Icon className="m-2" uiSize="xs" icon={faSmileWink} />
+      <Icon className="m-2" uiSize="sm" icon={faSmileWink} />
+      <Icon className="m-2" icon={faSmileWink} />
+      <Icon className="m-2" uiSize="lg" icon={faSmileWink} />
+      <Icon className="m-2" uiSize="xl" icon={faSmileWink} />
+    </div>
+  </Stage>
+);
+
+export const useFontAwesomeProps = () => (
+  <Stage>
+    <Icon
+      className="m-2"
+      icon={faUserCheck}
+      mask={faSquare}
+      transform="shrink-6"
+    />
+    <Icon className="m-2" icon={faUserCheck} spin />
+    <Icon className="m-2" icon={faUserCheck} pulse />
+    <Icon className="m-2" icon={faUserCheck} border />
+    <Icon className="m-2 bg-black" icon={faUserCheck} inverse />
+    <Icon className="m-2" icon={faUserCheck} flip="both" />
+    <Icon className="m-2" icon={faUserCheck} size="10x" />
+    <Icon className="m-2" icon={faUserCheck} rotation={90} />
+    <Icon className="m-2" icon={faUserCheck} transform="grow-6" />
+  </Stage>
+);

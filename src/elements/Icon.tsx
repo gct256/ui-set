@@ -20,7 +20,7 @@ const emptyIcon: IconDefinition = {
 type IconProps = Partial<FontAwesomeIconProps> & {
   /** If true, set disabled style. */
   disabled?: boolean;
-  /** If true, use empty icon. Expected to use together with fixedWidth. */
+  /** If true and icon is undefined, use empty icon. Expected to use together with fixedWidth. */
   empty?: boolean;
   /** UI Element size. */
   uiSize?: UiSize;
@@ -33,7 +33,7 @@ export const Icon: React.FC<IconProps> = (props: IconProps) => {
 
   delete propsCopy.empty;
 
-  if (empty)
+  if (empty && icon === undefined)
     return (
       <FontAwesomeIcon
         {...{ ...propsCopy }}
