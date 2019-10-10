@@ -15,7 +15,7 @@ module.exports = {
         },
       },
       fontSize: {
-        xxs: '0.666rem',
+        xxs: '0.5rem',
       },
       minHeight: (theme) => ({
         ...theme('spacing'),
