@@ -3,7 +3,7 @@ import FocusTrap from 'focus-trap-react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { colors } from '../utils/colors';
-import { isEscapeKey } from '../utils/isEscapeKey';
+import { isEscapeKey } from '../utils/keys';
 import { Icon } from '../elements/Icon';
 
 import { DialogButtonBar } from './DialogButtonBar';

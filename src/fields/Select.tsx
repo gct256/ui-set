@@ -10,6 +10,11 @@ import {
   getFieldClassName,
 } from '../utils/getClassName';
 import { colors } from '../utils/colors';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../utils/animations';
 
 const EMPTY = '';
 
@@ -42,6 +47,21 @@ export const Select: React.FC<SelectProps> = ({
   disabled,
   onChange,
 }: SelectProps) => {
+  const handleOnFocus = React.useCallback(
+    (ev) => {
+      startAnimation(
+        ev.currentTarget,
+        bordered ? animations.focusAnimation : animations.focusAnimationBorder,
+      );
+    },
+    [bordered],
+  );
+
+  const handleOnBlur = React.useCallback(
+    (ev) => removeAllAnimations(ev.currentTarget),
+    [],
+  );
+
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.value),
     [onChange],
@@ -62,12 +82,13 @@ export const Select: React.FC<SelectProps> = ({
         value={value}
         disabled={disabled}
         className={getFieldClassName({
-          bordered,
           uiSize,
           fixedHeight: true,
           noYPadding: true,
           otherClassName: 'pr-8 rounded-none appearance-none leading-none p-0',
         })}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         onChange={handleOnChange}
       >
         {withEmptyItem ? <option value="">{EMPTY}</option> : null}

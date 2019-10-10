@@ -6,6 +6,11 @@ import {
   getFieldClassName,
 } from '../utils/getClassName';
 import { handleInputKeyPress } from '../utils/handleInputKeyPress';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../utils/animations';
 
 type InputTextProps = SizedUiProps &
   FieldProps<string> & {
@@ -50,6 +55,21 @@ export const InputText: React.FC<InputTextProps> = ({
   onChange,
   onEnterKey,
 }: InputTextProps) => {
+  const handleOnFocus = React.useCallback(
+    (ev) => {
+      startAnimation(
+        ev.currentTarget,
+        bordered ? animations.focusAnimation : animations.focusAnimationBorder,
+      );
+    },
+    [bordered],
+  );
+
+  const handleOnBlur = React.useCallback(
+    (ev) => removeAllAnimations(ev.currentTarget),
+    [],
+  );
+
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.value),
     [onChange],
@@ -79,7 +99,6 @@ export const InputText: React.FC<InputTextProps> = ({
         type={password ? 'password' : 'text'}
         value={value}
         className={getFieldClassName({
-          bordered,
           uiSize,
           fixedHeight: true,
           noYPadding: false,
@@ -95,6 +114,8 @@ export const InputText: React.FC<InputTextProps> = ({
         readOnly={readOnly}
         required={required}
         size={size}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         onChange={handleOnChange}
         onKeyPress={handleOnKeyDown}
       />

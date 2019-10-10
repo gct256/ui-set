@@ -5,6 +5,11 @@ import { FieldProps, UiProps } from '../utils/commonProps';
 import { SelectItem, Item, mapSelectItems } from '../utils/SelectItem';
 import { getCheckboxClassName } from '../utils/getClassName';
 import { colors } from '../utils/colors';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../utils/animations';
 
 type RadioGroupProps = UiProps &
   FieldProps<string> & {
@@ -38,6 +43,18 @@ const Radio: React.FC<RadioProps> = ({
   const [hover, setHover] = React.useState(false);
   const handleOnEnter = React.useCallback(() => setHover(true), []);
   const handleOnLeave = React.useCallback(() => setHover(false), []);
+
+  const handleOnFocus = React.useCallback((ev) => {
+    startAnimation(
+      ev.currentTarget.parentNode.parentNode,
+      animations.focusAnimationBorder,
+    );
+  }, []);
+
+  const handleOnBlur = React.useCallback((ev) => {
+    removeAllAnimations(ev.currentTarget.parentNode.parentNode);
+  }, []);
+
   const handleOnChange = React.useCallback(
     () => onChange && onChange(item.value),
     [onChange],
@@ -85,6 +102,8 @@ const Radio: React.FC<RadioProps> = ({
         name={name}
         checked={value === item.value}
         disabled={disabled}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         onChange={handleOnChange}
       />
       {item.text}
@@ -100,7 +119,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = (
 
   return (
     <div
-      className={classnames(className, 'ui form-group', {
+      className={classnames(className, 'ui form-group with-animation', {
         'vertical flex flex-col items-start': vertical,
         'horizontal flex flex-row items-start': !vertical,
       })}

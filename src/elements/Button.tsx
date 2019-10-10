@@ -4,8 +4,13 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import { SizedUiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
-import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
 import { UiSizeValues, getClassNameForSize } from '../utils/UiSize';
+import {
+  animations,
+  startAnimation,
+  removeAllAnimations,
+} from '../utils/animations';
+import { canClickEmulation } from '../utils/keys';
 
 import { Icon } from './Icon';
 
@@ -30,8 +35,41 @@ export const Button: React.FC<ButtonProps> = ({
   children,
 }: React.PropsWithChildren<ButtonProps>) => {
   const iconOnly = children === undefined;
-  const handleKeyDown = React.useCallback(
-    (ev) => handleButtonKeyDown(ev, onClick),
+  const handleOnFocus = React.useCallback(
+    (ev) => {
+      startAnimation(
+        ev.currentTarget,
+        primary ? animations.focusAnimationWhite : animations.focusAnimation,
+      );
+    },
+    [primary],
+  );
+  const handleOnBlur = React.useCallback(
+    (ev) => removeAllAnimations(ev.currentTarget),
+    [],
+  );
+  const handleOnMouseDown = React.useCallback(
+    (ev) => {
+      startAnimation(
+        ev.currentTarget,
+        primary ? animations.activeAnimationLight : animations.activeAnimation,
+      );
+    },
+    [primary],
+  );
+  const handleOnKeyDown = React.useCallback(
+    (ev) => {
+      if (canClickEmulation(ev)) {
+        startAnimation(
+          ev.currentTarget,
+          primary
+            ? animations.activeAnimationLight
+            : animations.activeAnimation,
+        );
+
+        if (onClick) onClick();
+      }
+    },
     [onClick],
   );
 
@@ -42,15 +80,12 @@ export const Button: React.FC<ButtonProps> = ({
       type="button"
       className={classnames(
         className,
-        'ui-set select-none inline-block align-top',
+        'ui-set select-none inline-block align-top with-animation',
         classNameForSize.button.height,
         iconOnly ? classNameForSize.button.width : '',
         'leading-none',
         `border p-px focus:border-2 focus:p-0 focus:border-blue-500`,
         'focus:outline-none',
-        {
-          'active:opacity-75': !disabled,
-        },
         {
           [colors.standard.normal.border]: !primary && !disabled,
           [colors.inverted.normal.border]: primary && !disabled,
@@ -76,16 +111,15 @@ export const Button: React.FC<ButtonProps> = ({
           [colors.inverted.disabled.text]: primary && disabled,
         },
         {
-          'focus:focus-animation': !primary && !disabled,
-          'focus:focus-animation-white': primary && !disabled,
-        },
-        {
           'cursor-default': disabled,
         },
       )}
       disabled={disabled}
       onClick={onClick}
-      onKeyDown={handleKeyDown}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      onMouseDown={handleOnMouseDown}
+      onKeyDown={handleOnKeyDown}
     >
       <span
         className={classnames(

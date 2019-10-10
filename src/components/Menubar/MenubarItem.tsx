@@ -29,7 +29,7 @@ export const MenubarItem: React.FC<MenubarItemProps> = ({
   onSetOpenPath,
 }: MenubarItemProps) => {
   const { id, icon, label, disabled, items = [] } = item;
-  const handleClick = React.useCallback(
+  const handleOnClick = React.useCallback(
     (ev: React.MouseEvent) => {
       if (openPath[0] === id) {
         onSetOpenPath([]);
@@ -43,7 +43,7 @@ export const MenubarItem: React.FC<MenubarItemProps> = ({
     },
     [item, opened, openPath],
   );
-  const handleHover = React.useCallback(() => {
+  const handleOnHover = React.useCallback(() => {
     if (opened) {
       onSetOpenPath(updateOpenPath(openPath, 0, id));
     }
@@ -64,8 +64,8 @@ export const MenubarItem: React.FC<MenubarItemProps> = ({
           [`hover:${colors.menu.hover.bg}`]: !disabled && !visible,
           [`hover:${colors.menu.hover.text}`]: !disabled && !visible,
         })}
-        onClick={handleClick}
-        onMouseEnter={handleHover}
+        onClick={handleOnClick}
+        onMouseEnter={handleOnHover}
       >
         <Icon icon={icon} />
         <MenuLabel label={label} />

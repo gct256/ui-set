@@ -3,7 +3,12 @@ import classnames from 'classnames';
 
 import { UiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
-import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
+import { canClickEmulation } from '../utils/keys';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../utils/animations';
 
 type FlatButtonProps = UiProps & {
   /**
@@ -19,8 +24,24 @@ export const FlatButton: React.FC<FlatButtonProps> = ({
   onClick,
   children,
 }: React.PropsWithChildren<FlatButtonProps>) => {
-  const handleKeyDown = React.useCallback(
-    (ev) => handleButtonKeyDown(ev, onClick),
+  const handleOnFocus = React.useCallback((ev) => {
+    startAnimation(ev.currentTarget, animations.focusAnimationBorder);
+  }, []);
+  const handleOnBlur = React.useCallback(
+    (ev) => removeAllAnimations(ev.currentTarget),
+    [],
+  );
+  const handleOnMouseDown = React.useCallback((ev) => {
+    startAnimation(ev.currentTarget, animations.activeAnimation);
+  }, []);
+  const handleOnKeyDown = React.useCallback(
+    (ev) => {
+      if (canClickEmulation(ev)) {
+        startAnimation(ev.currentTarget, animations.activeAnimation);
+
+        if (onClick) onClick();
+      }
+    },
     [onClick],
   );
 
@@ -30,11 +51,9 @@ export const FlatButton: React.FC<FlatButtonProps> = ({
       disabled={disabled}
       className={classnames(
         className,
-        'ui-set select-none',
+        'ui-set select-none with-animation',
         'bg-transparent',
         'focus:outline-none',
-        'focus:focus-animation-border',
-        'active:opacity-75',
         {
           [colors.standard.normal.text]: !disabled,
           [`hover:${colors.standard.hover.text}`]: !disabled,
@@ -45,7 +64,10 @@ export const FlatButton: React.FC<FlatButtonProps> = ({
         },
       )}
       onClick={onClick}
-      onKeyDown={handleKeyDown}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      onMouseDown={handleOnMouseDown}
+      onKeyDown={handleOnKeyDown}
     >
       {children}
     </button>

@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
-import { action } from '@storybook/addon-actions';
 
 import { Checkbox } from '../../src';
 import { Stage } from '../utils/Stage';
@@ -12,33 +11,61 @@ export default {
 };
 
 export const standard = () => {
-  const disabled = boolean('disabled', false);
   const [checked, setChecked] = useState('checked', false);
 
   return (
     <Stage>
-      <Checkbox checked={checked} onChange={setChecked} disabled={disabled}>
-        Checkbox
-      </Checkbox>
+      <p>
+        <Checkbox checked={checked} onChange={setChecked}>
+          Checkbox
+        </Checkbox>
+      </p>
+      <p>
+        <Checkbox checked={checked} onChange={setChecked} disabled>
+          Disabled Checkbox
+        </Checkbox>
+      </p>
     </Stage>
   );
 };
 
 export const withoutLabel = () => {
-  const disabled = boolean('disabled', false);
   const [checked, setChecked] = useState('checked', false);
 
   return (
     <Stage>
-      <Checkbox checked={checked} onChange={setChecked} disabled={disabled} />
+      <p>
+        <Checkbox checked={checked} onChange={setChecked} />
+      </p>
+      <p>
+        <Checkbox checked={checked} onChange={setChecked} disabled />
+      </p>
     </Stage>
   );
 };
 
 export const event = () => {
+  const [count, setCount] = useState('count', 0);
+  const [checked, setChecked] = useState('checked', false);
+
+  const handleOnChange = React.useCallback(
+    (newChecked: boolean) => {
+      setCount(count + 1);
+      setChecked(newChecked);
+    },
+    [count],
+  );
+
   return (
     <Stage>
-      <Checkbox onChange={action('onChange')} />
+      <p>
+        <Checkbox checked={checked} onChange={handleOnChange} />
+      </p>
+      <p>
+        <Checkbox checked={checked} onChange={handleOnChange} disabled />
+      </p>
+      <p>Value: {checked ? 'ON' : 'OFF'}</p>
+      <p>Change: {count}</p>
     </Stage>
   );
 };

@@ -6,6 +6,11 @@ import {
   getFieldClassName,
 } from '../utils/getClassName';
 import { handleInputKeyPress } from '../utils/handleInputKeyPress';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../utils/animations';
 
 type InputNumberProps = SizedUiProps &
   FieldProps<number> & {
@@ -51,6 +56,21 @@ export const InputNumber: React.FC<InputNumberProps> = ({
   onChange,
   onEnterKey,
 }: InputNumberProps) => {
+  const handleOnFocus = React.useCallback(
+    (ev) => {
+      startAnimation(
+        ev.currentTarget,
+        bordered ? animations.focusAnimation : animations.focusAnimationBorder,
+      );
+    },
+    [bordered],
+  );
+
+  const handleOnBlur = React.useCallback(
+    (ev) => removeAllAnimations(ev.currentTarget),
+    [],
+  );
+
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.valueAsNumber),
     [onChange],
@@ -80,7 +100,6 @@ export const InputNumber: React.FC<InputNumberProps> = ({
         value={value}
         type="number"
         className={getFieldClassName({
-          bordered,
           uiSize,
           fixedHeight: true,
           noYPadding: false,
@@ -99,6 +118,8 @@ export const InputNumber: React.FC<InputNumberProps> = ({
         required={required}
         size={size}
         step={step}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         onChange={handleOnChange}
         onKeyPress={handleOnKeyDown}
       />

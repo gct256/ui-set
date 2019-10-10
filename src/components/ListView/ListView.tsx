@@ -5,6 +5,11 @@ import { Key } from 'ts-key-enum';
 
 import { setScrollPosition } from '../../utils/setScrollPosition';
 import { colors } from '../../utils/colors';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../../utils/animations';
 
 import { ListViewItem, itemIndexKey, isCursorTargetKey } from './ListViewItem';
 
@@ -101,6 +106,7 @@ export const ListView: React.FC<ListViewProps> = ({
     adjustCursor(initialCursor, items.length, true),
   );
   const ref = React.useRef<HTMLDivElement>(null);
+  const focusFrameRef = React.useRef<HTMLDivElement>(null);
 
   const itemDefaultClass =
     classNames && classNames.item ? classNames.item.default : '';
@@ -153,7 +159,15 @@ export const ListView: React.FC<ListViewProps> = ({
     if (cursor >= items.length) updateCursor(NO_CURSOR, true);
   });
 
-  const handleClick = React.useCallback(
+  const handleOnFocus = React.useCallback(() => {
+    startAnimation(focusFrameRef.current, animations.focusAnimationBorder);
+  }, []);
+
+  const handleOnBlur = React.useCallback(() => {
+    removeAllAnimations(focusFrameRef.current);
+  }, []);
+
+  const handleOnClick = React.useCallback(
     (ev: React.MouseEvent<HTMLDivElement>) => {
       if (ref.current === null) return;
 
@@ -161,14 +175,12 @@ export const ListView: React.FC<ListViewProps> = ({
 
       const index = getItemIndex(ref.current, ev.target);
 
-      console.debug('click', { index });
-
       updateCursor(index, true);
     },
     [onKeyDown, cursor, items, ref],
   );
 
-  const handleKeyDown = React.useCallback(
+  const handleOnKeyDown = React.useCallback(
     (ev: React.KeyboardEvent<HTMLDivElement>) => {
       switch (keyName(ev.nativeEvent)) {
         case Key.ArrowUp: // fall through
@@ -238,15 +250,24 @@ export const ListView: React.FC<ListViewProps> = ({
       className="relative w-full h-full focus:outline-none"
       role="menu"
       tabIndex={0}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      onClick={handleOnClick}
+      onKeyDown={handleOnKeyDown}
     >
       <div ref={ref} className={className}>
         {children}
       </div>
-      <div className="absolute inset-0 pointer-events-none focus-parent:focus-animation-border" />
+      <div
+        ref={focusFrameRef}
+        className="absolute inset-0 pointer-events-none with-animation"
+      />
     </div>
   );
 };
 
 ListView.displayName = 'ListView';
+
+ListView.defaultProps = {
+  bordered: true,
+};

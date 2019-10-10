@@ -30,13 +30,13 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   const c: MenuData = Array.isArray(item.items) ? item.items : [];
   const hasChildren = c.length > 0;
 
-  const handleHover = React.useCallback(() => {
+  const handleOnHover = React.useCallback(() => {
     onSetOpenPath(updateOpenPath(openPath, depth, item.id));
   }, [item, openPath, onSetOpenPath]);
-  const handleBlur = React.useCallback(() => {
+  const handleOnBlur = React.useCallback(() => {
     onSetOpenPath(updateOpenPath(openPath, depth));
   }, [item, openPath, onSetOpenPath]);
-  const handleSelect = React.useCallback(() => {
+  const handleOnSelect = React.useCallback(() => {
     if (!item.disabled && !hasChildren) {
       if (onSelect) onSelect(item.id);
       onSetOpenPath([]);
@@ -55,8 +55,8 @@ export const MenuItem: React.FC<MenuItemProps> = ({
   return (
     <div
       className="relative"
-      onMouseEnter={handleHover}
-      onMouseLeave={handleBlur}
+      onMouseEnter={handleOnHover}
+      onMouseLeave={handleOnBlur}
     >
       <span
         className={classnames(
@@ -72,7 +72,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
             [colors.menu.disabled.text]: disabled,
           },
         )}
-        onClick={handleSelect}
+        onClick={handleOnSelect}
       >
         <Icon
           icon={item.checked ? faCheck : undefined}

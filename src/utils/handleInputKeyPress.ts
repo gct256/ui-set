@@ -1,4 +1,4 @@
-import { isEnterKey } from './isEnterKey';
+import { isEnterKey } from './keys';
 
 export const handleInputKeyPress = <T>(
   ev: React.KeyboardEvent<HTMLInputElement>,

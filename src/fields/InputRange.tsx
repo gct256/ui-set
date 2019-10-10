@@ -3,6 +3,11 @@ import classnames from 'classnames';
 
 import { FieldProps, UiProps } from '../utils/commonProps';
 import { colors } from '../utils/colors';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../utils/animations';
 
 type InputRangeProps = UiProps &
   FieldProps<number> & {
@@ -39,6 +44,15 @@ export const InputRange: React.FC<InputRangeProps> = ({
 
   onChange,
 }: InputRangeProps) => {
+  const handleOnFocus = React.useCallback((ev) => {
+    startAnimation(ev.currentTarget, animations.focusAnimation);
+  }, []);
+
+  const handleOnBlur = React.useCallback(
+    (ev) => removeAllAnimations(ev.currentTarget),
+    [],
+  );
+
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.valueAsNumber),
     [onChange],
@@ -49,11 +63,10 @@ export const InputRange: React.FC<InputRangeProps> = ({
       value={value}
       type="range"
       className={classnames(
-        'ui-set inline-block w-full align-top bg-transparent',
+        'ui-set inline-block w-full align-top bg-transparent with-animation',
         'h-8 px-1 py-1',
         `border-2 border-transparent focus:${colors.standard.focus.border}`,
         `focus:outline-none`,
-        'focus:focus-animation',
         className,
       )}
       disabled={disabled}
@@ -68,6 +81,8 @@ export const InputRange: React.FC<InputRangeProps> = ({
       required={required}
       size={size}
       step={step}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
       onChange={handleOnChange}
     />
   );

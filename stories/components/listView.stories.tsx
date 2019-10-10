@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { action } from '@storybook/addon-actions';
+import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
-import { ListView, Separator, Row, Column, Button } from '../../src';
+import { ListView, Row, Column, Button } from '../../src';
 import { Stage } from '../utils/Stage';
 
 export default {
@@ -29,13 +28,60 @@ const data = [
 const classNames = {
   item: {
     default: 'px-2 py-1',
-    withCursor: 'bg-yellow-300',
+    withCursor: 'bg-blue-300',
     disabled: 'bg-gray-300',
   },
 };
 
 export const standard = () => {
+  const items = data.map((x) => <div key={x}>{x}</div>);
+
+  return (
+    <Stage>
+      <div className="flex">
+        <div className="w-64 h-64 mr-2">
+          <ListView items={items} classNames={classNames} />
+        </div>
+        <div className="w-64 h-64 mr-2">
+          <ListView items={items} classNames={classNames} disabled />
+        </div>
+      </div>
+    </Stage>
+  );
+};
+
+export const noBordered = () => {
+  const items = data.map((x) => <div key={x}>{x}</div>);
+
+  return (
+    <Stage>
+      <div className="flex">
+        <div className="w-64 h-64 mr-2">
+          <ListView bordered={false} items={items} classNames={classNames} />
+        </div>
+        <div className="w-64 h-64 mr-2">
+          <ListView
+            bordered={false}
+            items={items}
+            classNames={classNames}
+            disabled
+          />
+        </div>
+      </div>
+    </Stage>
+  );
+};
+
+export const event = () => {
   const [items, setItems] = useState('items', data);
+  const [key, setKey] = useState('key', '');
+  const [cursor, setCursor] = useState('cursor', 5);
+  const handleOnUpdateCursor = React.useCallback((newCursor: number) => {
+    setCursor(newCursor);
+  }, []);
+  const handleOnKeyDown = React.useCallback((ev) => {
+    setKey(ev.key);
+  }, []);
   const handleDeleteRow = (): void => {
     setItems(items.slice(0, -1));
   };
@@ -46,19 +92,30 @@ export const standard = () => {
 
   return (
     <Stage>
-      <div className="w-64 h-64">
-        <ListView
-          initialCursor={5}
-          bordered={boolean('bordered', false)}
-          disabled={boolean('disabled', false)}
-          classNames={classNames}
-          items={listItems}
-          onUpdateCursor={action('ListView#onUpdateCursor')}
-          onKeyDown={action('ListView#onKeyDown')}
-        />
-      </div>
-      <Separator />
       <Row>
+        <Column packed>
+          <div className="w-64 h-64 mr-2">
+            <ListView
+              initialCursor={cursor}
+              classNames={classNames}
+              items={listItems}
+              onUpdateCursor={handleOnUpdateCursor}
+              onKeyDown={handleOnKeyDown}
+            />
+          </div>
+        </Column>
+        <Column packed>
+          <div className="w-64 h-64 mr-2">
+            <ListView
+              initialCursor={cursor}
+              classNames={classNames}
+              items={listItems}
+              onUpdateCursor={handleOnUpdateCursor}
+              onKeyDown={handleOnKeyDown}
+              disabled
+            />
+          </div>
+        </Column>
         <Column packed>
           <Button onClick={handleAddRow}>row +</Button>
         </Column>
@@ -66,6 +123,8 @@ export const standard = () => {
           <Button onClick={handleDeleteRow}>row -</Button>
         </Column>
       </Row>
+      <p>Update cursor: {cursor}</p>
+      <p>KeyDown: `{key}`</p>
     </Stage>
   );
 };

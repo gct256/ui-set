@@ -35,12 +35,12 @@ export const Menubar: React.FC<MenubarProps> = ({
   const [opened, setOpened] = React.useState(false);
   const [openPath, setOpenPath] = React.useState([] as string[]);
 
-  const handleClick = React.useCallback(() => {
+  const handleOnClick = React.useCallback(() => {
     setOpenPath([]);
     setOpened(false);
   }, [opened, openPath]);
 
-  const handleSelect = React.useCallback(
+  const handleOnSelect = React.useCallback(
     (id: string) => {
       setOpened(false);
       onSelect(id);
@@ -50,18 +50,18 @@ export const Menubar: React.FC<MenubarProps> = ({
 
   return (
     <>
-      <MenubarCover visible={opened} onClick={handleClick} />
+      <MenubarCover visible={opened} onClick={handleOnClick} />
       <div
         style={STYLE_FOR_MENUBAR}
         className={classnames(className, 'flex justify-between')}
-        onClick={handleClick}
+        onClick={handleOnClick}
       >
         <MenubarGroup
           key="left"
           data={left}
           opened={opened}
           openPath={openPath}
-          onSelect={handleSelect}
+          onSelect={handleOnSelect}
           onSetOpened={setOpened}
           onSetOpenPath={setOpenPath}
         />
@@ -70,7 +70,7 @@ export const Menubar: React.FC<MenubarProps> = ({
           data={right}
           opened={opened}
           openPath={openPath}
-          onSelect={handleSelect}
+          onSelect={handleOnSelect}
           onSetOpened={setOpened}
           onSetOpenPath={setOpenPath}
         />

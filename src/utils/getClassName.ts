@@ -64,7 +64,6 @@ export const getFieldWrapClassName = ({
 
 export const getFieldClassName = ({
   userClassName,
-  bordered,
   uiSize,
   fixedHeight,
   noYPadding,
@@ -72,7 +71,6 @@ export const getFieldClassName = ({
   otherClassName,
 }: {
   userClassName?: ClassValue;
-  bordered?: boolean;
   uiSize?: UiSize;
   fixedHeight?: boolean;
   noYPadding?: boolean;
@@ -83,7 +81,7 @@ export const getFieldClassName = ({
 
   return classnames(
     userClassName,
-    'ui block',
+    'ui block with-animation',
     'w-full bg-transparent',
     classNameForSize.text,
     classNameForSize.field.padding,
@@ -91,8 +89,6 @@ export const getFieldClassName = ({
     {
       [`focus:${colors.inputArea.focus.text}`]: forInput,
       'py-0': noYPadding,
-      'focus:focus-animation': bordered,
-      'focus:focus-animation-border': !bordered,
       'block leading-normal': !fixedHeight,
       'h-full': fixedHeight,
     },
@@ -111,12 +107,11 @@ export const getCheckboxClassName = ({
 }): string =>
   classnames(
     userClassName,
-    'ui-set select-none',
+    'ui-set select-none with-animation',
     'inline-flex justify-start items-center',
     'h-8 py-1 pr-1 pl-1',
     'focus:outline-none',
-    'focus-within:focus-animation',
-    `border-transparent focus-within:${colors.standard.focus.border} border-2`,
+    `border-transparent border-2`,
     {
       'active:opacity-75': !disabled,
       [`hover:${colors.standard.hover.text}`]: !disabled,

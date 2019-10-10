@@ -6,8 +6,13 @@ import { Icon } from '../elements/Icon';
 import { UiProps } from '../utils/commonProps';
 import { getCheckboxClassName } from '../utils/getClassName';
 import { colors } from '../utils/colors';
-import { handleButtonKeyDown } from '../utils/handleButtonKeyDown';
 import { isEmptyReactNode } from '../utils/isEmptyReactNode';
+import { canClickEmulation } from '../utils/keys';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../utils/animations';
 
 type CheckboxProps = UiProps & {
   /** HTML's id attribute. */
@@ -34,12 +39,28 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   const [hover, setHover] = React.useState(false);
   const handleOnEnter = React.useCallback(() => setHover(true), []);
   const handleOnLeave = React.useCallback(() => setHover(false), []);
+
+  const handleOnFocus = React.useCallback((ev) => {
+    startAnimation(
+      ev.currentTarget.parentNode,
+      animations.focusAnimationBorder,
+    );
+  }, []);
+
+  const handleOnBlur = React.useCallback((ev) => {
+    removeAllAnimations(ev.currentTarget.parentNode);
+  }, []);
+
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.checked),
     [onChange],
   );
   const handleOnKeyDown = React.useCallback(
-    (ev) => onChange && handleButtonKeyDown(ev, () => onChange(!checked)),
+    (ev) => {
+      if (canClickEmulation(ev)) {
+        if (onChange) onChange(!checked);
+      }
+    },
     [onChange],
   );
 
@@ -79,6 +100,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         type="checkbox"
         disabled={disabled}
         checked={!!checked}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         onChange={handleOnChange}
         onKeyDown={handleOnKeyDown}
       />

@@ -5,6 +5,11 @@ import {
   getFieldWrapClassName,
   getFieldClassName,
 } from '../utils/getClassName';
+import {
+  startAnimation,
+  animations,
+  removeAllAnimations,
+} from '../utils/animations';
 
 type InputTextAreaProps = SizedUiProps &
   FieldProps<string> & {
@@ -43,6 +48,21 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
 
   onChange,
 }: InputTextAreaProps) => {
+  const handleOnFocus = React.useCallback(
+    (ev) => {
+      startAnimation(
+        ev.currentTarget,
+        bordered ? animations.focusAnimation : animations.focusAnimationBorder,
+      );
+    },
+    [bordered],
+  );
+
+  const handleOnBlur = React.useCallback(
+    (ev) => removeAllAnimations(ev.currentTarget),
+    [],
+  );
+
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.value),
     [onChange],
@@ -69,7 +89,6 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
         disabled={disabled}
         style={style}
         className={getFieldClassName({
-          bordered,
           uiSize,
           fixedHeight: false,
           noYPadding: false,
@@ -83,6 +102,8 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
         placeholder={placeholder}
         readOnly={readOnly}
         required={required}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
         onChange={handleOnChange}
       />
     </span>

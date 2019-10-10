@@ -1,14 +1,9 @@
 import * as React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
-import { action } from '@storybook/addon-actions';
 
 import { Select, SelectItem } from '../../src';
 import { Stage } from '../utils/Stage';
-import { TableRow } from '../utils/TableRow';
-import { TableHeaderCell } from '../utils/TableHeaderCell';
-import { TableCell } from '../utils/TableCell';
-import { Table } from '../utils/Table';
 
 export default {
   title: 'Fields / Select',
@@ -17,182 +12,118 @@ export default {
 
 const items: SelectItem[] = ['foo', 'bar', { text: 'Baz', value: 'baz' }];
 
-export const variations = () => {
-  const disabled = boolean('disabled', false);
+export const standard = () => {
   const [value, setValue] = useState('value', 'baz');
 
   return (
     <Stage>
-      <Table>
-        <TableRow>
-          <TableHeaderCell />
-          <TableHeaderCell>X-small</TableHeaderCell>
-          <TableHeaderCell>Small</TableHeaderCell>
-          <TableHeaderCell>Base</TableHeaderCell>
-          <TableHeaderCell>Large</TableHeaderCell>
-          <TableHeaderCell>X-large</TableHeaderCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>default</TableHeaderCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="xs"
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="sm"
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="lg"
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="xl"
-              disabled={disabled}
-            />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>no bordered</TableHeaderCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="xs"
-              bordered={false}
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="sm"
-              bordered={false}
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              bordered={false}
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="lg"
-              bordered={false}
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="xl"
-              bordered={false}
-              disabled={disabled}
-            />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>with empty item</TableHeaderCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="xs"
-              withEmptyItem
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="sm"
-              withEmptyItem
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              withEmptyItem
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="lg"
-              withEmptyItem
-              disabled={disabled}
-            />
-          </TableCell>
-          <TableCell>
-            <Select
-              value={value}
-              onChange={setValue}
-              items={items}
-              uiSize="xl"
-              withEmptyItem
-              disabled={disabled}
-            />
-          </TableCell>
-        </TableRow>
-      </Table>
-      <p>value: {value}</p>
+      <div className="w-64">
+        <div className="mb-2">
+          <Select value={value} onChange={setValue} items={items} />
+        </div>
+        <div className="mb-2">
+          <Select value={value} onChange={setValue} items={items} disabled />
+        </div>
+      </div>
     </Stage>
   );
 };
 
-export const event = () => {
+export const noBorder = () => {
+  const [value, setValue] = useState('value', 'baz');
+
   return (
     <Stage>
-      <Select items={items} onChange={action('onChange')} />
+      <div className="w-64">
+        <div className="mb-2">
+          <Select
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            items={items}
+          />
+        </div>
+        <div className="mb-2">
+          <Select
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            items={items}
+            disabled
+          />
+        </div>
+      </div>
+    </Stage>
+  );
+};
+
+export const withEmptyItem = () => {
+  const [value, setValue] = useState('value', 'baz');
+
+  return (
+    <Stage>
+      <div className="w-64">
+        <div className="mb-2">
+          <Select
+            value={value}
+            onChange={setValue}
+            items={items}
+            withEmptyItem
+          />
+        </div>
+        <div className="mb-2">
+          <Select
+            value={value}
+            onChange={setValue}
+            items={items}
+            disabled
+            withEmptyItem
+          />
+        </div>
+      </div>
+    </Stage>
+  );
+};
+
+export const sizes = () => (
+  <Stage>
+    <div className="flex">
+      <Select items={items} className="mr-2" uiSize="xs" />
+      <Select items={items} className="mr-2" uiSize="sm" />
+      <Select items={items} className="mr-2" />
+      <Select items={items} className="mr-2" uiSize="lg" />
+      <Select items={items} className="mr-2" uiSize="xl" />
+    </div>
+  </Stage>
+);
+
+export const events = () => {
+  const [count, setCount] = useState('count', 0);
+  const [value, setValue] = useState('value', 'baz');
+  const handleOnChange = React.useCallback(
+    (newValue: string) => {
+      setCount(count + 1);
+      setValue(newValue);
+    },
+    [count],
+  );
+
+  return (
+    <Stage>
+      <div className="w-64">
+        <div className="mb-2">
+          <Select value={value} onChange={handleOnChange} items={items} />
+        </div>
+        <div className="mb-2">
+          <Select
+            value={value}
+            onChange={handleOnChange}
+            items={items}
+            disabled
+          />
+        </div>
+      </div>
+      <p>Change: {count}</p>
     </Stage>
   );
 };

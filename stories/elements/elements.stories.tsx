@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { BorderedView, Separator, FlatButton, Icon } from '../../src';
+import { BorderedView, Separator } from '../../src';
 import { Stage } from '../utils/Stage';
 
 export default {
@@ -28,12 +27,3 @@ export const separator = () => {
     </Stage>
   );
 };
-
-export const flatButton = () => (
-  <Stage>
-    <FlatButton>Flat Button</FlatButton>
-    <FlatButton>
-      <Icon icon={faUser} />
-    </FlatButton>
-  </Stage>
-);

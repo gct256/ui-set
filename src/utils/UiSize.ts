@@ -36,7 +36,7 @@ const classes: { [key: string]: ClassNameForSize } = {
       padding: 'px-px',
     },
     button: {
-      padding: 'px-0',
+      padding: 'px-px',
       width: 'w-4',
       height: 'h-4',
       iconMargin: 'mr-1',

@@ -1,224 +1,186 @@
 import * as React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
-import { action } from '@storybook/addon-actions';
 
 import { InputNumber } from '../../src';
 import { Stage } from '../utils/Stage';
-import { TableRow } from '../utils/TableRow';
-import { TableHeaderCell } from '../utils/TableHeaderCell';
-import { TableCell } from '../utils/TableCell';
-import { Table } from '../utils/Table';
 
 export default {
   title: 'Fields / InputNumber',
   decorators: [withKnobs],
 };
 
-export const variations = () => {
-  const readOnly = boolean('read only', false);
-  const disabled = boolean('disabled', false);
+export const standard = () => {
   const [value, setValue] = useState('value', 0);
 
   return (
     <Stage>
-      <Table>
-        <TableRow>
-          <TableHeaderCell />
-          <TableHeaderCell>X-small</TableHeaderCell>
-          <TableHeaderCell>Small</TableHeaderCell>
-          <TableHeaderCell>Base</TableHeaderCell>
-          <TableHeaderCell>Large</TableHeaderCell>
-          <TableHeaderCell>X-large</TableHeaderCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>default</TableHeaderCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="xs"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="sm"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="lg"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="xl"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>no border</TableHeaderCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="xs"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="sm"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="lg"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="xl"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>min, max and step</TableHeaderCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              min={-20}
-              max={20}
-              step={5}
-              placeholder="Placeholder"
-              uiSize="xs"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              min={-20}
-              max={20}
-              step={5}
-              placeholder="Placeholder"
-              uiSize="sm"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              min={-20}
-              max={20}
-              step={5}
-              placeholder="Placeholder"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              min={-20}
-              max={20}
-              step={5}
-              placeholder="Placeholder"
-              uiSize="lg"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputNumber
-              value={value}
-              onChange={setValue}
-              min={-20}
-              max={20}
-              step={5}
-              placeholder="Placeholder"
-              uiSize="xl"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-        </TableRow>
-      </Table>
+      <div className="w-64">
+        <div className="mb-2">
+          <InputNumber
+            value={value}
+            onChange={setValue}
+            placeholder="Default"
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            value={value}
+            onChange={setValue}
+            disabled
+            placeholder="Disabled"
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            value={value}
+            onChange={setValue}
+            readOnly
+            placeholder="Readonly"
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            value={value}
+            onChange={setValue}
+            readOnly
+            disabled
+            placeholder="Readonly, Disabled"
+          />
+        </div>
+      </div>
+    </Stage>
+  );
+};
+
+export const noBorder = () => {
+  const [value, setValue] = useState('value', 0);
+
+  return (
+    <Stage>
+      <div className="w-64">
+        <div className="mb-2">
+          <InputNumber
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            placeholder="Default"
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            disabled
+            placeholder="Disabled"
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            readOnly
+            placeholder="Readonly"
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            readOnly
+            disabled
+            placeholder="Readonly, Disabled"
+          />
+        </div>
+      </div>
+    </Stage>
+  );
+};
+
+export const sizes = () => (
+  <Stage>
+    <div className="flex">
+      <InputNumber uiSize="xs" placeholder="xs: X-small" className="mr-2" />
+      <InputNumber uiSize="sm" placeholder="sm: Small" className="mr-2" />
+      <InputNumber placeholder="(not set0" className="mr-2" />
+      <InputNumber uiSize="lg" placeholder="lg: Large" className="mr-2" />
+      <InputNumber uiSize="xl" placeholder="xl: X-large" className="mr-2" />
+    </div>
+  </Stage>
+);
+
+export const minMaxAndStep = () => {
+  const [value, setValue] = useState('value', 0);
+
+  return (
+    <Stage>
+      <InputNumber
+        value={value}
+        min={-10}
+        max={20}
+        step={5}
+        onChange={setValue}
+      />
     </Stage>
   );
 };
 
 export const event = () => {
+  const [changeCount, setChangeCount] = useState('changeCount', 0);
+  const [enterCount, setEnterCount] = useState('enterCount', 0);
+  const [value, setValue] = useState('value', 0);
+  const handleOnChange = React.useCallback(
+    (newValue: number) => {
+      setChangeCount(changeCount + 1);
+      setValue(newValue);
+    },
+    [changeCount],
+  );
+  const handleOnEnterKey = React.useCallback(() => {
+    setEnterCount(enterCount + 1);
+  }, [enterCount]);
+
   return (
     <Stage>
-      <InputNumber
-        onChange={action('onChange')}
-        onEnterKey={action('onEnterKey')}
-      />
+      <div className="w-64">
+        <div className="mb-2">
+          <InputNumber
+            value={value}
+            onChange={handleOnChange}
+            onEnterKey={handleOnEnterKey}
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            value={value}
+            onChange={handleOnChange}
+            onEnterKey={handleOnEnterKey}
+            disabled
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            value={value}
+            onChange={handleOnChange}
+            onEnterKey={handleOnEnterKey}
+            readOnly
+          />
+        </div>
+        <div className="mb-2">
+          <InputNumber
+            value={value}
+            onChange={handleOnChange}
+            onEnterKey={handleOnEnterKey}
+            readOnly
+            disabled
+          />
+        </div>
+      </div>
+      <p>Change: {changeCount}</p>
+      <p>Enter Key: {enterCount}</p>
     </Stage>
   );
 };

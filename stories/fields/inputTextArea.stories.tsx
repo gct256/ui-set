@@ -1,154 +1,150 @@
 import * as React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
-import { action } from '@storybook/addon-actions';
 
 import { InputTextArea } from '../../src';
 import { Stage } from '../utils/Stage';
-import { TableRow } from '../utils/TableRow';
-import { TableHeaderCell } from '../utils/TableHeaderCell';
-import { TableCell } from '../utils/TableCell';
-import { Table } from '../utils/Table';
 
 export default {
   title: 'Fields / InputTextArea',
   decorators: [withKnobs],
 };
 
-export const variations = () => {
-  const readOnly = boolean('read only', false);
-  const disabled = boolean('disabled', false);
+export const standard = () => {
   const [value, setValue] = useState('value', '');
 
   return (
     <Stage>
-      <Table>
-        <TableRow>
-          <TableHeaderCell />
-          <TableHeaderCell>X-small</TableHeaderCell>
-          <TableHeaderCell>Small</TableHeaderCell>
-          <TableHeaderCell>Base</TableHeaderCell>
-          <TableHeaderCell>Large</TableHeaderCell>
-          <TableHeaderCell>X-large</TableHeaderCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>default</TableHeaderCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="xs"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="sm"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="lg"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="xl"
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-        </TableRow>
-        <TableRow>
-          <TableHeaderCell>no border</TableHeaderCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="xs"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="sm"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="lg"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-          <TableCell>
-            <InputTextArea
-              value={value}
-              onChange={setValue}
-              placeholder="Placeholder"
-              uiSize="xl"
-              bordered={false}
-              disabled={disabled}
-              readOnly={readOnly}
-            />
-          </TableCell>
-        </TableRow>
-      </Table>
+      <div className="w-64">
+        <div className="mb-2">
+          <InputTextArea
+            value={value}
+            onChange={setValue}
+            placeholder="Default"
+          />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            value={value}
+            onChange={setValue}
+            disabled
+            placeholder="Disabled"
+          />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            value={value}
+            onChange={setValue}
+            readOnly
+            placeholder="Readonly"
+          />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            value={value}
+            onChange={setValue}
+            readOnly
+            disabled
+            placeholder="Readonly, Disabled"
+          />
+        </div>
+      </div>
     </Stage>
   );
 };
 
-export const event = () => {
+export const noBorder = () => {
+  const [value, setValue] = useState('value', '');
+
   return (
     <Stage>
-      <InputTextArea onChange={action('onChange')} />
+      <div className="w-64">
+        <div className="mb-2">
+          <InputTextArea
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            placeholder="Default"
+          />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            disabled
+            placeholder="Disabled"
+          />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            readOnly
+            placeholder="Readonly"
+          />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            bordered={false}
+            value={value}
+            onChange={setValue}
+            readOnly
+            disabled
+            placeholder="Readonly, Disabled"
+          />
+        </div>
+      </div>
+    </Stage>
+  );
+};
+
+export const sizes = () => (
+  <Stage>
+    <div className="flex">
+      <InputTextArea uiSize="xs" placeholder="xs: X-small" className="mr-2" />
+      <InputTextArea uiSize="sm" placeholder="sm: Small" className="mr-2" />
+      <InputTextArea placeholder="(not set0" className="mr-2" />
+      <InputTextArea uiSize="lg" placeholder="lg: Large" className="mr-2" />
+      <InputTextArea uiSize="xl" placeholder="xl: X-large" className="mr-2" />
+    </div>
+  </Stage>
+);
+
+export const event = () => {
+  const [count, setCount] = useState('count', 0);
+  const [value, setValue] = useState('value', 'lorem');
+  const handleOnChange = React.useCallback(
+    (newValue: string) => {
+      setCount(count + 1);
+      setValue(newValue);
+    },
+    [count],
+  );
+
+  return (
+    <Stage>
+      <div className="w-64">
+        <div className="mb-2">
+          <InputTextArea value={value} onChange={handleOnChange} />
+        </div>
+        <div className="mb-2">
+          <InputTextArea value={value} onChange={handleOnChange} disabled />
+        </div>
+        <div className="mb-2">
+          <InputTextArea value={value} onChange={handleOnChange} readOnly />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            value={value}
+            onChange={handleOnChange}
+            readOnly
+            disabled
+          />
+        </div>
+      </div>
+      <p>Change: {count}</p>
     </Stage>
   );
 };
