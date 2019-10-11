@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 import { BorderedView } from '../../src';
 
 export default {
@@ -10,7 +10,7 @@ export default {
 };
 
 export const standatd = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <BorderedView className="p-2 mr-2">Bordered view</BorderedView>
       <BorderedView className="p-2 mr-2" disabled>
@@ -19,5 +19,5 @@ export const standatd = () => (
         (disabled style)
       </BorderedView>
     </div>
-  </Stage>
+  </ExampleStage>
 );

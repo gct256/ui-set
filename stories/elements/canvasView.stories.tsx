@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withKnobs, number, select } from '@storybook/addon-knobs';
 
 import { CanvasView } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Elements / CanvasView',
@@ -30,7 +30,7 @@ const redraw = (
 };
 
 export const standard = () => (
-  <Stage>
+  <ExampleStage>
     <CanvasView
       width={number('width', 250, {
         min: 0,
@@ -56,5 +56,5 @@ export const standard = () => (
       )}
       onRedraw={redraw}
     />
-  </Stage>
+  </ExampleStage>
 );

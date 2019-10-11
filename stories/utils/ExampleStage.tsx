@@ -6,7 +6,7 @@ const style: React.CSSProperties = {
   minHeight: '100vh',
 };
 
-export const Stage: React.FC<{}> = ({
+export const ExampleStage: React.FC<{}> = ({
   children,
 }: React.PropsWithChildren<{}>) => {
   const bg = optionsKnob(
@@ -30,4 +30,4 @@ export const Stage: React.FC<{}> = ({
   );
 };
 
-Stage.displayName = 'Stage';
+ExampleStage.displayName = 'ExampleStage';

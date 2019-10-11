@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-type LoremProps = {
+type ExampleLoremProps = {
   count?: number;
 };
 
-export const Lorem: React.FC<LoremProps> = ({ count = 1 }: LoremProps) => {
+export const ExampleLorem: React.FC<ExampleLoremProps> = ({
+  count = 1,
+}: ExampleLoremProps) => {
   const contents = [];
 
   for (let i = 0; i < count; i += 1) {
@@ -21,4 +23,4 @@ export const Lorem: React.FC<LoremProps> = ({ count = 1 }: LoremProps) => {
   return <>{contents}</>;
 };
 
-Lorem.displayName = 'Lorem';
+ExampleLorem.displayName = 'ExampleLorem';

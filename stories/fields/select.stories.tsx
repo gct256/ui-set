@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { Select, SelectItem } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Fields / Select',
@@ -16,7 +16,7 @@ export const standard = () => {
   const [value, setValue] = useState('value', 'baz');
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <Select value={value} onChange={setValue} items={items} />
@@ -25,7 +25,7 @@ export const standard = () => {
           <Select value={value} onChange={setValue} items={items} disabled />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -33,7 +33,7 @@ export const noBorder = () => {
   const [value, setValue] = useState('value', 'baz');
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <Select
@@ -53,7 +53,7 @@ export const noBorder = () => {
           />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -61,7 +61,7 @@ export const withEmptyItem = () => {
   const [value, setValue] = useState('value', 'baz');
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <Select
@@ -81,12 +81,12 @@ export const withEmptyItem = () => {
           />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const sizes = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <Select items={items} className="mr-2" uiSize="xs" />
       <Select items={items} className="mr-2" uiSize="sm" />
@@ -94,7 +94,7 @@ export const sizes = () => (
       <Select items={items} className="mr-2" uiSize="lg" />
       <Select items={items} className="mr-2" uiSize="xl" />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const events = () => {
@@ -109,7 +109,7 @@ export const events = () => {
   );
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <Select value={value} onChange={handleOnChange} items={items} />
@@ -124,6 +124,6 @@ export const events = () => {
         </div>
       </div>
       <p>Change: {count}</p>
-    </Stage>
+    </ExampleStage>
   );
 };

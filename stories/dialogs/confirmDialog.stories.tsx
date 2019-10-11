@@ -5,8 +5,8 @@ import useState from 'storybook-addon-state';
 import { faSkull, faQuestion } from '@fortawesome/free-solid-svg-icons';
 
 import { ConfirmDialog, Button, Label } from '../../src';
-import { Stage } from '../utils/Stage';
-import { Lorem } from '../utils/Lorem';
+import { ExampleStage } from '../utils/ExampleStage';
+import { ExampleLorem } from '../utils/ExampleLorem';
 
 export default {
   title: 'Dialogs / ConfirmDialog',
@@ -28,7 +28,7 @@ export const standard = () => {
   );
 
   return (
-    <Stage>
+    <ExampleStage>
       <Button onClick={handleOpen}>Show confirm</Button>
       <Label>{result}</Label>
       <ConfirmDialog
@@ -36,9 +36,9 @@ export const standard = () => {
         visible={visible}
         onClick={handleClose}
       >
-        <Lorem />
+        <ExampleLorem />
       </ConfirmDialog>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -57,7 +57,7 @@ export const danger = () => {
   );
 
   return (
-    <Stage>
+    <ExampleStage>
       <Button onClick={handleOpen}>Show confirm</Button>
       <Label>{result}</Label>
       <ConfirmDialog
@@ -67,8 +67,8 @@ export const danger = () => {
         onClick={handleClose}
         danger
       >
-        <Lorem />
+        <ExampleLorem />
       </ConfirmDialog>
-    </Stage>
+    </ExampleStage>
   );
 };

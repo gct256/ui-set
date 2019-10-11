@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 
 import { Menu } from '../../src';
 import { createMenuData } from '../utils/createMenuData';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 const data1 = createMenuData('top_left_');
 const data2 = createMenuData('top_right_');
@@ -17,13 +17,13 @@ export default {
 };
 
 export const staticPosition = () => (
-  <Stage>
+  <ExampleStage>
     <Menu visible data={data1} />
-  </Stage>
+  </ExampleStage>
 );
 
 export const fixedPosition = () => (
-  <Stage>
+  <ExampleStage>
     <Menu
       className="m-2 fixed left-0 top-0"
       visible
@@ -48,5 +48,5 @@ export const fixedPosition = () => (
       data={data4}
       onSelect={action('Menu#onSelect')}
     />
-  </Stage>
+  </ExampleStage>
 );

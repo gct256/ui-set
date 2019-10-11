@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { Checkbox } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Fields / Checkbox',
@@ -14,7 +14,7 @@ export const standard = () => {
   const [checked, setChecked] = useState('checked', false);
 
   return (
-    <Stage>
+    <ExampleStage>
       <p>
         <Checkbox checked={checked} onChange={setChecked}>
           Checkbox
@@ -25,7 +25,7 @@ export const standard = () => {
           Disabled Checkbox
         </Checkbox>
       </p>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -33,14 +33,14 @@ export const withoutLabel = () => {
   const [checked, setChecked] = useState('checked', false);
 
   return (
-    <Stage>
+    <ExampleStage>
       <p>
         <Checkbox checked={checked} onChange={setChecked} />
       </p>
       <p>
         <Checkbox checked={checked} onChange={setChecked} disabled />
       </p>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -57,7 +57,7 @@ export const event = () => {
   );
 
   return (
-    <Stage>
+    <ExampleStage>
       <p>
         <Checkbox checked={checked} onChange={handleOnChange} />
       </p>
@@ -66,6 +66,6 @@ export const event = () => {
       </p>
       <p>Value: {checked ? 'ON' : 'OFF'}</p>
       <p>Change: {count}</p>
-    </Stage>
+    </ExampleStage>
   );
 };

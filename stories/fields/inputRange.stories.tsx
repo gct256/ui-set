@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { InputRange } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Fields / InputRange',
@@ -14,14 +14,14 @@ export const standard = () => {
   const [value, setValue] = useState('value', 0);
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <InputRange value={value} onChange={setValue} />
         <InputRange value={value} onChange={setValue} disabled />
         <InputRange value={value} onChange={setValue} readOnly />
         <InputRange value={value} onChange={setValue} readOnly disabled />
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -29,7 +29,7 @@ export const minMaxAndStep = () => {
   const [value, setValue] = useState('value', 0);
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <InputRange
           value={value}
@@ -39,7 +39,7 @@ export const minMaxAndStep = () => {
           step={5}
         />
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -55,7 +55,7 @@ export const event = () => {
   );
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <InputRange value={value} onChange={handleOnChange} />
         <InputRange value={value} onChange={handleOnChange} disabled />
@@ -64,6 +64,6 @@ export const event = () => {
       </div>
       <p>Value: {value}</p>
       <p>Change: {count}</p>
-    </Stage>
+    </ExampleStage>
   );
 };

@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { RadioGroup, SelectItem } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Fields / RadioGroup',
@@ -16,7 +16,7 @@ export const standard = () => {
   const [value, setValue] = useState('value', 'baz');
 
   return (
-    <Stage>
+    <ExampleStage>
       <p>
         <RadioGroup
           name="standard_1"
@@ -34,7 +34,7 @@ export const standard = () => {
           disabled
         />
       </p>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -42,7 +42,7 @@ export const vertical = () => {
   const [value, setValue] = useState('value', 'baz');
 
   return (
-    <Stage>
+    <ExampleStage>
       <p>
         <RadioGroup
           name="vertical_1"
@@ -62,7 +62,7 @@ export const vertical = () => {
           vertical
         />
       </p>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -78,7 +78,7 @@ export const event = () => {
   );
 
   return (
-    <Stage>
+    <ExampleStage>
       <p>
         <RadioGroup
           name="event_1"
@@ -98,6 +98,6 @@ export const event = () => {
       </p>
       <p>Value: {value}</p>
       <p>Change: {count}</p>
-    </Stage>
+    </ExampleStage>
   );
 };

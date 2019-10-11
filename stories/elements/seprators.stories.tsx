@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
 import { Separator } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Elements / Separator',
@@ -11,7 +11,7 @@ export default {
 
 export const standard = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <Separator />
         <Separator disabled />
@@ -20,6 +20,6 @@ export const standard = () => {
         <Separator vertical />
         <Separator vertical disabled />
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };

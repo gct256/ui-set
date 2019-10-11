@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { InputNumber } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Fields / InputNumber',
@@ -14,7 +14,7 @@ export const standard = () => {
   const [value, setValue] = useState('value', 0);
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <InputNumber
@@ -49,7 +49,7 @@ export const standard = () => {
           />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -57,7 +57,7 @@ export const noBorder = () => {
   const [value, setValue] = useState('value', 0);
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <InputNumber
@@ -96,12 +96,12 @@ export const noBorder = () => {
           />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const sizes = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <InputNumber uiSize="xs" placeholder="xs: X-small" className="mr-2" />
       <InputNumber uiSize="sm" placeholder="sm: Small" className="mr-2" />
@@ -109,14 +109,14 @@ export const sizes = () => (
       <InputNumber uiSize="lg" placeholder="lg: Large" className="mr-2" />
       <InputNumber uiSize="xl" placeholder="xl: X-large" className="mr-2" />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const minMaxAndStep = () => {
   const [value, setValue] = useState('value', 0);
 
   return (
-    <Stage>
+    <ExampleStage>
       <InputNumber
         value={value}
         min={-10}
@@ -124,7 +124,7 @@ export const minMaxAndStep = () => {
         step={5}
         onChange={setValue}
       />
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -144,7 +144,7 @@ export const event = () => {
   }, [enterCount]);
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <InputNumber
@@ -181,6 +181,6 @@ export const event = () => {
       </div>
       <p>Change: {changeCount}</p>
       <p>Enter Key: {enterCount}</p>
-    </Stage>
+    </ExampleStage>
   );
 };

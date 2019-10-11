@@ -5,7 +5,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import { Menubar } from '../../src';
 import { ExampleForm } from '../utils/ExampleForm';
 import { createMenuData } from '../utils/createMenuData';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 const data1 = createMenuData('left_');
 const data2 = createMenuData('right_');
@@ -16,7 +16,7 @@ export default {
 };
 
 export const onTop = () => (
-  <Stage>
+  <ExampleStage>
     <Menubar
       className="fixed inset-x-0 top-0 h-8 border-b bg-white"
       left={data1}
@@ -26,11 +26,11 @@ export const onTop = () => (
     <div className="mt-8 p-2">
       <ExampleForm />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const onBottom = () => (
-  <Stage>
+  <ExampleStage>
     <Menubar
       className="fixed inset-x-0 bottom-0 h-8 border-t bg-white"
       left={data1}
@@ -40,5 +40,5 @@ export const onBottom = () => (
     <div className="mt-8 p-2">
       <ExampleForm />
     </div>
-  </Stage>
+  </ExampleStage>
 );

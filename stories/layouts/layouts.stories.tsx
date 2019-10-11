@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 import { ExampleBlock } from '../utils/ExampleBlock';
 import { Row, Column } from '../../src';
 
@@ -11,7 +11,7 @@ export default {
 };
 
 export const standard = () => (
-  <Stage>
+  <ExampleStage>
     <Row className="w-full mb-2">
       <Column>
         <ExampleBlock>01/02</ExampleBlock>
@@ -69,11 +69,11 @@ export const standard = () => (
         <ExampleBlock>12/12</ExampleBlock>
       </Column>
     </Row>
-  </Stage>
+  </ExampleStage>
 );
 
 export const width = () => (
-  <Stage>
+  <ExampleStage>
     <Row className="w-full mb-2">
       <Column width={5 / 12}>
         <ExampleBlock>5/12</ExampleBlock>
@@ -132,11 +132,11 @@ export const width = () => (
         <ExampleBlock>(not set width)</ExampleBlock>
       </Column>
     </Row>
-  </Stage>
+  </ExampleStage>
 );
 
 export const packedColumn = () => (
-  <Stage>
+  <ExampleStage>
     <Row className="mb-2">
       <Column packed>
         <ExampleBlock>packed</ExampleBlock>
@@ -159,11 +159,11 @@ export const packedColumn = () => (
         <ExampleBlock>packed</ExampleBlock>
       </Column>
     </Row>
-  </Stage>
+  </ExampleStage>
 );
 
 export const nested = () => (
-  <Stage>
+  <ExampleStage>
     <Row>
       <Column>
         <Row className="mb-2">
@@ -206,5 +206,5 @@ export const nested = () => (
         <ExampleBlock />
       </Column>
     </Row>
-  </Stage>
+  </ExampleStage>
 );

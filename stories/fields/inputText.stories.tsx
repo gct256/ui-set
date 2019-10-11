@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { InputText } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Fields / InputText',
@@ -14,7 +14,7 @@ export const standard = () => {
   const [value, setValue] = useState('value', '');
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <InputText value={value} onChange={setValue} placeholder="Default" />
@@ -45,7 +45,7 @@ export const standard = () => {
           />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -53,7 +53,7 @@ export const noBorder = () => {
   const [value, setValue] = useState('value', '');
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <InputText
@@ -92,12 +92,12 @@ export const noBorder = () => {
           />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const sizes = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <InputText uiSize="xs" placeholder="xs: X-small" className="mr-2" />
       <InputText uiSize="sm" placeholder="sm: Small" className="mr-2" />
@@ -105,7 +105,7 @@ export const sizes = () => (
       <InputText uiSize="lg" placeholder="lg: Large" className="mr-2" />
       <InputText uiSize="xl" placeholder="xl: X-large" className="mr-2" />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const event = () => {
@@ -124,7 +124,7 @@ export const event = () => {
   }, [enterCount]);
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
           <InputText
@@ -161,6 +161,6 @@ export const event = () => {
       </div>
       <p>Change: {changeCount}</p>
       <p>Enter Key: {enterCount}</p>
-    </Stage>
+    </ExampleStage>
   );
 };

@@ -5,8 +5,8 @@ import useState from 'storybook-addon-state';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 import { AlertDialog, Button } from '../../src';
-import { Stage } from '../utils/Stage';
-import { Lorem } from '../utils/Lorem';
+import { ExampleStage } from '../utils/ExampleStage';
+import { ExampleLorem } from '../utils/ExampleLorem';
 
 export default {
   title: 'Dialogs / AlertDialog',
@@ -23,15 +23,15 @@ export const standard = () => {
   }, [visible]);
 
   return (
-    <Stage>
+    <ExampleStage>
       <Button onClick={handleOpen}>Show alert</Button>
       <AlertDialog
         titleIcon={faExclamationTriangle}
         visible={visible}
         onClick={handleClose}
       >
-        <Lorem />
+        <ExampleLorem />
       </AlertDialog>
-    </Stage>
+    </ExampleStage>
   );
 };

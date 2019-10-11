@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Dialog } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 import { ExampleForm } from '../utils/ExampleForm';
 
 export default {
@@ -18,27 +18,27 @@ export default {
 
 export const standard = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <Dialog visible={boolean('visible', true)} title="Dialog" />
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const titleIcon = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <Dialog
         visible={boolean('visible', true)}
         title="Dialog"
         titleIcon={faInfoCircle}
       />
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const buttons = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <Dialog
         visible={boolean('visible', true)}
         width={3 / 5}
@@ -46,13 +46,13 @@ export const buttons = () => {
         buttons={['foo', 'bar', 'baz']}
         buttonIcons={[faCheck, undefined, faTimes]}
       />
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const primaryButton = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <Dialog
         visible={boolean('visible', true)}
         width={3 / 5}
@@ -60,13 +60,13 @@ export const primaryButton = () => {
         buttons={['foo', 'bar', 'baz']}
         primaryButton={1}
       />
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const subButtons = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <Dialog
         visible={boolean('visible', true)}
         width={3 / 5}
@@ -75,13 +75,13 @@ export const subButtons = () => {
         subButtons={['foo', 'bar', 'baz']}
         subButtonIcons={[faInfoCircle, undefined, faTimes]}
       />
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const setWidth = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <Dialog
         width={number('width', 0.5, {
           min: 0.1,
@@ -92,13 +92,13 @@ export const setWidth = () => {
         visible={boolean('visible', true)}
         title="Dialog"
       />
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const event = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <Dialog
         width={3 / 5}
         visible={boolean('visible', true)}
@@ -109,16 +109,16 @@ export const event = () => {
         onSubClick={action('onSubClick')}
         onEscapeKey={action('onEscapeKey')}
       />
-    </Stage>
+    </ExampleStage>
   );
 };
 
 export const content = () => {
   return (
-    <Stage>
+    <ExampleStage>
       <Dialog width={3 / 5} visible={boolean('visible', true)} title="Dialog">
         <ExampleForm />
       </Dialog>
-    </Stage>
+    </ExampleStage>
   );
 };

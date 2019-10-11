@@ -2,9 +2,9 @@ import * as React from 'react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 import { Cover, Icon } from '../../src';
-import { Lorem } from '../utils/Lorem';
+import { ExampleLorem } from '../utils/ExampleLorem';
 
 export default {
   title: 'Elements / Cover',
@@ -12,13 +12,13 @@ export default {
 };
 
 export const standard = () => (
-  <Stage>
-    <Lorem />
-    <Lorem />
-    <Lorem />
+  <ExampleStage>
+    <ExampleLorem />
+    <ExampleLorem />
+    <ExampleLorem />
     <Cover visible={boolean('visible', true)}>
       <p>Cover message</p>
       <Icon icon={faSpinner} spin className="mt-2" />
     </Cover>
-  </Stage>
+  </ExampleStage>
 );

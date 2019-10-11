@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Icon, Label } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Elements / Icon',
@@ -16,7 +16,7 @@ export default {
 };
 
 export const standard = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <Icon className="m-2" icon={faUserCheck} />
       <Icon className="m-2" icon={faUserCheck} />
@@ -32,11 +32,11 @@ export const standard = () => (
       <Icon className="m-2" icon={faSmileWink} />
       <Icon className="m-2" icon={faSmileWink} />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const fixedWidth = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <Icon className="m-2" fixedWidth icon={faUserCheck} />
       <Icon className="m-2" fixedWidth icon={faUserCheck} />
@@ -52,11 +52,11 @@ export const fixedWidth = () => (
       <Icon className="m-2" fixedWidth icon={faSmileWink} />
       <Icon className="m-2" fixedWidth icon={faSmileWink} />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const colorByState = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <Icon className="m-2" disabled={false} icon={faUserCheck} />
       <Icon className="m-2" disabled={false} icon={faEdit} />
@@ -69,11 +69,11 @@ export const colorByState = () => (
       <Icon className="m-2" disabled icon={faSmileWink} />
       <Label>disabled=true</Label>
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const noRenderWithUndefined = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <Icon className="m-2" icon={faUserCheck} />
       <Icon className="m-2" />
@@ -89,11 +89,11 @@ export const noRenderWithUndefined = () => (
       <Icon className="m-2" />
       <Icon className="m-2" icon={faSmileWink} />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const replaceToEmptyWithUndefined = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <Icon className="m-2" fixedWidth empty icon={faUserCheck} />
       <Icon className="m-2" fixedWidth empty />
@@ -109,11 +109,11 @@ export const replaceToEmptyWithUndefined = () => (
       <Icon className="m-2" fixedWidth empty />
       <Icon className="m-2" fixedWidth empty icon={faSmileWink} />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const sizes = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <Icon className="m-2" uiSize="xs" icon={faUserCheck} />
       <Icon className="m-2" uiSize="sm" icon={faUserCheck} />
@@ -135,11 +135,11 @@ export const sizes = () => (
       <Icon className="m-2" uiSize="lg" icon={faSmileWink} />
       <Icon className="m-2" uiSize="xl" icon={faSmileWink} />
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 export const useFontAwesomeProps = () => (
-  <Stage>
+  <ExampleStage>
     <Icon
       className="m-2"
       icon={faUserCheck}
@@ -154,5 +154,5 @@ export const useFontAwesomeProps = () => (
     <Icon className="m-2" icon={faUserCheck} size="10x" />
     <Icon className="m-2" icon={faUserCheck} rotation={90} />
     <Icon className="m-2" icon={faUserCheck} transform="grow-6" />
-  </Stage>
+  </ExampleStage>
 );

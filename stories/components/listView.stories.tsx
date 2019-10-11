@@ -3,7 +3,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { ListView, Row, Column, Button } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Components / ListView',
@@ -37,7 +37,7 @@ export const standard = () => {
   const items = data.map((x) => <div key={x}>{x}</div>);
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="flex">
         <div className="w-64 h-64 mr-2">
           <ListView items={items} classNames={classNames} />
@@ -46,7 +46,7 @@ export const standard = () => {
           <ListView items={items} classNames={classNames} disabled />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -54,7 +54,7 @@ export const noBordered = () => {
   const items = data.map((x) => <div key={x}>{x}</div>);
 
   return (
-    <Stage>
+    <ExampleStage>
       <div className="flex">
         <div className="w-64 h-64 mr-2">
           <ListView bordered={false} items={items} classNames={classNames} />
@@ -68,7 +68,7 @@ export const noBordered = () => {
           />
         </div>
       </div>
-    </Stage>
+    </ExampleStage>
   );
 };
 
@@ -91,7 +91,7 @@ export const event = () => {
   const listItems = items.map((x) => <div key={x}>{x}</div>);
 
   return (
-    <Stage>
+    <ExampleStage>
       <Row>
         <Column packed>
           <div className="w-64 h-64 mr-2">
@@ -125,6 +125,6 @@ export const event = () => {
       </Row>
       <p>Update cursor: {cursor}</p>
       <p>KeyDown: `{key}`</p>
-    </Stage>
+    </ExampleStage>
   );
 };

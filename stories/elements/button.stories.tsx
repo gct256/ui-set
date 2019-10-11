@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
 
 import { Button } from '../../src';
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 
 export default {
   title: 'Elements / Button',
@@ -12,7 +12,7 @@ export default {
 };
 
 export const textOnly = () => (
-  <Stage>
+  <ExampleStage>
     <Button className="mr-2">Button</Button>
     <Button className="mr-2" primary>
       Primary Button
@@ -23,20 +23,20 @@ export const textOnly = () => (
     <Button className="mr-2" primary disabled>
       Disabled Primary Button
     </Button>
-  </Stage>
+  </ExampleStage>
 );
 
 export const iconOnly = () => (
-  <Stage>
+  <ExampleStage>
     <Button className="mr-2" icon={faUser} />
     <Button className="mr-2" primary icon={faUser} />
     <Button className="mr-2" disabled icon={faUser} />
     <Button className="mr-2" primary disabled icon={faUser} />
-  </Stage>
+  </ExampleStage>
 );
 
 export const iconAndText = () => (
-  <Stage>
+  <ExampleStage>
     <Button className="mr-2" icon={faUser}>
       Button
     </Button>
@@ -49,11 +49,11 @@ export const iconAndText = () => (
     <Button className="mr-2" primary disabled icon={faUser}>
       Disabled Primary Button
     </Button>
-  </Stage>
+  </ExampleStage>
 );
 
 export const sizes = () => (
-  <Stage>
+  <ExampleStage>
     <Button className="mr-2" uiSize="xs">
       xs: X-small
     </Button>
@@ -67,7 +67,7 @@ export const sizes = () => (
     <Button className="mr-2" uiSize="xl">
       xl: X-large
     </Button>
-  </Stage>
+  </ExampleStage>
 );
 
 export const events = () => {
@@ -75,7 +75,7 @@ export const events = () => {
   const handleOnClick = React.useCallback(() => setCount(count + 1), [count]);
 
   return (
-    <Stage>
+    <ExampleStage>
       <Button className="mr-2" onClick={handleOnClick}>
         Button
       </Button>
@@ -85,6 +85,6 @@ export const events = () => {
       <p>
         click count: <span>{count}</span>
       </p>
-    </Stage>
+    </ExampleStage>
   );
 };

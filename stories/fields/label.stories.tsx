@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 
-import { Stage } from '../utils/Stage';
+import { ExampleStage } from '../utils/ExampleStage';
 import {
   Label,
   InputText,
@@ -21,14 +21,14 @@ export default {
 };
 
 export const standard = () => (
-  <Stage>
+  <ExampleStage>
     <Label>Label</Label>
     <Label disabled>Disable Label</Label>
-  </Stage>
+  </ExampleStage>
 );
 
 export const sizes = () => (
-  <Stage>
+  <ExampleStage>
     <div className="flex">
       <Label uiSize="xs">X-small</Label>
       <Label uiSize="sm">Small</Label>
@@ -36,13 +36,13 @@ export const sizes = () => (
       <Label uiSize="lg">Large</Label>
       <Label uiSize="xl">X-large</Label>
     </div>
-  </Stage>
+  </ExampleStage>
 );
 
 const items: SelectItem[] = ['foo', 'bar', { text: 'Baz', value: 'baz' }];
 
 export const withOthers = () => (
-  <Stage>
+  <ExampleStage>
     <div className="w-64">
       <Row className="mb-2">
         <Column packed>
@@ -93,5 +93,5 @@ export const withOthers = () => (
         </Column>
       </Row>
     </div>
-  </Stage>
+  </ExampleStage>
 );
