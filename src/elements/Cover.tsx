@@ -17,12 +17,7 @@ export const Cover: React.FC<CoverProps> = ({
   visible ? (
     <>
       <div className={classnames('fixed inset-0 z-99999', className)} />
-      <div
-        className={classnames(
-          'fixed inset-0 z-99999 flex flex-col justify-center items-center',
-          contentClassName,
-        )}
-      >
+      <div className={classnames('fixed z-99999', contentClassName)}>
         {children}
       </div>
     </>
@@ -32,6 +27,7 @@ Cover.displayName = 'Cover';
 
 Cover.defaultProps = {
   className: 'bg-black opacity-50',
-  contentClassName: 'text-white',
+  contentClassName:
+    'text-white inset-0 flex flex-col justify-center items-center',
   visible: false,
 };
