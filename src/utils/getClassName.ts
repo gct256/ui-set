@@ -109,9 +109,8 @@ export const getCheckboxClassName = ({
     userClassName,
     'ui-set select-none with-animation',
     'inline-flex justify-start items-center',
-    'h-8 py-1 pr-1 pl-1',
+    'h-8 py-1 pr-2 pl-2',
     'focus:outline-none',
-    `border-transparent border-2`,
     {
       'active:opacity-75': !disabled,
       [`hover:${colors.standard.hover.text}`]: !disabled,
