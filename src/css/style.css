@@ -18,15 +18,15 @@ button {
 /* focus animation */
 
 .with-animation {
-  animation-duration: 0.2s;
+  animation-duration: 0.15s;
   animation-iteration-count: 1;
   animation-fill-mode: both;
 }
 
 @keyframes focus-animation {
   0% {
-    box-shadow: inset 0 0 0 3px theme('colors.blue.500');
-    animation-timing-function: ease-out;
+    box-shadow: inset 0 0 0 3px color(theme('colors.blue.500') a(25%));
+    animation-timing-function: linear;
   }
   100% {
     box-shadow: inset 0 0 0 0 theme('colors.blue.500');
@@ -35,8 +35,8 @@ button {
 
 @keyframes focus-animation-white {
   0% {
-    box-shadow: inset 0 0 0 4px theme('colors.white');
-    animation-timing-function: ease-out;
+    box-shadow: inset 0 0 0 4px color(theme('colors.white') a(25%));
+    animation-timing-function: linear;
   }
   100% {
     box-shadow: inset 0 0 0 1px theme('colors.white');
@@ -45,8 +45,8 @@ button {
 
 @keyframes focus-animation-border {
   0% {
-    box-shadow: inset 0 0 0 5px theme('colors.blue.500');
-    animation-timing-function: ease-out;
+    box-shadow: inset 0 0 0 5px color(theme('colors.blue.500') a(25%));
+    animation-timing-function: linear;
   }
   100% {
     box-shadow: inset 0 0 0 2px theme('colors.blue.500');
