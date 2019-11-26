@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classnames from 'classnames';
 import { keyName } from 'w3c-keyname';
+// eslint-disable-next-line import/no-unresolved
 import { Key } from 'ts-key-enum';
 
 import { setScrollPosition } from '../../utils/setScrollPosition';

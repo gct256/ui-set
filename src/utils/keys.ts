@@ -1,4 +1,5 @@
 import { keyName } from 'w3c-keyname';
+// eslint-disable-next-line import/no-unresolved
 import { Key } from 'ts-key-enum';
 
 export const isSpaceKey = (
