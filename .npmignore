@@ -13,3 +13,5 @@ rollup.config.js
 tsconfig.json
 yarn-error.log
 yarn.lock
+postcss.config.js
+tailwind.config.js
