@@ -30,7 +30,7 @@ module.exports = () => ({ config, addUtilities, e }) => {
       update(components, e, key, color, '', alphas);
     } else if (typeof color === 'object') {
       Object.keys(color).forEach((v) => {
-        update(components, e, key, v, color[v], alphas);
+        update(components, e, key, color[v], v, alphas);
       });
     }
   });
