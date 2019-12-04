@@ -123,6 +123,7 @@ module.exports = {
     zIndex: ['focus', 'focus-within'],
   },
   plugins: [
+    require('./src/css/alpha')(),
     require('./src/css/invalid')(),
     require('./src/css/focus-parent')(),
     require('./src/css/focus-after')(),
