@@ -25,7 +25,9 @@ export const Menu: React.FC<MenuProps> = ({
   className,
   visible,
   data,
-  onSelect = () => {},
+  onSelect = () => {
+    //
+  },
 }: MenuProps) => {
   const [openPath, setOpenPath] = React.useState([] as string[]);
 

@@ -30,7 +30,9 @@ export const Menubar: React.FC<MenubarProps> = ({
   className,
   left = [],
   right = [],
-  onSelect = () => {},
+  onSelect = () => {
+    //
+  },
 }: MenubarProps) => {
   const [opened, setOpened] = React.useState(false);
   const [openPath, setOpenPath] = React.useState([] as string[]);
