@@ -55,7 +55,7 @@ module.exports = {
     alignSelf: [],
     appearance: [],
     backgroundAttachment: false,
-    backgroundColor: ['hover', 'focus', 'active', 'invalid'],
+    backgroundColor: ['hover', 'focus', 'active', 'invalid', 'focus-parent'],
     backgroundPosition: false,
     backgroundRepeat: false,
     backgroundSize: false,

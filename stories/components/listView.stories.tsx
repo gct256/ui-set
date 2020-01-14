@@ -28,7 +28,7 @@ const data = [
 const classNames = {
   item: {
     default: 'px-2 py-1',
-    withCursor: 'bg-blue-300',
+    withCursor: 'bg-gray-300 focus-parent:bg-blue-300',
     disabled: 'bg-gray-300',
   },
 };
