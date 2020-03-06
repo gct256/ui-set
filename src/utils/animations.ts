@@ -6,6 +6,8 @@ export const animations = {
   activeAnimationLight: 'active-animation-light',
 };
 
+const checkAttrName = 'data-ui-set-animation-removed';
+
 const getAnimationNames = (element: HTMLElement): string[] =>
   element.style.animationName
     .trim()
@@ -65,6 +67,7 @@ export const removeAllAnimations = (element: HTMLElement | null): void => {
 
   // eslint-disable-next-line no-param-reassign
   element.style.animationName = '';
+  element.setAttribute(checkAttrName, '1');
 };
 
 export const startAnimation = async (
@@ -79,6 +82,10 @@ export const startAnimation = async (
   }
 
   removeAnimation(element, animation);
+  element.removeAttribute(checkAttrName);
   await waitAnimationFrames(2);
-  addAnimation(element, animation);
+
+  if (!element.hasAttribute(checkAttrName)) {
+    addAnimation(element, animation);
+  }
 };
