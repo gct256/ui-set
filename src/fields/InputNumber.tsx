@@ -16,6 +16,8 @@ type InputNumberProps = SizedUiProps &
   FieldProps<number> & {
     /** If true, field has 1px border. */
     bordered?: boolean;
+    /** ClassName for element. */
+    elementClassName?: string;
 
     autocomplete?: string;
     max?: number;
@@ -41,6 +43,8 @@ export const InputNumber: React.FC<InputNumberProps> = ({
   uiSize,
 
   bordered,
+  elementClassName,
+
   autocomplete,
   max,
   maxLength,
@@ -105,6 +109,7 @@ export const InputNumber: React.FC<InputNumberProps> = ({
           noYPadding: false,
           forInput: true,
           otherClassName: 'text-right',
+          userClassName: elementClassName,
         })}
         disabled={disabled}
         autoComplete={autocomplete}

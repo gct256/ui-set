@@ -15,9 +15,10 @@ type InputTextAreaProps = SizedUiProps &
   FieldProps<string> & {
     /** If true, field has 1px border. */
     bordered?: boolean;
-
     /** Row count for element height. */
     row?: number;
+    /** ClassName for element. */
+    elementClassName?: string;
 
     autocomplete?: string;
     maxLength?: number;
@@ -37,6 +38,7 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
 
   bordered,
   row,
+  elementClassName,
 
   autocomplete,
   maxLength,
@@ -94,6 +96,7 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
           noYPadding: false,
           forInput: true,
           otherClassName: 'h-full resize-none leading-normal',
+          userClassName: elementClassName,
         })}
         autoComplete={autocomplete}
         maxLength={maxLength}

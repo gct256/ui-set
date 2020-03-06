@@ -184,3 +184,23 @@ export const event = () => {
     </ExampleStage>
   );
 };
+
+export const elementClassName = () => {
+  const [value, setValue] = useState('value', 0);
+  const handleOnChange = React.useCallback(
+    (newValue: number) => {
+      setValue(newValue);
+    },
+    [setValue],
+  );
+
+  return (
+    <ExampleStage>
+      <InputNumber
+        elementClassName="focus:bg-blue-800 focus:text-white"
+        value={value}
+        onChange={handleOnChange}
+      />
+    </ExampleStage>
+  );
+};

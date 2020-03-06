@@ -18,6 +18,8 @@ type InputTextProps = SizedUiProps &
     bordered?: boolean;
     /** If true, use type=password. */
     password?: boolean;
+    /** ClassName for element. */
+    elementClassName?: string;
 
     autocomplete?: string;
     maxLength?: number;
@@ -42,6 +44,8 @@ export const InputText: React.FC<InputTextProps> = ({
 
   bordered,
   password,
+  elementClassName,
+
   autocomplete,
   maxLength,
   minLength,
@@ -103,6 +107,7 @@ export const InputText: React.FC<InputTextProps> = ({
           fixedHeight: true,
           noYPadding: false,
           forInput: true,
+          userClassName: elementClassName,
         })}
         disabled={disabled}
         autoComplete={autocomplete}
