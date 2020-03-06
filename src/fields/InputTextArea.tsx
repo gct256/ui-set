@@ -10,6 +10,7 @@ import {
   animations,
   removeAllAnimations,
 } from '../utils/animations';
+import { handleInputKeyDown } from '../utils/handleInputKeyDown';
 
 type InputTextAreaProps = SizedUiProps &
   FieldProps<string> & {
@@ -27,6 +28,13 @@ type InputTextAreaProps = SizedUiProps &
     placeholder?: string;
     readOnly?: boolean;
     required?: boolean;
+
+    /** Event handler on Key down. */
+    onKeyDown?(
+      key: string,
+      value: string,
+      ev: React.KeyboardEvent<HTMLTextAreaElement>,
+    ): void;
   };
 
 /** Input field for long text. */
@@ -49,6 +57,7 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
   required,
 
   onChange,
+  onKeyDown,
 }: InputTextAreaProps) => {
   const handleOnFocus = React.useCallback(
     (ev) => {
@@ -68,6 +77,16 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
   const handleOnChange = React.useCallback(
     ({ currentTarget }) => onChange && onChange(currentTarget.value),
     [onChange],
+  );
+
+  const handleOnKeyDown = React.useCallback(
+    (ev: React.KeyboardEvent<HTMLTextAreaElement>) =>
+      handleInputKeyDown<string, HTMLTextAreaElement>(
+        ev,
+        (element: HTMLTextAreaElement) => element.value,
+        onKeyDown,
+      ),
+    [onKeyDown],
   );
 
   const style: React.CSSProperties = {};
@@ -108,6 +127,7 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         onChange={handleOnChange}
+        onKeyDown={handleOnKeyDown}
       />
     </span>
   );

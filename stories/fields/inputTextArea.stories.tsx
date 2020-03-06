@@ -115,6 +115,7 @@ export const sizes = () => (
 export const event = () => {
   const [count, setCount] = useState('count', 0);
   const [value, setValue] = useState('value', 'lorem');
+  const [lastKey, setLastKey] = useState('lastKey', '');
   const handleOnChange = React.useCallback(
     (newValue: string) => {
       setCount(count + 1);
@@ -122,29 +123,51 @@ export const event = () => {
     },
     [count],
   );
+  const handleOnKeyDown = React.useCallback(
+    (key: string) => {
+      setLastKey(key);
+    },
+    [setLastKey],
+  );
 
   return (
     <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
-          <InputTextArea value={value} onChange={handleOnChange} />
-        </div>
-        <div className="mb-2">
-          <InputTextArea value={value} onChange={handleOnChange} disabled />
-        </div>
-        <div className="mb-2">
-          <InputTextArea value={value} onChange={handleOnChange} readOnly />
+          <InputTextArea
+            value={value}
+            onChange={handleOnChange}
+            onKeyDown={handleOnKeyDown}
+          />
         </div>
         <div className="mb-2">
           <InputTextArea
             value={value}
             onChange={handleOnChange}
+            onKeyDown={handleOnKeyDown}
+            disabled
+          />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            value={value}
+            onChange={handleOnChange}
+            onKeyDown={handleOnKeyDown}
+            readOnly
+          />
+        </div>
+        <div className="mb-2">
+          <InputTextArea
+            value={value}
+            onChange={handleOnChange}
+            onKeyDown={handleOnKeyDown}
             readOnly
             disabled
           />
         </div>
       </div>
       <p>Change: {count}</p>
+      <p>Last Key down: {lastKey}</p>
     </ExampleStage>
   );
 };

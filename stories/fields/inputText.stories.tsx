@@ -111,6 +111,7 @@ export const sizes = () => (
 export const event = () => {
   const [changeCount, setChangeCount] = useState('changeCount', 0);
   const [enterCount, setEnterCount] = useState('enterCount', 0);
+  const [lastKey, setLastKey] = useState('lastKey', '');
   const [value, setValue] = useState('value', 'lorem');
   const handleOnChange = React.useCallback(
     (newValue: string) => {
@@ -122,6 +123,12 @@ export const event = () => {
   const handleOnEnterKey = React.useCallback(() => {
     setEnterCount(enterCount + 1);
   }, [enterCount]);
+  const handleOnKeyDown = React.useCallback(
+    (key: string) => {
+      setLastKey(key);
+    },
+    [setLastKey],
+  );
 
   return (
     <ExampleStage>
@@ -131,6 +138,7 @@ export const event = () => {
             value={value}
             onChange={handleOnChange}
             onEnterKey={handleOnEnterKey}
+            onKeyDown={handleOnKeyDown}
           />
         </div>
         <div className="mb-2">
@@ -138,6 +146,7 @@ export const event = () => {
             value={value}
             onChange={handleOnChange}
             onEnterKey={handleOnEnterKey}
+            onKeyDown={handleOnKeyDown}
             disabled
           />
         </div>
@@ -146,6 +155,7 @@ export const event = () => {
             value={value}
             onChange={handleOnChange}
             onEnterKey={handleOnEnterKey}
+            onKeyDown={handleOnKeyDown}
             readOnly
           />
         </div>
@@ -154,6 +164,7 @@ export const event = () => {
             value={value}
             onChange={handleOnChange}
             onEnterKey={handleOnEnterKey}
+            onKeyDown={handleOnKeyDown}
             readOnly
             disabled
           />
@@ -161,6 +172,7 @@ export const event = () => {
       </div>
       <p>Change: {changeCount}</p>
       <p>Enter Key: {enterCount}</p>
+      <p>Last Key down: {lastKey}</p>
     </ExampleStage>
   );
 };

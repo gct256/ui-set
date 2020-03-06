@@ -5,6 +5,7 @@ import {
   getFieldWrapClassName,
   getFieldClassName,
 } from '../utils/getClassName';
+import { handleInputKeyDown } from '../utils/handleInputKeyDown';
 import { handleInputKeyPress } from '../utils/handleInputKeyPress';
 import {
   startAnimation,
@@ -33,6 +34,12 @@ type InputTextProps = SizedUiProps &
 
     /** Event handler on Enter key pressed. */
     onEnterKey?(value: string): void;
+    /** Event handler on Key down. */
+    onKeyDown?(
+      key: string,
+      value: string,
+      ev: React.KeyboardEvent<HTMLInputElement>,
+    ): void;
   };
 
 /** Input file for text. */
@@ -58,6 +65,7 @@ export const InputText: React.FC<InputTextProps> = ({
 
   onChange,
   onEnterKey,
+  onKeyDown,
 }: InputTextProps) => {
   const handleOnFocus = React.useCallback(
     (ev) => {
@@ -80,6 +88,16 @@ export const InputText: React.FC<InputTextProps> = ({
   );
 
   const handleOnKeyDown = React.useCallback(
+    (ev: React.KeyboardEvent<HTMLInputElement>) =>
+      handleInputKeyDown<string, HTMLInputElement>(
+        ev,
+        (element: HTMLInputElement) => element.value,
+        onKeyDown,
+      ),
+    [onKeyDown],
+  );
+
+  const handleOnKeyPress = React.useCallback(
     (ev: React.KeyboardEvent<HTMLInputElement>) =>
       handleInputKeyPress<string>(
         ev,
@@ -122,7 +140,8 @@ export const InputText: React.FC<InputTextProps> = ({
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         onChange={handleOnChange}
-        onKeyPress={handleOnKeyDown}
+        onKeyDown={handleOnKeyDown}
+        onKeyPress={handleOnKeyPress}
       />
     </span>
   );
