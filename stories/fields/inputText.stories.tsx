@@ -113,6 +113,9 @@ export const event = () => {
   const [enterCount, setEnterCount] = useState('enterCount', 0);
   const [lastKey, setLastKey] = useState('lastKey', '');
   const [value, setValue] = useState('value', 'lorem');
+  const [focus, setFocus] = useState('focus', 0);
+  const [blur, setBlur] = useState('blur', 0);
+
   const handleOnChange = React.useCallback(
     (newValue: string) => {
       setChangeCount(changeCount + 1);
@@ -129,6 +132,12 @@ export const event = () => {
     },
     [setLastKey],
   );
+  const handleOnFocus = React.useCallback(() => {
+    setFocus(focus + 1);
+  }, [setFocus]);
+  const handleOnBlur = React.useCallback(() => {
+    setBlur(blur + 1);
+  }, [setFocus]);
 
   return (
     <ExampleStage>
@@ -139,6 +148,8 @@ export const event = () => {
             onChange={handleOnChange}
             onEnterKey={handleOnEnterKey}
             onKeyDown={handleOnKeyDown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
           />
         </div>
         <div className="mb-2">
@@ -147,6 +158,8 @@ export const event = () => {
             onChange={handleOnChange}
             onEnterKey={handleOnEnterKey}
             onKeyDown={handleOnKeyDown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             disabled
           />
         </div>
@@ -156,6 +169,8 @@ export const event = () => {
             onChange={handleOnChange}
             onEnterKey={handleOnEnterKey}
             onKeyDown={handleOnKeyDown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             readOnly
           />
         </div>
@@ -165,6 +180,8 @@ export const event = () => {
             onChange={handleOnChange}
             onEnterKey={handleOnEnterKey}
             onKeyDown={handleOnKeyDown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             readOnly
             disabled
           />
@@ -173,6 +190,9 @@ export const event = () => {
       <p>Change: {changeCount}</p>
       <p>Enter Key: {enterCount}</p>
       <p>Last Key down: {lastKey}</p>
+      <p>
+        Focus: {focus} / {blur}
+      </p>
     </ExampleStage>
   );
 };

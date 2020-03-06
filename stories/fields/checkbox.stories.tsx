@@ -47,6 +47,8 @@ export const withoutLabel = () => {
 export const event = () => {
   const [count, setCount] = useState('count', 0);
   const [checked, setChecked] = useState('checked', false);
+  const [focus, setFocus] = useState('focus', 0);
+  const [blur, setBlur] = useState('blur', 0);
 
   const handleOnChange = React.useCallback(
     (newChecked: boolean) => {
@@ -55,17 +57,37 @@ export const event = () => {
     },
     [count],
   );
+  const handleOnFocus = React.useCallback(() => {
+    setFocus(focus + 1);
+  }, [setFocus]);
+  const handleOnBlur = React.useCallback(() => {
+    setBlur(blur + 1);
+  }, [setFocus]);
 
   return (
     <ExampleStage>
       <p>
-        <Checkbox checked={checked} onChange={handleOnChange} />
+        <Checkbox
+          checked={checked}
+          onChange={handleOnChange}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+        />
       </p>
       <p>
-        <Checkbox checked={checked} onChange={handleOnChange} disabled />
+        <Checkbox
+          checked={checked}
+          onChange={handleOnChange}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          disabled
+        />
       </p>
       <p>Value: {checked ? 'ON' : 'OFF'}</p>
       <p>Change: {count}</p>
+      <p>
+        Focus: {focus} / {blur}
+      </p>
     </ExampleStage>
   );
 };

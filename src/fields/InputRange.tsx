@@ -43,14 +43,25 @@ export const InputRange: React.FC<InputRangeProps> = ({
   step,
 
   onChange,
+  onFocus,
+  onBlur,
 }: InputRangeProps) => {
-  const handleOnFocus = React.useCallback((ev) => {
-    startAnimation(ev.currentTarget, animations.focusAnimation);
-  }, []);
+  const handleOnFocus = React.useCallback(
+    (ev: React.FocusEvent<HTMLInputElement>) => {
+      startAnimation(ev.currentTarget, animations.focusAnimation);
+
+      if (onFocus) onFocus();
+    },
+    [onFocus],
+  );
 
   const handleOnBlur = React.useCallback(
-    (ev) => removeAllAnimations(ev.currentTarget),
-    [],
+    (ev: React.FocusEvent<HTMLInputElement>) => {
+      removeAllAnimations(ev.currentTarget);
+
+      if (onBlur) onBlur();
+    },
+    [onBlur],
   );
 
   const handleOnChange = React.useCallback(

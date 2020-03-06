@@ -91,6 +91,16 @@ type ListViewProps = {
    * @param cursor New cursor position.
    */
   onUpdateCursor?: (cursor: number) => void;
+
+  /**
+   * Event handler on focused.
+   */
+  onFocus?(): void;
+
+  /**
+   * Event handler on focus lost.
+   */
+  onBlur?(): void;
 };
 
 /** Keyboard navigatable list view component. */
@@ -101,6 +111,8 @@ export const ListView: React.FC<ListViewProps> = ({
   classNames,
   onKeyDown,
   onUpdateCursor,
+  onFocus,
+  onBlur,
   disabled,
 }: ListViewProps) => {
   const [cursor, setCursor] = React.useState(
@@ -162,11 +174,15 @@ export const ListView: React.FC<ListViewProps> = ({
 
   const handleOnFocus = React.useCallback(() => {
     startAnimation(focusFrameRef.current, animations.focusAnimationBorder);
-  }, []);
+
+    if (onFocus) onFocus();
+  }, [onFocus]);
 
   const handleOnBlur = React.useCallback(() => {
     removeAllAnimations(focusFrameRef.current);
-  }, []);
+
+    if (onBlur) onBlur();
+  }, [onBlur]);
 
   const handleOnClick = React.useCallback(
     (ev: React.MouseEvent<HTMLDivElement>) => {

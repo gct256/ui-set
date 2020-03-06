@@ -38,22 +38,39 @@ const Radio: React.FC<RadioProps> = ({
   name,
   vertical,
   disabled,
+
   onChange,
+  onFocus,
+  onBlur,
 }: RadioProps) => {
   const [hover, setHover] = React.useState(false);
   const handleOnEnter = React.useCallback(() => setHover(true), []);
   const handleOnLeave = React.useCallback(() => setHover(false), []);
 
-  const handleOnFocus = React.useCallback((ev) => {
-    startAnimation(
-      ev.currentTarget.parentNode.parentNode,
-      animations.focusAnimationBorder,
-    );
-  }, []);
+  const handleOnFocus = React.useCallback(
+    (ev: React.FocusEvent<HTMLInputElement>) => {
+      if (ev.currentTarget.parentNode) {
+        startAnimation(
+          ev.currentTarget.parentNode.parentNode,
+          animations.focusAnimationBorder,
+        );
+      }
 
-  const handleOnBlur = React.useCallback((ev) => {
-    removeAllAnimations(ev.currentTarget.parentNode.parentNode);
-  }, []);
+      if (onFocus) onFocus();
+    },
+    [onFocus],
+  );
+
+  const handleOnBlur = React.useCallback(
+    (ev: React.FocusEvent<HTMLInputElement>) => {
+      if (ev.currentTarget.parentNode) {
+        removeAllAnimations(ev.currentTarget.parentNode.parentNode);
+      }
+
+      if (onBlur) onBlur();
+    },
+    [onBlur],
+  );
 
   const handleOnChange = React.useCallback(
     () => onChange && onChange(item.value),

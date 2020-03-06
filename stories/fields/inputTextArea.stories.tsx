@@ -116,6 +116,9 @@ export const event = () => {
   const [count, setCount] = useState('count', 0);
   const [value, setValue] = useState('value', 'lorem');
   const [lastKey, setLastKey] = useState('lastKey', '');
+  const [focus, setFocus] = useState('focus', 0);
+  const [blur, setBlur] = useState('blur', 0);
+
   const handleOnChange = React.useCallback(
     (newValue: string) => {
       setCount(count + 1);
@@ -129,6 +132,12 @@ export const event = () => {
     },
     [setLastKey],
   );
+  const handleOnFocus = React.useCallback(() => {
+    setFocus(focus + 1);
+  }, [setFocus]);
+  const handleOnBlur = React.useCallback(() => {
+    setBlur(blur + 1);
+  }, [setFocus]);
 
   return (
     <ExampleStage>
@@ -138,6 +147,8 @@ export const event = () => {
             value={value}
             onChange={handleOnChange}
             onKeyDown={handleOnKeyDown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
           />
         </div>
         <div className="mb-2">
@@ -145,6 +156,8 @@ export const event = () => {
             value={value}
             onChange={handleOnChange}
             onKeyDown={handleOnKeyDown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             disabled
           />
         </div>
@@ -153,6 +166,8 @@ export const event = () => {
             value={value}
             onChange={handleOnChange}
             onKeyDown={handleOnKeyDown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             readOnly
           />
         </div>
@@ -161,6 +176,8 @@ export const event = () => {
             value={value}
             onChange={handleOnChange}
             onKeyDown={handleOnKeyDown}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             readOnly
             disabled
           />
@@ -168,6 +185,9 @@ export const event = () => {
       </div>
       <p>Change: {count}</p>
       <p>Last Key down: {lastKey}</p>
+      <p>
+        Focus: {focus} / {blur}
+      </p>
     </ExampleStage>
   );
 };

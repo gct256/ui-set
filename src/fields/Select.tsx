@@ -45,21 +45,30 @@ export const Select: React.FC<SelectProps> = ({
   withEmptyItem,
   className,
   disabled,
+
   onChange,
+  onFocus,
+  onBlur,
 }: SelectProps) => {
   const handleOnFocus = React.useCallback(
-    (ev) => {
+    (ev: React.FocusEvent<HTMLSelectElement>) => {
       startAnimation(
         ev.currentTarget,
         bordered ? animations.focusAnimation : animations.focusAnimationBorder,
       );
+
+      if (onFocus) onFocus();
     },
-    [bordered],
+    [bordered, onFocus],
   );
 
   const handleOnBlur = React.useCallback(
-    (ev) => removeAllAnimations(ev.currentTarget),
-    [],
+    (ev: React.FocusEvent<HTMLSelectElement>) => {
+      removeAllAnimations(ev.currentTarget);
+
+      if (onBlur) onBlur();
+    },
+    [onBlur],
   );
 
   const handleOnChange = React.useCallback(

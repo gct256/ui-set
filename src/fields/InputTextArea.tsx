@@ -57,21 +57,29 @@ export const InputTextArea: React.FC<InputTextAreaProps> = ({
   required,
 
   onChange,
+  onFocus,
+  onBlur,
   onKeyDown,
 }: InputTextAreaProps) => {
   const handleOnFocus = React.useCallback(
-    (ev) => {
+    (ev: React.FocusEvent<HTMLTextAreaElement>) => {
       startAnimation(
         ev.currentTarget,
         bordered ? animations.focusAnimation : animations.focusAnimationBorder,
       );
+
+      if (onFocus) onFocus();
     },
-    [bordered],
+    [bordered, onFocus],
   );
 
   const handleOnBlur = React.useCallback(
-    (ev) => removeAllAnimations(ev.currentTarget),
-    [],
+    (ev: React.FocusEvent<HTMLTextAreaElement>) => {
+      removeAllAnimations(ev.currentTarget);
+
+      if (onBlur) onBlur();
+    },
+    [onBlur],
   );
 
   const handleOnChange = React.useCallback(

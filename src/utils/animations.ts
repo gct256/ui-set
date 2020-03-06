@@ -62,8 +62,10 @@ export const removeAnimation = (
   element.style.animationName = names.join(',');
 };
 
-export const removeAllAnimations = (element: HTMLElement | null): void => {
-  if (element === null) return;
+export const removeAllAnimations = (
+  element: (Node & ParentNode) | null,
+): void => {
+  if (element === null || !(element instanceof HTMLElement)) return;
 
   // eslint-disable-next-line no-param-reassign
   element.style.animationName = '';
@@ -71,11 +73,11 @@ export const removeAllAnimations = (element: HTMLElement | null): void => {
 };
 
 export const startAnimation = async (
-  element: HTMLElement | null,
+  element: (Node & ParentNode) | null,
   animation: string,
   avoidOverwrite = false,
 ): Promise<void> => {
-  if (element === null) return;
+  if (element === null || !(element instanceof HTMLElement)) return;
 
   if (avoidOverwrite) {
     if (getAnimationNames(element).indexOf(animation) >= 0) return;

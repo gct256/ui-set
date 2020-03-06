@@ -64,22 +64,30 @@ export const InputText: React.FC<InputTextProps> = ({
   size,
 
   onChange,
+  onFocus,
+  onBlur,
   onEnterKey,
   onKeyDown,
 }: InputTextProps) => {
   const handleOnFocus = React.useCallback(
-    (ev) => {
+    (ev: React.FocusEvent<HTMLInputElement>) => {
       startAnimation(
         ev.currentTarget,
         bordered ? animations.focusAnimation : animations.focusAnimationBorder,
       );
+
+      if (onFocus) onFocus();
     },
-    [bordered],
+    [bordered, onFocus],
   );
 
   const handleOnBlur = React.useCallback(
-    (ev) => removeAllAnimations(ev.currentTarget),
-    [],
+    (ev: React.FocusEvent<HTMLInputElement>) => {
+      removeAllAnimations(ev.currentTarget);
+
+      if (onBlur) onBlur();
+    },
+    [onBlur],
   );
 
   const handleOnChange = React.useCallback(

@@ -100,6 +100,9 @@ export const sizes = () => (
 export const events = () => {
   const [count, setCount] = useState('count', 0);
   const [value, setValue] = useState('value', 'baz');
+  const [focus, setFocus] = useState('focus', 0);
+  const [blur, setBlur] = useState('blur', 0);
+
   const handleOnChange = React.useCallback(
     (newValue: string) => {
       setCount(count + 1);
@@ -107,23 +110,40 @@ export const events = () => {
     },
     [count],
   );
+  const handleOnFocus = React.useCallback(() => {
+    setFocus(focus + 1);
+  }, [setFocus]);
+  const handleOnBlur = React.useCallback(() => {
+    setBlur(blur + 1);
+  }, [setFocus]);
 
   return (
     <ExampleStage>
       <div className="w-64">
         <div className="mb-2">
-          <Select value={value} onChange={handleOnChange} items={items} />
+          <Select
+            value={value}
+            onChange={handleOnChange}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+            items={items}
+          />
         </div>
         <div className="mb-2">
           <Select
             value={value}
             onChange={handleOnChange}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
             items={items}
             disabled
           />
         </div>
       </div>
       <p>Change: {count}</p>
+      <p>
+        Focus: {focus} / {blur}
+      </p>
     </ExampleStage>
   );
 };

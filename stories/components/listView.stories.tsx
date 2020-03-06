@@ -76,12 +76,22 @@ export const event = () => {
   const [items, setItems] = useState('items', data);
   const [key, setKey] = useState('key', '');
   const [cursor, setCursor] = useState('cursor', 5);
+  const [focus, setFocus] = useState('focus', 0);
+  const [blur, setBlur] = useState('blur', 0);
+
   const handleOnUpdateCursor = React.useCallback((newCursor: number) => {
     setCursor(newCursor);
   }, []);
   const handleOnKeyDown = React.useCallback((ev) => {
     setKey(ev.key);
   }, []);
+  const handleOnFocus = React.useCallback(() => {
+    setFocus(focus + 1);
+  }, [setFocus]);
+  const handleOnBlur = React.useCallback(() => {
+    setBlur(blur + 1);
+  }, [setFocus]);
+
   const handleDeleteRow = (): void => {
     setItems(items.slice(0, -1));
   };
@@ -101,6 +111,8 @@ export const event = () => {
               items={listItems}
               onUpdateCursor={handleOnUpdateCursor}
               onKeyDown={handleOnKeyDown}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlur}
             />
           </div>
         </Column>
@@ -112,6 +124,8 @@ export const event = () => {
               items={listItems}
               onUpdateCursor={handleOnUpdateCursor}
               onKeyDown={handleOnKeyDown}
+              onFocus={handleOnFocus}
+              onBlur={handleOnBlur}
               disabled
             />
           </div>
@@ -125,6 +139,9 @@ export const event = () => {
       </Row>
       <p>Update cursor: {cursor}</p>
       <p>KeyDown: `{key}`</p>
+      <p>
+        Focus: {focus} / {blur}
+      </p>
     </ExampleStage>
   );
 };

@@ -29,4 +29,14 @@ export type FieldProps<T> = {
    * @param value value.
    */
   onChange?(value: T): void;
+
+  /**
+   * Event handler on focused.
+   */
+  onFocus?(): void;
+
+  /**
+   * Event handler on focus lost.
+   */
+  onBlur?(): void;
 };

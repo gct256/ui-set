@@ -26,6 +26,16 @@ type CheckboxProps = UiProps & {
    * @param checked checked state.
    */
   onChange?(checked: boolean): void;
+
+  /**
+   * Event handler on focused.
+   */
+  onFocus?(): void;
+
+  /**
+   * Event handler on focus lost.
+   */
+  onBlur?(): void;
 };
 
 /** Checkbox field. */

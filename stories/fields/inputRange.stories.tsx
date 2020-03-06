@@ -46,6 +46,9 @@ export const minMaxAndStep = () => {
 export const event = () => {
   const [count, setCount] = useState('count', 0);
   const [value, setValue] = useState('value', 0);
+  const [focus, setFocus] = useState('focus', 0);
+  const [blur, setBlur] = useState('blur', 0);
+
   const handleOnChange = React.useCallback(
     (newValue: number) => {
       setCount(count + 1);
@@ -53,17 +56,50 @@ export const event = () => {
     },
     [count],
   );
+  const handleOnFocus = React.useCallback(() => {
+    setFocus(focus + 1);
+  }, [setFocus]);
+  const handleOnBlur = React.useCallback(() => {
+    setBlur(blur + 1);
+  }, [setFocus]);
 
   return (
     <ExampleStage>
       <div className="w-64">
-        <InputRange value={value} onChange={handleOnChange} />
-        <InputRange value={value} onChange={handleOnChange} disabled />
-        <InputRange value={value} onChange={handleOnChange} readOnly />
-        <InputRange value={value} onChange={handleOnChange} readOnly disabled />
+        <InputRange
+          value={value}
+          onChange={handleOnChange}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+        />
+        <InputRange
+          value={value}
+          onChange={handleOnChange}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          disabled
+        />
+        <InputRange
+          value={value}
+          onChange={handleOnChange}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          readOnly
+        />
+        <InputRange
+          value={value}
+          onChange={handleOnChange}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          readOnly
+          disabled
+        />
       </div>
       <p>Value: {value}</p>
       <p>Change: {count}</p>
+      <p>
+        Focus: {focus} / {blur}
+      </p>
     </ExampleStage>
   );
 };
