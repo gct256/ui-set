@@ -12,7 +12,7 @@ import {
 } from '../utils/animations';
 import { handleInputKeyDown } from '../utils/handleInputKeyDown';
 
-type InputTextAreaProps = SizedUiProps &
+type InputTextAreaProps = SizedUiProps<HTMLTextAreaElement> &
   FieldProps<string> & {
     /** If true, field has 1px border. */
     bordered?: boolean;
@@ -38,108 +38,116 @@ type InputTextAreaProps = SizedUiProps &
   };
 
 /** Input field for long text. */
-export const InputTextArea: React.FC<InputTextAreaProps> = ({
-  value,
-  className,
-  disabled,
-  uiSize,
+export const InputTextArea: React.FC<InputTextAreaProps> = React.forwardRef(
+  (
+    {
+      value,
+      className,
+      disabled,
+      uiSize,
 
-  bordered,
-  row,
-  elementClassName,
+      bordered,
+      row,
+      elementClassName,
 
-  autocomplete,
-  maxLength,
-  minLength,
-  name,
-  placeholder,
-  readOnly,
-  required,
+      autocomplete,
+      maxLength,
+      minLength,
+      name,
+      placeholder,
+      readOnly,
+      required,
 
-  onChange,
-  onFocus,
-  onBlur,
-  onKeyDown,
-}: InputTextAreaProps) => {
-  const handleOnFocus = React.useCallback(
-    (ev: React.FocusEvent<HTMLTextAreaElement>) => {
-      startAnimation(
-        ev.currentTarget,
-        bordered ? animations.focusAnimation : animations.focusAnimationBorder,
-      );
+      onChange,
+      onFocus,
+      onBlur,
+      onKeyDown,
+    }: InputTextAreaProps,
+    ref: React.Ref<HTMLTextAreaElement>,
+  ) => {
+    const handleOnFocus = React.useCallback(
+      (ev: React.FocusEvent<HTMLTextAreaElement>) => {
+        startAnimation(
+          ev.currentTarget,
+          bordered
+            ? animations.focusAnimation
+            : animations.focusAnimationBorder,
+        );
 
-      if (onFocus) onFocus();
-    },
-    [bordered, onFocus],
-  );
+        if (onFocus) onFocus();
+      },
+      [bordered, onFocus],
+    );
 
-  const handleOnBlur = React.useCallback(
-    (ev: React.FocusEvent<HTMLTextAreaElement>) => {
-      removeAllAnimations(ev.currentTarget);
+    const handleOnBlur = React.useCallback(
+      (ev: React.FocusEvent<HTMLTextAreaElement>) => {
+        removeAllAnimations(ev.currentTarget);
 
-      if (onBlur) onBlur();
-    },
-    [onBlur],
-  );
+        if (onBlur) onBlur();
+      },
+      [onBlur],
+    );
 
-  const handleOnChange = React.useCallback(
-    ({ currentTarget }) => onChange && onChange(currentTarget.value),
-    [onChange],
-  );
+    const handleOnChange = React.useCallback(
+      ({ currentTarget }) => onChange && onChange(currentTarget.value),
+      [onChange],
+    );
 
-  const handleOnKeyDown = React.useCallback(
-    (ev: React.KeyboardEvent<HTMLTextAreaElement>) =>
-      handleInputKeyDown<string, HTMLTextAreaElement>(
-        ev,
-        (element: HTMLTextAreaElement) => element.value,
-        onKeyDown,
-      ),
-    [onKeyDown],
-  );
+    const handleOnKeyDown = React.useCallback(
+      (ev: React.KeyboardEvent<HTMLTextAreaElement>) =>
+        handleInputKeyDown<string, HTMLTextAreaElement>(
+          ev,
+          (element: HTMLTextAreaElement) => element.value,
+          onKeyDown,
+        ),
+      [onKeyDown],
+    );
 
-  const style: React.CSSProperties = {};
+    const style: React.CSSProperties = {};
 
-  if (typeof row === 'number' && Number.isFinite(row) && row > 0) {
-    style.height = `${row * 1.5}em`; // leading-normal === line-height: 1.5
-  }
+    if (typeof row === 'number' && Number.isFinite(row) && row > 0) {
+      style.height = `${row * 1.5}em`; // leading-normal === line-height: 1.5
+    }
 
-  return (
-    <span
-      className={getFieldWrapClassName({
-        userClassName: className,
-        uiSize,
-        bordered,
-        disabled,
-        fixedHeight: false,
-      })}
-    >
-      <textarea
-        value={value}
-        disabled={disabled}
-        style={style}
-        className={getFieldClassName({
+    return (
+      <span
+        className={getFieldWrapClassName({
+          userClassName: className,
           uiSize,
+          bordered,
+          disabled,
           fixedHeight: false,
-          noYPadding: false,
-          forInput: true,
-          otherClassName: 'h-full resize-none leading-normal',
-          userClassName: elementClassName,
         })}
-        autoComplete={autocomplete}
-        maxLength={maxLength}
-        minLength={minLength}
-        name={name}
-        placeholder={placeholder}
-        readOnly={readOnly}
-        required={required}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onChange={handleOnChange}
-        onKeyDown={handleOnKeyDown}
-      />
-    </span>
-  );
-};
+      >
+        <textarea
+          value={value}
+          disabled={disabled}
+          style={style}
+          className={getFieldClassName({
+            uiSize,
+            fixedHeight: false,
+            noYPadding: false,
+            forInput: true,
+            otherClassName: 'h-full resize-none leading-normal',
+            userClassName: elementClassName,
+          })}
+          ref={ref}
+          autoComplete={autocomplete}
+          maxLength={maxLength}
+          minLength={minLength}
+          name={name}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          required={required}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+          onKeyDown={handleOnKeyDown}
+        />
+      </span>
+    );
+  },
+);
 
 InputTextArea.displayName = 'InputTextArea';
 

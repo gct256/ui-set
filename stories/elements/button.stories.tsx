@@ -2,6 +2,7 @@ import * as React from 'react';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
+import { action } from '@storybook/addon-actions';
 
 import { Button } from '../../src';
 import { ExampleStage } from '../utils/ExampleStage';
@@ -88,3 +89,23 @@ export const events = () => {
     </ExampleStage>
   );
 };
+
+const RefTest: React.FC = () => {
+  const ref = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    action(`ref: ${ref.current}`)();
+
+    if (ref.current) {
+      ref.current.style.boxShadow = '0 0 10px #f00';
+    }
+  });
+
+  return <Button ref={ref}>Button</Button>;
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
+  </ExampleStage>
+);

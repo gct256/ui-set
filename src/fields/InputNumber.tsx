@@ -12,7 +12,7 @@ import {
   removeAllAnimations,
 } from '../utils/animations';
 
-type InputNumberProps = SizedUiProps &
+type InputNumberProps = SizedUiProps<HTMLInputElement> &
   FieldProps<number> & {
     /** If true, field has 1px border. */
     bordered?: boolean;
@@ -36,109 +36,117 @@ type InputNumberProps = SizedUiProps &
   };
 
 /** Input field for number. */
-export const InputNumber: React.FC<InputNumberProps> = ({
-  value,
-  className,
-  disabled,
-  uiSize,
+export const InputNumber: React.FC<InputNumberProps> = React.forwardRef(
+  (
+    {
+      value,
+      className,
+      disabled,
+      uiSize,
 
-  bordered,
-  elementClassName,
+      bordered,
+      elementClassName,
 
-  autocomplete,
-  max,
-  maxLength,
-  min,
-  minLength,
-  name,
-  placeholder,
-  readOnly,
-  required,
-  size,
-  step,
+      autocomplete,
+      max,
+      maxLength,
+      min,
+      minLength,
+      name,
+      placeholder,
+      readOnly,
+      required,
+      size,
+      step,
 
-  onChange,
-  onFocus,
-  onBlur,
-  onEnterKey,
-}: InputNumberProps) => {
-  const handleOnFocus = React.useCallback(
-    (ev: React.FocusEvent<HTMLInputElement>) => {
-      startAnimation(
-        ev.currentTarget,
-        bordered ? animations.focusAnimation : animations.focusAnimationBorder,
-      );
+      onChange,
+      onFocus,
+      onBlur,
+      onEnterKey,
+    }: InputNumberProps,
+    ref: React.Ref<HTMLInputElement>,
+  ) => {
+    const handleOnFocus = React.useCallback(
+      (ev: React.FocusEvent<HTMLInputElement>) => {
+        startAnimation(
+          ev.currentTarget,
+          bordered
+            ? animations.focusAnimation
+            : animations.focusAnimationBorder,
+        );
 
-      if (onFocus) onFocus();
-    },
-    [bordered, onFocus],
-  );
+        if (onFocus) onFocus();
+      },
+      [bordered, onFocus],
+    );
 
-  const handleOnBlur = React.useCallback(
-    (ev: React.FocusEvent<HTMLInputElement>) => {
-      removeAllAnimations(ev.currentTarget);
+    const handleOnBlur = React.useCallback(
+      (ev: React.FocusEvent<HTMLInputElement>) => {
+        removeAllAnimations(ev.currentTarget);
 
-      if (onBlur) onBlur();
-    },
-    [onBlur],
-  );
+        if (onBlur) onBlur();
+      },
+      [onBlur],
+    );
 
-  const handleOnChange = React.useCallback(
-    ({ currentTarget }) => onChange && onChange(currentTarget.valueAsNumber),
-    [onChange],
-  );
+    const handleOnChange = React.useCallback(
+      ({ currentTarget }) => onChange && onChange(currentTarget.valueAsNumber),
+      [onChange],
+    );
 
-  const handleOnKeyDown = React.useCallback(
-    (ev: React.KeyboardEvent<HTMLInputElement>) =>
-      handleInputKeyPress<number>(
-        ev,
-        (element: HTMLInputElement) => element.valueAsNumber,
-        onEnterKey,
-      ),
-    [onEnterKey],
-  );
+    const handleOnKeyDown = React.useCallback(
+      (ev: React.KeyboardEvent<HTMLInputElement>) =>
+        handleInputKeyPress<number>(
+          ev,
+          (element: HTMLInputElement) => element.valueAsNumber,
+          onEnterKey,
+        ),
+      [onEnterKey],
+    );
 
-  return (
-    <span
-      className={getFieldWrapClassName({
-        userClassName: className,
-        uiSize,
-        bordered,
-        disabled,
-        fixedHeight: true,
-      })}
-    >
-      <input
-        value={value}
-        type="number"
-        className={getFieldClassName({
+    return (
+      <span
+        className={getFieldWrapClassName({
+          userClassName: className,
           uiSize,
+          bordered,
+          disabled,
           fixedHeight: true,
-          noYPadding: false,
-          forInput: true,
-          otherClassName: 'text-right',
-          userClassName: elementClassName,
         })}
-        disabled={disabled}
-        autoComplete={autocomplete}
-        max={max}
-        maxLength={maxLength}
-        min={min}
-        minLength={minLength}
-        name={name}
-        placeholder={placeholder}
-        readOnly={readOnly}
-        required={required}
-        size={size}
-        step={step}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onChange={handleOnChange}
-        onKeyPress={handleOnKeyDown}
-      />
-    </span>
-  );
-};
+      >
+        <input
+          value={value}
+          type="number"
+          className={getFieldClassName({
+            uiSize,
+            fixedHeight: true,
+            noYPadding: false,
+            forInput: true,
+            otherClassName: 'text-right',
+            userClassName: elementClassName,
+          })}
+          ref={ref}
+          disabled={disabled}
+          autoComplete={autocomplete}
+          max={max}
+          maxLength={maxLength}
+          min={min}
+          minLength={minLength}
+          name={name}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          required={required}
+          size={size}
+          step={step}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+          onKeyPress={handleOnKeyDown}
+        />
+      </span>
+    );
+  },
+);
 
 InputNumber.displayName = 'InputNumber';
 

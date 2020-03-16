@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import * as React from 'react';
 import { withKnobs, number, select } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { CanvasView } from '../../src';
 import { ExampleStage } from '../utils/ExampleStage';
@@ -67,5 +68,33 @@ export const standard = () => (
       )}
       onRedraw={redraw}
     />
+  </ExampleStage>
+);
+
+const RefTest: React.FC = () => {
+  const ref = React.useRef<HTMLCanvasElement>(null);
+
+  React.useEffect(() => {
+    action(`ref: ${ref.current}`)();
+
+    if (ref.current) {
+      ref.current.style.boxShadow = 'inset 0 0 10px #f00';
+    }
+  });
+
+  return (
+    <CanvasView
+      width={250}
+      height={250}
+      serial={0}
+      ref={ref}
+      onRedraw={redraw}
+    />
+  );
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
   </ExampleStage>
 );

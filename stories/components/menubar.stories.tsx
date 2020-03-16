@@ -42,3 +42,30 @@ export const onBottom = () => (
     </div>
   </ExampleStage>
 );
+
+const RefTest: React.FC = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    action(`ref: ${ref.current}`)();
+
+    if (ref.current) {
+      ref.current.style.boxShadow = '0 0 10px #f00';
+    }
+  });
+
+  return (
+    <Menubar
+      ref={ref}
+      className="fixed inset-x-0 top-0 h-8 border-b bg-white"
+      left={data1}
+      right={data2}
+    />
+  );
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
+  </ExampleStage>
+);

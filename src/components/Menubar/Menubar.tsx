@@ -10,7 +10,7 @@ import { BasicProps } from '../../utils/commonProps';
 import { MenubarGroup } from './MenubarGroup';
 import { MenubarCover } from './MenubarCover';
 
-type MenubarProps = BasicProps & {
+type MenubarProps = BasicProps<HTMLDivElement> & {
   /** Menu data for left side. */
   left?: MenuData;
 
@@ -26,59 +26,65 @@ type MenubarProps = BasicProps & {
 };
 
 /** Menubar component. */
-export const Menubar: React.FC<MenubarProps> = ({
-  className,
-  left = [],
-  right = [],
-  onSelect = () => {
-    //
-  },
-}: MenubarProps) => {
-  const [opened, setOpened] = React.useState(false);
-  const [openPath, setOpenPath] = React.useState([] as string[]);
+export const Menubar: React.FC<MenubarProps> = React.forwardRef(
+  (
+    {
+      className,
+      left = [],
+      right = [],
+      onSelect = () => {
+        //
+      },
+    }: MenubarProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) => {
+    const [opened, setOpened] = React.useState(false);
+    const [openPath, setOpenPath] = React.useState([] as string[]);
 
-  const handleOnClick = React.useCallback(() => {
-    setOpenPath([]);
-    setOpened(false);
-  }, [opened, openPath]);
-
-  const handleOnSelect = React.useCallback(
-    (id: string) => {
+    const handleOnClick = React.useCallback(() => {
+      setOpenPath([]);
       setOpened(false);
-      onSelect(id);
-    },
-    [opened, openPath],
-  );
+    }, [opened, openPath]);
 
-  return (
-    <>
-      <MenubarCover visible={opened} onClick={handleOnClick} />
-      <div
-        style={STYLE_FOR_MENUBAR}
-        className={classnames(className, 'flex justify-between')}
-        onClick={handleOnClick}
-      >
-        <MenubarGroup
-          key="left"
-          data={left}
-          opened={opened}
-          openPath={openPath}
-          onSelect={handleOnSelect}
-          onSetOpened={setOpened}
-          onSetOpenPath={setOpenPath}
-        />
-        <MenubarGroup
-          key="right"
-          data={right}
-          opened={opened}
-          openPath={openPath}
-          onSelect={handleOnSelect}
-          onSetOpened={setOpened}
-          onSetOpenPath={setOpenPath}
-        />
-      </div>
-    </>
-  );
-};
+    const handleOnSelect = React.useCallback(
+      (id: string) => {
+        setOpened(false);
+        onSelect(id);
+      },
+      [opened, openPath],
+    );
+
+    return (
+      <>
+        <MenubarCover visible={opened} onClick={handleOnClick} />
+        <div
+          style={STYLE_FOR_MENUBAR}
+          className={classnames(className, 'flex justify-between')}
+          ref={ref}
+          onClick={handleOnClick}
+        >
+          <MenubarGroup
+            key="left"
+            data={left}
+            opened={opened}
+            openPath={openPath}
+            onSelect={handleOnSelect}
+            onSetOpened={setOpened}
+            onSetOpenPath={setOpenPath}
+          />
+          <MenubarGroup
+            key="right"
+            data={right}
+            opened={opened}
+            openPath={openPath}
+            onSelect={handleOnSelect}
+            onSetOpened={setOpened}
+            onSetOpenPath={setOpenPath}
+          />
+        </div>
+      </>
+    );
+  },
+);
 
 Menubar.displayName = 'Menubar';

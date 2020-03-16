@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import useState from 'storybook-addon-state';
+import { action } from '@storybook/addon-actions';
 
 import { ExampleStage } from '../utils/ExampleStage';
 import { Cover, Icon, Button } from '../../src';
@@ -85,3 +86,27 @@ export const modal = () => {
     </ExampleStage>
   );
 };
+
+const RefTest: React.FC = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    action(`ref: ${ref.current}`)();
+
+    if (ref.current) {
+      ref.current.style.boxShadow = 'inset 0 0 10px #f00';
+    }
+  });
+
+  return (
+    <Cover visible ref={ref}>
+      Cover
+    </Cover>
+  );
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
+  </ExampleStage>
+);

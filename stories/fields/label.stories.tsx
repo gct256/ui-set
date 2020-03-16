@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { ExampleStage } from '../utils/ExampleStage';
 import {
@@ -93,5 +94,25 @@ export const withOthers = () => (
         </Column>
       </Row>
     </div>
+  </ExampleStage>
+);
+
+const RefTest: React.FC = () => {
+  const ref = React.useRef<HTMLSpanElement>(null);
+
+  React.useEffect(() => {
+    action(`ref: ${ref.current}`)();
+
+    if (ref.current) {
+      ref.current.style.boxShadow = '0 0 10px #f00';
+    }
+  });
+
+  return <Label ref={ref}>Label</Label>;
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
   </ExampleStage>
 );

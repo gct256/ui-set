@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { Separator } from '../../src';
 import { ExampleStage } from '../utils/ExampleStage';
@@ -23,3 +24,23 @@ export const standard = () => {
     </ExampleStage>
   );
 };
+
+const RefTest: React.FC = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    action(`ref: ${ref.current}`)();
+
+    if (ref.current) {
+      ref.current.style.boxShadow = '0 0 10px #f00';
+    }
+  });
+
+  return <Separator ref={ref}>Separator</Separator>;
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
+  </ExampleStage>
+);

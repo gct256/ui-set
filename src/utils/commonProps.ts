@@ -1,19 +1,23 @@
+import { Ref } from 'react';
+
 import { UiSize } from './UiSize';
 
 /** Props for HTML element. */
-export type BasicProps = {
+export type BasicProps<T> = {
   /** ClassName. */
   className?: string;
+  /** React's ref. */
+  ref?: Ref<T>;
 };
 
 /** Props for UI element. */
-export type UiProps = BasicProps & {
+export type UiProps<T> = BasicProps<T> & {
   /** If true, use disabled style and disable use input. */
   disabled?: boolean;
 };
 
 /** Props for UI element with UI size. */
-export type SizedUiProps = UiProps & {
+export type SizedUiProps<T> = UiProps<T> & {
   /** UI Element size. */
   uiSize?: UiSize;
 };

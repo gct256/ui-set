@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
 
 import { ExampleStage } from '../utils/ExampleStage';
 import { ExampleBlock } from '../utils/ExampleBlock';
@@ -206,5 +207,36 @@ export const nested = () => (
         <ExampleBlock />
       </Column>
     </Row>
+  </ExampleStage>
+);
+
+const RefTest: React.FC = () => {
+  const rowRef = React.useRef<HTMLDivElement>(null);
+  const columnRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    action(`rowRef: ${rowRef.current}`)();
+    action(`columnRef: ${columnRef.current}`)();
+
+    if (columnRef.current) {
+      columnRef.current.style.boxShadow = 'inset 0 0 10px #f00';
+    }
+
+    if (rowRef.current) {
+      rowRef.current.style.boxShadow = '0 0 10px #0f0';
+    }
+  });
+
+  return (
+    <Row ref={rowRef}>
+      <Column ref={columnRef}>Column 1</Column>
+      <Column>Column 2</Column>
+    </Row>
+  );
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
   </ExampleStage>
 );

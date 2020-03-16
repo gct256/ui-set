@@ -11,7 +11,7 @@ import {
   removeAllAnimations,
 } from '../utils/animations';
 
-type RadioGroupProps = UiProps &
+type RadioGroupProps = UiProps<HTMLDivElement> &
   FieldProps<string> & {
     /** Prefix of HTML's id attrbiute. */
     htmlIdPrefix?: string;
@@ -128,30 +128,31 @@ const Radio: React.FC<RadioProps> = ({
   );
 };
 
-export const RadioGroup: React.FC<RadioGroupProps> = (
-  props: RadioGroupProps,
-) => {
-  const { htmlIdPrefix, name, items, vertical, className } = props;
-  const prefix = htmlIdPrefix === undefined ? name : htmlIdPrefix;
+export const RadioGroup: React.FC<RadioGroupProps> = React.forwardRef(
+  (props: RadioGroupProps, ref: React.Ref<HTMLDivElement>) => {
+    const { htmlIdPrefix, name, items, vertical, className } = props;
+    const prefix = htmlIdPrefix === undefined ? name : htmlIdPrefix;
 
-  return (
-    <div
-      className={classnames(className, 'ui form-group with-animation', {
-        'vertical flex flex-col items-start': vertical,
-        'horizontal flex flex-row items-start': !vertical,
-      })}
-    >
-      {mapSelectItems(items).map((item, i) => (
-        <Radio
-          htmlId={`${prefix}:${item.value}`}
-          {...props}
-          key={item.value}
-          item={item}
-          index={i}
-        />
-      ))}
-    </div>
-  );
-};
+    return (
+      <div
+        className={classnames(className, 'ui form-group with-animation', {
+          'vertical flex flex-col items-start': vertical,
+          'horizontal flex flex-row items-start': !vertical,
+        })}
+        ref={ref}
+      >
+        {mapSelectItems(items).map((item, i) => (
+          <Radio
+            htmlId={`${prefix}:${item.value}`}
+            {...props}
+            key={item.value}
+            item={item}
+            index={i}
+          />
+        ))}
+      </div>
+    );
+  },
+);
 
 RadioGroup.displayName = 'RadioGroup';

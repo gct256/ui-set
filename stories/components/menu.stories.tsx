@@ -50,3 +50,23 @@ export const fixedPosition = () => (
     />
   </ExampleStage>
 );
+
+const RefTest: React.FC = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    action(`ref: ${ref.current}`)();
+
+    if (ref.current) {
+      ref.current.style.boxShadow = '0 0 10px #f00';
+    }
+  });
+
+  return <Menu visible ref={ref} data={data1} />;
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
+  </ExampleStage>
+);

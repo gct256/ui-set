@@ -29,7 +29,7 @@ const getScales = (renderMode?: RenderMode): [number, number] => {
   }
 };
 
-type CanvasViewProps = BasicProps & {
+type CanvasViewProps = BasicProps<HTMLCanvasElement> & {
   /** Width of canvas element. */
   width: number;
   /** Height of canvas element. */
@@ -53,10 +53,16 @@ type CanvasViewProps = BasicProps & {
 
 const renderToCanvas = (
   props: CanvasViewProps,
-  ref1: React.RefObject<HTMLCanvasElement>,
+  ref1: React.Ref<HTMLCanvasElement>,
   ref2: React.RefObject<HTMLCanvasElement>,
 ): void => {
-  if (ref1.current === null || ref2.current === null) return;
+  if (
+    ref1 === null ||
+    !('current' in ref1) ||
+    ref1.current === null ||
+    ref2.current === null
+  )
+    return;
 
   const front = ref1.current.getContext('2d');
   const back = ref2.current.getContext('2d');
@@ -90,39 +96,42 @@ const renderToCanvas = (
 
 /** Controlable HTML Canvas element. */
 export const CanvasView: React.FC<CanvasViewProps> = React.memo(
-  (props: CanvasViewProps) => {
-    const ref1 = React.useRef<HTMLCanvasElement>(null);
-    const ref2 = React.useRef<HTMLCanvasElement>(null);
+  React.forwardRef(
+    (props: CanvasViewProps, ref: React.Ref<HTMLCanvasElement>) => {
+      // eslint-disable-next-line react/prop-types
+      const { className, width, height, renderMode } = props;
+      const ref1 = React.useRef<HTMLCanvasElement>(null);
+      const ref2 = React.useRef<HTMLCanvasElement>(null);
 
-    React.useEffect(() => {
-      renderToCanvas(props, ref1, ref2);
-    }, [props]);
+      React.useEffect(() => {
+        renderToCanvas(props, ref || ref1, ref2);
+      }, [props]);
 
-    const { className, width, height, renderMode } = props;
-    const [scale1, scale2] = getScales(renderMode);
-    const style = {
-      width: `${width}px`,
-      height: `${height}px`,
-    };
+      const [scale1, scale2] = getScales(renderMode);
+      const style = {
+        width: `${width}px`,
+        height: `${height}px`,
+      };
 
-    return (
-      <>
-        <canvas
-          className={className}
-          ref={ref1}
-          width={width * scale1}
-          height={height * scale1}
-          style={style}
-        />
-        <canvas
-          className="hidden"
-          ref={ref2}
-          width={width * scale2}
-          height={height * scale2}
-        />
-      </>
-    );
-  },
+      return (
+        <>
+          <canvas
+            className={className}
+            ref={ref || ref1}
+            width={width * scale1}
+            height={height * scale1}
+            style={style}
+          />
+          <canvas
+            className="hidden"
+            ref={ref2}
+            width={width * scale2}
+            height={height * scale2}
+          />
+        </>
+      );
+    },
+  ),
   (prevProps: CanvasViewProps, nextProps: CanvasViewProps) =>
     prevProps.className === nextProps.className &&
     prevProps.width === nextProps.width &&

@@ -13,7 +13,7 @@ import {
   removeAllAnimations,
 } from '../utils/animations';
 
-type InputTextProps = SizedUiProps &
+type InputTextProps = SizedUiProps<HTMLInputElement> &
   FieldProps<string> & {
     /** If true, field has 1px border. */
     bordered?: boolean;
@@ -43,117 +43,125 @@ type InputTextProps = SizedUiProps &
   };
 
 /** Input file for text. */
-export const InputText: React.FC<InputTextProps> = ({
-  value,
-  className,
-  disabled,
-  uiSize,
+export const InputText: React.FC<InputTextProps> = React.forwardRef(
+  (
+    {
+      value,
+      className,
+      disabled,
+      uiSize,
 
-  bordered,
-  password,
-  elementClassName,
+      bordered,
+      password,
+      elementClassName,
 
-  autocomplete,
-  maxLength,
-  minLength,
-  name,
-  pattern,
-  placeholder,
-  readOnly,
-  required,
-  size,
+      autocomplete,
+      maxLength,
+      minLength,
+      name,
+      pattern,
+      placeholder,
+      readOnly,
+      required,
+      size,
 
-  onChange,
-  onFocus,
-  onBlur,
-  onEnterKey,
-  onKeyDown,
-}: InputTextProps) => {
-  const handleOnFocus = React.useCallback(
-    (ev: React.FocusEvent<HTMLInputElement>) => {
-      startAnimation(
-        ev.currentTarget,
-        bordered ? animations.focusAnimation : animations.focusAnimationBorder,
-      );
+      onChange,
+      onFocus,
+      onBlur,
+      onEnterKey,
+      onKeyDown,
+    }: InputTextProps,
+    ref: React.Ref<HTMLInputElement>,
+  ) => {
+    const handleOnFocus = React.useCallback(
+      (ev: React.FocusEvent<HTMLInputElement>) => {
+        startAnimation(
+          ev.currentTarget,
+          bordered
+            ? animations.focusAnimation
+            : animations.focusAnimationBorder,
+        );
 
-      if (onFocus) onFocus();
-    },
-    [bordered, onFocus],
-  );
+        if (onFocus) onFocus();
+      },
+      [bordered, onFocus],
+    );
 
-  const handleOnBlur = React.useCallback(
-    (ev: React.FocusEvent<HTMLInputElement>) => {
-      removeAllAnimations(ev.currentTarget);
+    const handleOnBlur = React.useCallback(
+      (ev: React.FocusEvent<HTMLInputElement>) => {
+        removeAllAnimations(ev.currentTarget);
 
-      if (onBlur) onBlur();
-    },
-    [onBlur],
-  );
+        if (onBlur) onBlur();
+      },
+      [onBlur],
+    );
 
-  const handleOnChange = React.useCallback(
-    ({ currentTarget }) => onChange && onChange(currentTarget.value),
-    [onChange],
-  );
+    const handleOnChange = React.useCallback(
+      ({ currentTarget }) => onChange && onChange(currentTarget.value),
+      [onChange],
+    );
 
-  const handleOnKeyDown = React.useCallback(
-    (ev: React.KeyboardEvent<HTMLInputElement>) =>
-      handleInputKeyDown<string, HTMLInputElement>(
-        ev,
-        (element: HTMLInputElement) => element.value,
-        onKeyDown,
-      ),
-    [onKeyDown],
-  );
+    const handleOnKeyDown = React.useCallback(
+      (ev: React.KeyboardEvent<HTMLInputElement>) =>
+        handleInputKeyDown<string, HTMLInputElement>(
+          ev,
+          (element: HTMLInputElement) => element.value,
+          onKeyDown,
+        ),
+      [onKeyDown],
+    );
 
-  const handleOnKeyPress = React.useCallback(
-    (ev: React.KeyboardEvent<HTMLInputElement>) =>
-      handleInputKeyPress<string>(
-        ev,
-        (element: HTMLInputElement) => element.value,
-        onEnterKey,
-      ),
-    [onEnterKey],
-  );
+    const handleOnKeyPress = React.useCallback(
+      (ev: React.KeyboardEvent<HTMLInputElement>) =>
+        handleInputKeyPress<string>(
+          ev,
+          (element: HTMLInputElement) => element.value,
+          onEnterKey,
+        ),
+      [onEnterKey],
+    );
 
-  return (
-    <span
-      className={getFieldWrapClassName({
-        userClassName: className,
-        uiSize,
-        bordered,
-        disabled,
-        fixedHeight: true,
-      })}
-    >
-      <input
-        type={password ? 'password' : 'text'}
-        value={value}
-        className={getFieldClassName({
+    return (
+      <span
+        className={getFieldWrapClassName({
+          userClassName: className,
           uiSize,
+          bordered,
+          disabled,
           fixedHeight: true,
-          noYPadding: false,
-          forInput: true,
-          userClassName: elementClassName,
         })}
-        disabled={disabled}
-        autoComplete={autocomplete}
-        maxLength={maxLength}
-        minLength={minLength}
-        name={name}
-        pattern={pattern}
-        placeholder={placeholder}
-        readOnly={readOnly}
-        required={required}
-        size={size}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onChange={handleOnChange}
-        onKeyDown={handleOnKeyDown}
-        onKeyPress={handleOnKeyPress}
-      />
-    </span>
-  );
-};
+      >
+        <input
+          type={password ? 'password' : 'text'}
+          value={value}
+          className={getFieldClassName({
+            uiSize,
+            fixedHeight: true,
+            noYPadding: false,
+            forInput: true,
+            userClassName: elementClassName,
+          })}
+          ref={ref}
+          disabled={disabled}
+          autoComplete={autocomplete}
+          maxLength={maxLength}
+          minLength={minLength}
+          name={name}
+          pattern={pattern}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          required={required}
+          size={size}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+          onKeyDown={handleOnKeyDown}
+          onKeyPress={handleOnKeyPress}
+        />
+      </span>
+    );
+  },
+);
 
 InputText.displayName = 'InputText';
 

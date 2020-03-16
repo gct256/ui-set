@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
 import useState from 'storybook-addon-state';
+import { action } from '@storybook/addon-actions';
 
 import { Checkbox } from '../../src';
 import { ExampleStage } from '../utils/ExampleStage';
@@ -91,3 +92,23 @@ export const event = () => {
     </ExampleStage>
   );
 };
+
+const RefTest: React.FC = () => {
+  const ref = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    action(`ref: ${ref.current}`)();
+
+    if (ref.current && ref.current.parentNode instanceof HTMLElement) {
+      ref.current.parentNode.style.boxShadow = '0 0 10px #f00';
+    }
+  });
+
+  return <Checkbox ref={ref}>Checkbox</Checkbox>;
+};
+
+export const refProps = () => (
+  <ExampleStage>
+    <RefTest />
+  </ExampleStage>
+);

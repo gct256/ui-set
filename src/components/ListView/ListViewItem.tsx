@@ -8,7 +8,7 @@ export const itemIndexKey = getDatasetKey('listViewItemIndex');
 
 export const isCursorTargetKey = getDatasetKey('listViewIsCursorTarget');
 
-type ListViewItemProps = BasicProps & {
+type ListViewItemProps = BasicProps<HTMLDivElement> & {
   index: number;
   isCursorTarget: boolean;
 };

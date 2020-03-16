@@ -18,7 +18,7 @@ import {
 
 const EMPTY = '';
 
-type SelectProps = SizedUiProps &
+type SelectProps = SizedUiProps<HTMLSelectElement> &
   FieldProps<string> & {
     /** If true, field has 1px border. */
     bordered?: boolean;
@@ -36,88 +36,97 @@ const renderItems = (items?: SelectItem[]): React.ReactNode =>
   ));
 
 /** Select list field. */
-export const Select: React.FC<SelectProps> = ({
-  value,
-  bordered,
-  uiSize,
+export const Select: React.FC<SelectProps> = React.forwardRef(
+  (
+    {
+      value,
+      bordered,
+      uiSize,
 
-  items,
-  withEmptyItem,
-  className,
-  disabled,
+      items,
+      withEmptyItem,
+      className,
+      disabled,
 
-  onChange,
-  onFocus,
-  onBlur,
-}: SelectProps) => {
-  const handleOnFocus = React.useCallback(
-    (ev: React.FocusEvent<HTMLSelectElement>) => {
-      startAnimation(
-        ev.currentTarget,
-        bordered ? animations.focusAnimation : animations.focusAnimationBorder,
-      );
+      onChange,
+      onFocus,
+      onBlur,
+    }: SelectProps,
+    ref: React.Ref<HTMLSelectElement>,
+  ) => {
+    const handleOnFocus = React.useCallback(
+      (ev: React.FocusEvent<HTMLSelectElement>) => {
+        startAnimation(
+          ev.currentTarget,
+          bordered
+            ? animations.focusAnimation
+            : animations.focusAnimationBorder,
+        );
 
-      if (onFocus) onFocus();
-    },
-    [bordered, onFocus],
-  );
+        if (onFocus) onFocus();
+      },
+      [bordered, onFocus],
+    );
 
-  const handleOnBlur = React.useCallback(
-    (ev: React.FocusEvent<HTMLSelectElement>) => {
-      removeAllAnimations(ev.currentTarget);
+    const handleOnBlur = React.useCallback(
+      (ev: React.FocusEvent<HTMLSelectElement>) => {
+        removeAllAnimations(ev.currentTarget);
 
-      if (onBlur) onBlur();
-    },
-    [onBlur],
-  );
+        if (onBlur) onBlur();
+      },
+      [onBlur],
+    );
 
-  const handleOnChange = React.useCallback(
-    ({ currentTarget }) => onChange && onChange(currentTarget.value),
-    [onChange],
-  );
+    const handleOnChange = React.useCallback(
+      ({ currentTarget }) => onChange && onChange(currentTarget.value),
+      [onChange],
+    );
 
-  return (
-    <span
-      className={getFieldWrapClassName({
-        userClassName: className,
-        uiSize,
-        bordered,
-        disabled,
-        fixedHeight: true,
-        otherClassName: 'relative',
-      })}
-    >
-      <select
-        value={value}
-        disabled={disabled}
-        className={getFieldClassName({
+    return (
+      <span
+        className={getFieldWrapClassName({
+          userClassName: className,
           uiSize,
+          bordered,
+          disabled,
           fixedHeight: true,
-          noYPadding: true,
-          otherClassName: 'pr-8 rounded-none appearance-none leading-none p-0',
+          otherClassName: 'relative',
         })}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
-        onChange={handleOnChange}
       >
-        {withEmptyItem ? <option value="">{EMPTY}</option> : null}
-        {renderItems(items)}
-      </select>
-      <Icon
-        icon={faAngleDown}
-        size="sm"
-        fixedWidth
-        className={classnames(
-          'absolute my-auto pr-1 inset-y-0 right-0 focus-after:mr-0 pointer-events-none',
-          {
-            'mr-px': bordered,
-            [colors.inputArea.disabled.text]: disabled,
-          },
-        )}
-      />
-    </span>
-  );
-};
+        <select
+          value={value}
+          disabled={disabled}
+          className={getFieldClassName({
+            uiSize,
+            fixedHeight: true,
+            noYPadding: true,
+            otherClassName:
+              'pr-8 rounded-none appearance-none leading-none p-0',
+          })}
+          ref={ref}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          onChange={handleOnChange}
+        >
+          {withEmptyItem ? <option value="">{EMPTY}</option> : null}
+          {renderItems(items)}
+        </select>
+        <Icon
+          icon={faAngleDown}
+          size="sm"
+          fixedWidth
+          className={classnames(
+            'absolute my-auto pr-1 inset-y-0 right-0 focus-after:mr-0 pointer-events-none',
+            {
+              'mr-px': bordered,
+              [colors.inputArea.disabled.text]: disabled,
+            },
+          )}
+        />
+      </span>
+    );
+  },
+);
 
 Select.displayName = 'Select';
 

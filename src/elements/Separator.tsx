@@ -12,35 +12,36 @@ const baseClassName = `flex-grow`;
 const hClassName = `w-full border-b ${baseClassName}`;
 const vClassName = `h-full border-r ${baseClassName}`;
 
-type SeparatorProps = UiProps & {
+type SeparatorProps = UiProps<HTMLDivElement> & {
   /** If true, render vertical separator. */
   vertical?: boolean;
 };
 
 /** Separator element. */
-export const Separator: React.FC<SeparatorProps> = ({
-  disabled,
-  vertical,
-  className,
-}: SeparatorProps) =>
-  vertical ? (
-    <div className={vWrapperClassName}>
-      <div
-        className={classnames(vClassName, className, {
-          [colors.standard.normal.border]: !disabled,
-          [colors.standard.disabled.border]: disabled,
-        })}
-      />
-    </div>
-  ) : (
-    <div className={hWrapperClassName}>
-      <div
-        className={classnames(hClassName, className, {
-          [colors.standard.normal.border]: !disabled,
-          [colors.standard.disabled.border]: disabled,
-        })}
-      />
-    </div>
-  );
+export const Separator: React.FC<SeparatorProps> = React.forwardRef(
+  (
+    { disabled, vertical, className }: SeparatorProps,
+    ref: React.Ref<HTMLDivElement>,
+  ) =>
+    vertical ? (
+      <div className={vWrapperClassName} ref={ref}>
+        <div
+          className={classnames(vClassName, className, {
+            [colors.standard.normal.border]: !disabled,
+            [colors.standard.disabled.border]: disabled,
+          })}
+        />
+      </div>
+    ) : (
+      <div className={hWrapperClassName} ref={ref}>
+        <div
+          className={classnames(hClassName, className, {
+            [colors.standard.normal.border]: !disabled,
+            [colors.standard.disabled.border]: disabled,
+          })}
+        />
+      </div>
+    ),
+);
 
 Separator.displayName = 'Separator';
