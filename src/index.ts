@@ -25,6 +25,7 @@ import { ListView } from './components/ListView/ListView';
 import { Menu } from './components/Menu/Menu';
 import { MenuData, MENU_SEPARATOR } from './components/Menu/MenuData';
 import { Menubar } from './components/Menubar/Menubar';
+import { Popover } from './components/Popover/Popover';
 //
 import { colors as themeColors } from './utils/colors';
 //
@@ -61,6 +62,7 @@ export {
   MenuData,
   MENU_SEPARATOR,
   Menubar,
+  Popover,
   //
   themeColors,
   //
