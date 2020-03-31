@@ -1,6 +1,6 @@
 {
   "name": "@gct256/ui-set",
-  "version": "0.6.5",
+  "version": "0.7.0",
   "description": "The user interface components for React with tailwind.css.",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "build": "NODE_ENV=production rollup -c",
     "start-storybook": "start-storybook",
     "build-storybook": "build-storybook -o example",
-    "prepare": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "main": "lib/ui-set",
   "typings": "types/index.d.ts",
