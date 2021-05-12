@@ -57,7 +57,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "focus-trap-react": "^6.0.0",
-    "postcss": "^7.0.26",
+    "postcss": "^8.2.10",
     "postcss-cli": "^7.1.0",
     "postcss-color-function": "^4.1.0",
     "prettier": "^1.19.1",
